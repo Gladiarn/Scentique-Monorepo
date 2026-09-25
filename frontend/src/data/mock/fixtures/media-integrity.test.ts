@@ -41,3 +41,13 @@ describe("fixture images", () => {
     expect(bois?.media.filter((m) => m.role === "photo").length).toBeGreaterThanOrEqual(2);
   });
 });
+
+describe("collection (category) images", () => {
+  it("every scent family has its own category photograph, no placeholders", () => {
+    expect(collectionFixtures.map((c) => c.family).sort()).toEqual(["citrus", "floral", "oud", "woody"]);
+    for (const c of collectionFixtures) {
+      expect(c.media.src, c.slug).toBe(`/images/categories/${c.family}.webp`);
+      expect(c.media.alt.length, c.slug).toBeGreaterThan(15);
+    }
+  });
+});

@@ -16,7 +16,11 @@ const PLACEMENT: Record<ScentFamily, string> = {
   floral: "lg:col-start-4 lg:row-span-2 lg:row-start-1",
 };
 
+/* Small tiles are too short to carry the description over busy photography, so they show the name only. */
+const COMPACT: ScentFamily[] = ["oud", "citrus"];
+
 function FamilyTile({ collection, large }: { collection: Collection; large: boolean }) {
+  const compact = COMPACT.includes(collection.family);
   const { media } = collection;
   return (
     <li className={PLACEMENT[collection.family]}>
@@ -34,13 +38,13 @@ function FamilyTile({ collection, large }: { collection: Collection; large: bool
           sizes="(min-width: 1024px) 25vw, 100vw"
           className="absolute inset-0 h-full w-full transition-transform duration-700 ease-[var(--ease-out-quart)] group-hover:scale-[1.04]"
         />
-        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-page/90 via-page/15 to-transparent" />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-page/95 via-page/30 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
           <div className="flex items-center gap-2.5">
             <span aria-hidden="true" className="size-2 rounded-pill" style={{ background: `var(--color-${collection.family})` }} />
             <h3 className={cn("font-display", large ? "text-3xl" : "text-2xl")}>{collection.name}</h3>
           </div>
-          <p className="mt-2 max-w-[32ch] text-sm text-ink/75">{collection.blurb}</p>
+          {!compact && <p className="mt-2 max-w-[32ch] text-sm text-ink/80">{collection.blurb}</p>}
           <span className="mt-3 inline-flex items-center gap-2 text-sm text-accent">
             Explore <ArrowRightIcon width={16} height={16} className="transition-transform group-hover:translate-x-1" />
           </span>

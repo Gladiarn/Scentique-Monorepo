@@ -90,3 +90,9 @@ Decisions are appended as they are approved, newest last. Each entry: date, what
 - **Supplied:** real photos of L'Ambre Sauvage and L'Ambre Éternel (the latter is `AURA NOCTURNE.jpg`, its label reads "L'Ambre Éternel"), two new scents (Nocturne Absolu, Mystique Bois), and a second Bois Fumé Précieux bottle.
 - **Decision (user):** do not use the `Original` folder. Cards use real photographs everywhere; the traced SVG copies were removed. Best sellers now shows Ambre Fumé (featured), Bois Fumé Précieux, Nocturne Absolu and Mystique Bois; the Floral card uses the real Sauvage photo.
 - **Catalog:** 7 real scents plus 4 placeholders without photos. Nocturne Absolu (oud) and Mystique Bois (woody) notes, taglines and prices are placeholders derived from what is visible in the photos.
+
+## 2026-09-26: Category photos for Four families; Best sellers static via the repository
+
+- **Categories:** the four family tiles use the supplied ingredient still-lifes (wood, florals, citrus, oud), so every tile has a real photograph and there are no placeholders. Small tiles (Oud, Citrus) show the name only, so text is not laid over busy detail.
+- **Best sellers (user decision):** static for now; the real ranking comes with the backend. The UI asks `productRepository.findBestSellers(limit)`; the mock returns a fixed ranked list (`fixtures/best-sellers.ts`), the API version will rank by sales. Swapping is one method, no UI change.
+- **glad-frontend audit:** no component imports mock or API classes; each data section is wrapped in a `SectionBoundary` (error with retry) plus a Suspense skeleton (loading) plus an empty state; `NEXT_PUBLIC_MOCK_FAILURE_RATE=1` forces the error states.

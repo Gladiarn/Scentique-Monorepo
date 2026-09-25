@@ -69,9 +69,9 @@ The earlier SVG traces of Sauvage and Éternel and the `Original/` folder are no
 - Prompt: Same scene and lighting as hero-desktop, recomposed for portrait: bottle centred in the lower two thirds, dark silk above with no detail for the header and headline.
 - Alt text: Ember Oud perfume bottle on a stone plinth among orchids and vanilla pods
 
-### collection-woody / collection-floral / collection-citrus / collection-oud
-- Path: frontend/public/images/collection-<family>.webp
-- Ratio: 4:5, 2000 x 2500 each
+### category images (supplied): woody, floral, citrus, oud
+- Originals: `frontend/public/Categories/{WOOD,FLORALS,CITRUS,OUD}.jpg` (1382x768). Site files: `frontend/public/images/categories/<family>.webp`.
+- Ratio: 16:9 as supplied; tiles crop it with `object-fit: cover` (per-family crop position in `collections.ts`)
 - Used in: landing collections, shop menu
 - Prompt (per family): A perfume bottle centred with generous margin on a dark warm surface, soft directional amber light, film grain. Woody: smoked-glass bottle on a raw cedar plank with wood shavings. Floral: blush-tinted bottle beside dark roses and iris on velvet. Citrus: clear bottle with halved blood orange and green leaves on dark slate. Oud: dark amber bottle beside chunks of oud wood and resin on black stone. No text on the bottle.
 - Alt text: <Family> collection bottle beside <its ingredient>
