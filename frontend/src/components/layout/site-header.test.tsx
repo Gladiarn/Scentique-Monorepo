@@ -47,4 +47,12 @@ describe("SiteHeader", () => {
     await userEvent.keyboard("{Escape}");
     expect(screen.getByRole("button", { name: "Open menu" })).toHaveAttribute("aria-expanded", "false");
   });
+
+  it("has no border line, in either state", () => {
+    render(<SiteHeader />);
+    const banner = screen.getByRole("banner");
+    expect(banner.className).not.toMatch(/\bborder(-b|-t)?\b/);
+    scrollTo(120);
+    expect(banner.className).not.toMatch(/\bborder(-b|-t)?\b/);
+  });
 });

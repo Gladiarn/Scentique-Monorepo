@@ -51,8 +51,8 @@ export function SiteHeader({ cartCount = 0 }: { cartCount?: number }) {
     <header
       data-scrolled={scrolled}
       className={cn(
-        "fixed inset-x-0 top-0 z-50 border-b transition-[height,background-color,border-color] duration-500 ease-[var(--ease-out-quart)]",
-        scrolled ? "h-16 border-line bg-page/90 backdrop-blur-md" : "h-[7.5rem] border-transparent bg-gradient-to-b from-page/75 to-transparent",
+        "fixed inset-x-0 top-0 z-50 transition-[height,background-color] duration-500 ease-[var(--ease-out-quart)]",
+        scrolled ? "h-16 bg-page/90 backdrop-blur-md" : "h-[7.5rem] bg-gradient-to-b from-page/75 to-transparent",
       )}
     >
       <Container className="relative z-[45] flex h-full items-center justify-between gap-4 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-6">

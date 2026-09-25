@@ -7,12 +7,12 @@ export const collectionFixtures: Collection[] = [
   {
     id: "woody", slug: "woody", name: "Woody", family: "woody",
     blurb: "Cedar, vetiver and smoke. Warm, dry and grounded.",
-    media: { alt: "Woody collection bottle beside cedar", promptBrief: `A smoked-glass perfume bottle on a raw cedar plank with wood shavings. ${STYLE}` },
+    media: { src: "/images/hero/bois-fume-precieux.webp", objectPosition: "64% 50%", alt: "Bois Fumé Précieux perfume bottle among frankincense and bark", promptBrief: `A smoked-glass perfume bottle on a raw cedar plank with wood shavings. ${STYLE}` },
   },
   {
     id: "floral", slug: "floral", name: "Floral", family: "floral",
     blurb: "Iris, rose and jasmine, cool at first and then warm.",
-    media: { alt: "Floral collection bottle beside petals", promptBrief: `A blush-tinted perfume bottle beside dark roses and iris on velvet. ${STYLE}` },
+    media: { src: "/images/hero/l-ambre-sauvage.svg", backdrop: "/images/hero/silk-backdrop.webp", objectPosition: "64% 50%", alt: "L'Ambre Sauvage perfume bottle among jasmine flowers", promptBrief: `A blush-tinted perfume bottle beside dark roses and iris on velvet. ${STYLE}` },
   },
   {
     id: "citrus", slug: "citrus", name: "Citrus", family: "citrus",
@@ -22,6 +22,6 @@ export const collectionFixtures: Collection[] = [
   {
     id: "oud", slug: "oud", name: "Oud", family: "oud",
     blurb: "Aged resin, amber and saffron. Deep and slow.",
-    media: { alt: "Oud collection bottle beside resin", promptBrief: `A dark amber perfume bottle beside chunks of oud wood and resin on black stone. ${STYLE}` },
+    media: { src: "/images/hero/ambre-fume.webp", objectPosition: "64% 50%", alt: "Ambre Fumé perfume bottle among amber resin and cinnamon", promptBrief: `A dark amber perfume bottle beside chunks of oud wood and resin on black stone. ${STYLE}` },
   },
 ];

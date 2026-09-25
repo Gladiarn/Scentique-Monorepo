@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
+import { useCallback, useRef, useState, type CSSProperties, type KeyboardEvent, type PointerEvent } from "react";
 import { ProductImage } from "@/components/brand/product-image";
 import { ArrowRightIcon, ChevronLeftIcon, ChevronRightIcon } from "@/components/ui/icons";
 import { Button } from "@/components/ui/button";
@@ -19,7 +19,15 @@ export interface HeroSlide {
   tagline: string;
   family: ScentFamily;
   priceFromCents: number;
-  image: { src?: string; alt: string; objectPosition?: string; backdrop?: string };
+  image: { src?: string; alt: string; objectPosition?: string; objectPositionDesktop?: string };
+}
+
+/** Per-slide crop, so each painted bottle lands between the headline and the glass card at both sizes. */
+function cropVars(image: HeroSlide["image"]): CSSProperties {
+  return {
+    "--pos-m": image.objectPosition,
+    "--pos-d": image.objectPositionDesktop,
+  } as CSSProperties;
 }
 
 const FAMILIES: ScentFamily[] = ["floral", "woody", "citrus", "oud"];
@@ -78,21 +86,20 @@ export function HeroSlider({ slides }: { slides: HeroSlide[] }) {
               family={slide.family}
               src={slide.image.src}
               alt={slide.image.alt}
-              objectPosition={slide.image.objectPosition}
-              backdrop={slide.image.backdrop}
+              style={cropVars(slide.image)}
               priority={i === 0}
               sizes="100vw"
-              className="scale-[1.02]"
+              className="scale-[1.02] [object-position:var(--pos-m,50%_50%)] lg:[object-position:var(--pos-d,var(--pos-m,50%_50%))]"
             />
           </div>
         ))}
-        <div className="absolute inset-0 bg-gradient-to-t from-page via-page/25 to-transparent lg:bg-gradient-to-r lg:from-page/90 lg:via-page/40 lg:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-page via-page/25 to-transparent lg:bg-gradient-to-r lg:from-page/70 lg:via-page/20 lg:to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-page to-transparent lg:block" />
       </div>
 
       <Container className="grid min-h-svh items-end gap-10 pb-28 pt-[56svh] lg:grid-cols-[minmax(0,1fr)_21rem] lg:items-center lg:pb-24 lg:pt-36">
         <div className="max-w-2xl">
-          <h1 className="font-display text-[clamp(2.75rem,1.4rem+4.2vw,5rem)] leading-[1.04] tracking-[-0.02em] text-balance">
+          <h1 className="font-display text-[clamp(2.5rem,1.3rem+3.6vw,4.5rem)] leading-[1.04] tracking-[-0.02em] text-balance">
             Made in small batches from rare ingredients
           </h1>
           <p className="mt-6 max-w-md text-lg text-ink/75">
@@ -138,7 +145,6 @@ export function HeroSlider({ slides }: { slides: HeroSlide[] }) {
                   src={next.image.src}
                   alt=""
                   objectPosition={next.image.objectPosition}
-                  backdrop={next.image.backdrop}
                   sizes="336px"
                   className="transition-transform duration-700 ease-out group-hover:scale-105"
                 />
@@ -159,7 +165,7 @@ export function HeroSlider({ slides }: { slides: HeroSlide[] }) {
       </Container>
 
       {count > 1 && current && (
-        <div className="absolute inset-x-0 top-[calc(68svh-4.5rem)] z-10 lg:bottom-8 lg:top-auto">
+        <div className="absolute inset-x-0 top-[calc(56svh-4.25rem)] z-10 lg:bottom-8 lg:top-auto">
           <Container className="flex items-center justify-between gap-4">
             <p className="text-sm text-ink/80 lg:hidden">{current.name}</p>
             <div className="ml-auto flex items-center gap-3">

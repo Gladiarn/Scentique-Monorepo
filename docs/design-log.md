@@ -39,3 +39,13 @@ Decisions are appended as they are approved, newest last. Each entry: date, what
 - **Stopper repair:** the tracer lost each bottle's cap (grey fragments floating above the collar). `frontend/scripts/prepare-hero-art.py` removes the fragments and draws a clean vector cap. It reads the untouched originals in `public/perfumes/`.
 - **Photos vs artwork:** each product image is tagged `role: "hero"` (landing artwork) or `photo` (real photograph). The landing hero prefers hero artwork; shop and product pages prefer real photos (`lib/media.ts`). The original JPEGs stay untouched in `public/perfumes/`.
 - **Still needed:** original photographs of L'Ambre Éternel and L'Ambre Sauvage. Until then their shop tiles reuse the painterly art.
+
+## 2026-09-25: Typography, layout and section changes
+
+- **Header:** border removed (no line in either state).
+- **Display font:** Prata replaces Gilda Display for headlines and bold text. Compared by eye against the logo wordmark (Marcellus, Cinzel, Forum, Bodoni Moda, Prata, Gilda, Italiana, Cormorant SC); Prata is closest in weight and contrast and reads well in lowercase. Hanken Grotesk stays for body (the logo's tagline is a fine sans).
+- **Hero:** plain dark background, L'Ambre Sauvage first, painterly art only (2 slides). Waves removed from the hero.
+- **Waves:** self-hosted, capsule-render-style layered waving gradient (`WaveBackdrop`), used only in the closing "Not sure where to start?" section.
+- **Curtain backdrop:** moved out of the hero into the About bento tile.
+- **Bento layouts:** About (curtain statement tile, real ingredient close-ups cropped from the supplied photos, process tile), Four families (large, tall and small tiles plus a quiz tile), Best sellers (featured scent with notes pyramid, small tiles, wide tile). Layouts were changed on purpose to move away from the reference's centred hero / equal-card rows.
+- **Crop per slide:** each painted bottle has its own mobile and desktop crop position so it lands between the headline and the glass card.

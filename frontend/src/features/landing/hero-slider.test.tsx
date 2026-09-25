@@ -56,9 +56,11 @@ describe("HeroSlider", () => {
     expect(screen.queryByRole("button", { name: "Next scent" })).not.toBeInTheDocument();
   });
 
-  it("renders a slide's backdrop behind its artwork", () => {
-    const withBackdrop: HeroSlide[] = [{ ...slides[0]!, image: { ...slides[0]!.image, backdrop: "/images/hero/silk-backdrop.webp" } }];
-    const { container } = render(<HeroSlider slides={withBackdrop} />);
-    expect(container.querySelector('img[src*="silk-backdrop"]')).toBeInTheDocument();
+  it("sets a valid crop position per breakpoint on each slide image", () => {
+    const withCrop: HeroSlide[] = [{ ...slides[0]!, image: { ...slides[0]!.image, objectPosition: "67% 50%", objectPositionDesktop: "75% 50%" } }];
+    render(<HeroSlider slides={withCrop} />);
+    const img = screen.getByAltText(withCrop[0]!.image.alt) as HTMLElement;
+    expect(img.style.getPropertyValue("--pos-m")).toBe("67% 50%");
+    expect(img.style.getPropertyValue("--pos-d")).toBe("75% 50%");
   });
 });

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { CSSProperties } from "react";
 import type { ScentFamily } from "@scentique/shared";
 import { cn } from "@/lib/cn";
 
@@ -16,13 +17,15 @@ interface ProductImageProps {
   objectPosition?: string;
   /** Photo rendered under `src`, for transparent artwork. */
   backdrop?: string;
+  /** Extra inline styles, e.g. CSS variables read by responsive classes. */
+  style?: CSSProperties;
   className?: string;
 }
 
 /** Tonal placeholder (scent-family wash + bottle silhouette) until real photography arrives. */
-export function ProductImage({ family, alt, src, width, height, fill, sizes, priority, objectPosition, backdrop, className }: ProductImageProps) {
+export function ProductImage({ family, alt, src, width, height, fill, sizes, priority, objectPosition, backdrop, style, className }: ProductImageProps) {
   if (src) {
-    const common = { src, priority, quality: 90, sizes, style: objectPosition ? { objectPosition } : undefined };
+    const common = { src, priority, quality: 90, sizes, style: objectPosition || style ? { ...(objectPosition ? { objectPosition } : {}), ...style } : undefined };
     if (backdrop) {
       const layers = (
         <>

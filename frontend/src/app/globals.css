@@ -55,3 +55,16 @@
 @utility animate-hero-rise {
   animation: hero-rise 700ms var(--ease-out-quart) both;
 }
+
+@keyframes wave-drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility animate-wave-drift {
+  animation: wave-drift 40s linear infinite;
+}

@@ -33,4 +33,9 @@ describe("ProductImage", () => {
     expect(images[0]?.getAttribute("src")).toContain("silk-backdrop");
     expect(screen.getByAltText("Traced bottle")).toBeInTheDocument();
   });
+
+  it("passes custom CSS variables through so a crop can change per breakpoint", () => {
+    render(<ProductImage family="oud" alt="Var bottle" src="/images/hero/a.webp" width={800} height={450} style={{ "--pos-lg": "92% 50%" } as React.CSSProperties} />);
+    expect((screen.getByAltText("Var bottle") as HTMLElement).style.getPropertyValue("--pos-lg")).toBe("92% 50%");
+  });
 });

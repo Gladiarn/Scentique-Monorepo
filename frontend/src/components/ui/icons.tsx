@@ -47,3 +47,12 @@ export const ChevronLeftIcon = (p: P) => (
 export const ChevronRightIcon = (p: P) => (
   <Icon {...p}><path d="m9.5 6 6 6-6 6" /></Icon>
 );
+export const DropIcon = (p: P) => (
+  <Icon {...p}><path d="M12 3.5c3.2 4 5.5 6.9 5.5 10a5.5 5.5 0 0 1-11 0c0-3.1 2.3-6 5.5-10Z" /></Icon>
+);
+export const HourglassIcon = (p: P) => (
+  <Icon {...p}><path d="M7 3.5h10M7 20.5h10M8 3.5c0 4 4 5 4 8.5s-4 4.5-4 8.5M16 3.5c0 4-4 5-4 8.5s4 4.5 4 8.5" /></Icon>
+);
+export const BottleIcon = (p: P) => (
+  <Icon {...p}><path d="M10 3.5h4v3h-4zM8.5 9.5A2.5 2.5 0 0 1 11 7h2a2.5 2.5 0 0 1 2.5 2.5V19a1.5 1.5 0 0 1-1.5 1.5h-4A1.5 1.5 0 0 1 8.5 19V9.5Z" /></Icon>
+);
