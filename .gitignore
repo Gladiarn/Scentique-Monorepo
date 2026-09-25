@@ -28,3 +28,9 @@ graphify-out/
 
 # executing-plans ledger
 .superpowers/
+
+# screenshots
+frontend/.shots/
+
+# Windows download metadata
+*:Zone.Identifier

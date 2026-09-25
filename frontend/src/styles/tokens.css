@@ -1,0 +1,53 @@
+/*
+ * Scentique design tokens. The ONLY file allowed to contain hex colours.
+ * `@theme static` so every token is emitted as a CSS variable even when no utility uses it.
+ * Tailwind v4 turns each --color-* into utilities (bg-page, text-ink, border-line…)
+ * and exposes it as a CSS variable. Palette values are proposals, tuned by eye in Phase 2.
+ */
+@theme static {
+  /* Surfaces */
+  --color-page: #14100c; /* Espresso */
+  --color-surface: #1e1712; /* Umber */
+  --color-raised: #2b2119; /* Cocoa */
+  --color-line: #3a2e24; /* Hairline */
+
+  /* Text and action */
+  --color-ink: #efe6d6; /* Bone */
+  --color-muted: #a3937e; /* Taupe */
+  --color-accent: #c9a46a; /* Champagne: actions, focus, rules */
+
+  /* Scent families */
+  --color-woody: #9a6b43; /* Cedar */
+  --color-floral: #c4838f; /* Dusty rose */
+  --color-citrus: #bdbe5c; /* Zest */
+  --color-oud: #8e3a45; /* Oxblood */
+
+  /* Functional */
+  --color-success: #7fa07a;
+  --color-warning: #d98e48;
+  --color-danger: #c4574f;
+
+  /* Typography: faces are bound in lib/fonts.ts; these are the fallbacks */
+  --font-display: var(--font-display-face), "Times New Roman", serif;
+  --font-body: var(--font-body-face), system-ui, sans-serif;
+
+  /* Type scale (~1.25 ratio); body never below 16px */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5625rem;
+  --text-2xl: 1.953rem;
+  --text-3xl: 2.441rem;
+  --text-4xl: 3.052rem;
+  --text-display: clamp(3rem, 2rem + 5vw, 6rem);
+
+  /* Radius: small and precise, luxury rather than bubbly */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 10px;
+  --radius-pill: 9999px;
+
+  /* Motion */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
