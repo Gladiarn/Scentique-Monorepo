@@ -2,6 +2,8 @@ import type { MediaAsset, Product, ScentFamily } from "@scentique/shared";
 import { formatConcentration } from "@/lib/format";
 import { heroArt, photoMedia } from "@/lib/media";
 
+const isPhoto = (m: MediaAsset) => m.role !== "hero";
+
 const CONCENTRATION_RANK = { eau_de_toilette: 0, eau_de_parfum: 1, extrait: 2 } as const;
 
 export interface HeroContent {
@@ -20,9 +22,12 @@ export interface HeroContent {
 /** Content for the landing hero from one product. Falls back to its photo when it has no hero artwork; null when it has no images at all. */
 export function buildHeroContent(product: Product | null | undefined): HeroContent | null {
   if (!product) return null;
-  const photo = photoMedia(product);
-  const image = heroArt(product) ?? photo;
+  const photos = product.media.filter(isPhoto);
+  const main = photoMedia(product);
+  const image = heroArt(product) ?? main;
   if (!image) return null;
+  // The card shows the second photo when there is one, so it does not repeat the image behind it.
+  const photo = photos[1] ?? photos[0] ?? main;
 
   const richest = [...product.variants].sort((a, b) => CONCENTRATION_RANK[b.concentration] - CONCENTRATION_RANK[a.concentration])[0];
   return {

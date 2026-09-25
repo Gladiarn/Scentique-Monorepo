@@ -8,5 +8,6 @@ export class ApiProductRepository implements ProductRepository {
   findAll = notReady;
   findBySlug = notReady;
   findFeatured = notReady;
+  findHeroFeatured = notReady;
   findBestSellers = notReady;
 }

@@ -35,4 +35,14 @@ describe("buildHeroContent", () => {
     expect(content?.concentration).toBe("Extrait de Parfum");
     expect(content?.priceFromCents).toBe(9200);
   });
+
+  it("shows the second photo in the card when there is one, so it does not repeat the main image", () => {
+    const content = buildHeroContent(product(media("main", "photo"), media("art", "hero"), media("second", "photo")));
+    expect(content?.photo?.alt).toBe("second");
+    expect(content?.image.alt).toBe("art");
+  });
+
+  it("uses the only photo when there is just one", () => {
+    expect(buildHeroContent(product(media("only", "photo"), media("art", "hero")))?.photo?.alt).toBe("only");
+  });
 });

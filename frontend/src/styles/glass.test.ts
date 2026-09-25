@@ -14,8 +14,8 @@ function sourceFiles(dir: string): string[] {
 }
 
 describe("glass consistency", () => {
-  it("defines one glass blur of exactly 10px", () => {
-    expect(tokens).toMatch(/--blur-glass:\s*10px;/);
+  it("defines one glass blur of exactly 5px", () => {
+    expect(tokens).toMatch(/--blur-glass:\s*5px;/);
   });
 
   it("every backdrop blur in the app uses that single glass token", () => {

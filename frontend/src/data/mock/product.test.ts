@@ -56,3 +56,14 @@ describe("findBestSellers (static ranking until the backend has sales data)", ()
     expect(many.every(Boolean)).toBe(true);
   });
 });
+
+describe("findHeroFeatured (the one item featured in the landing hero)", () => {
+  it("returns the featured scent: Bois Fumé Précieux", async () => {
+    const product = await repo.findHeroFeatured();
+    expect(product?.slug).toBe("bois-fume-precieux");
+  });
+  it("that scent has more than one photo, so the card can differ from the background", async () => {
+    const product = await repo.findHeroFeatured();
+    expect(product?.media.filter((m) => m.role !== "hero").length).toBeGreaterThanOrEqual(2);
+  });
+});

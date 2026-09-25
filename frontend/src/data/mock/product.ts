@@ -1,6 +1,7 @@
 import type { Product, ProductFilters } from "@scentique/shared";
 import type { ProductRepository } from "../repositories/product";
 import { bestSellerSlugs } from "./fixtures/best-sellers";
+import { heroFeaturedSlug } from "./fixtures/hero-featured";
 import { productFixtures } from "./fixtures/products";
 import { simulate, type SimulateOptions } from "./simulate";
 
@@ -27,6 +28,10 @@ export class MockProductRepository implements ProductRepository {
       .filter((p): p is Product => Boolean(p))
       .slice(0, limit);
     return simulate(ranked, this.options);
+  }
+
+  findHeroFeatured(): Promise<Product | null> {
+    return simulate(productFixtures.find((p) => p.slug === heroFeaturedSlug) ?? null, this.options);
   }
 
   findFeatured(): Promise<Product[]> {

@@ -113,3 +113,8 @@ Decisions are appended as they are approved, newest last. Each entry: date, what
 - **Consistency (user):** "Find your scent" is the same button as the hero's "Discover collection". It is now one shared variant, `Button variant="glass"`, and computed styles were verified identical (radius, uppercase, letter-spacing, 10px blur, height, border).
 - **No lines:** the footer's top border was removed and the wave zones bleed 1px past the section edges so no hairline shows where the waves meet the sections above and below.
 - **Cards are glass:** the quiz card in Four families and the process card in About are glass panels. The direction is recorded as binding "Design principles" in the frontend plan and the spec.
+
+## 2026-09-26: Plain glass at 5px; featured card in the hero
+
+- **Glass (user):** glass is plain: a light blur of whatever is behind it and a hairline border, with no fill colour, no sheen and no shadow, so the background shows through untouched. The shared blur was lowered by 5px: `--blur-glass` is now **5px** (was 10px). Every glass element in the browser reports `blur(5px)`.
+- **Hero card (user):** it shows the featured item, chosen through the data layer (`productRepository.findHeroFeatured()`; the API will return the item an admin flags; the mock returns Bois Fumé Précieux). The card shows a different image from the hero background: the product's second photo (Bois Fumé Précieux, the round bottle), so it does not repeat the painted image behind it. `siteConfig.heroProductSlug` was removed.
