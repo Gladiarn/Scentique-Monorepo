@@ -100,9 +100,9 @@ export function HeroSlider({ slides, backdrop }: { slides: HeroSlide[]; backdrop
         <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-page to-transparent lg:block" />
       </div>
 
-      <Container className="grid min-h-svh items-end gap-10 pb-28 pt-[56svh] lg:grid-cols-[minmax(0,1fr)_21rem] lg:items-center lg:pb-24 lg:pt-36">
+      <Container className="grid min-h-svh items-end gap-10 pb-28 pt-[56svh] lg:items-center lg:pb-24 lg:pt-36 xl:grid-cols-[minmax(0,1fr)_21rem]">
         <div className="max-w-2xl">
-          <h1 className="font-display text-[clamp(2.5rem,1.3rem+3.6vw,4.5rem)] leading-[1.04] tracking-[-0.02em] text-balance">
+          <h1 className="font-display text-[clamp(2.5rem,1.3rem+3.6vw,4.5rem)] leading-[1.04] tracking-[-0.02em] text-balance lg:max-w-[13.5ch] xl:max-w-none">
             Made in small batches from <Em>rare ingredients</Em>
           </h1>
           <p className="mt-6 max-w-md text-lg text-ink/75">
@@ -130,7 +130,7 @@ export function HeroSlider({ slides, backdrop }: { slides: HeroSlide[]; backdrop
         </div>
 
         {current && (
-          <GlassPanel key={current.id} className="animate-hero-rise hidden w-full p-5 lg:block">
+          <GlassPanel key={current.id} className="animate-hero-rise hidden w-full p-5 xl:block">
             <p data-testid="current-name" className="font-display text-2xl leading-tight">
               {current.name}
             </p>
@@ -175,7 +175,9 @@ export function HeroSlider({ slides, backdrop }: { slides: HeroSlide[]; backdrop
       {count > 1 && current && (
         <div className="absolute inset-x-0 top-[calc(56svh-4.25rem)] z-10 lg:bottom-8 lg:top-auto">
           <Container className="flex items-center justify-between gap-4">
-            <p className="text-sm text-ink/80 lg:hidden">{current.name}</p>
+            <Link href={`/product/${current.slug}`} className="text-sm text-ink/85 underline-offset-4 hover:text-accent hover:underline xl:hidden">
+              {current.name}
+            </Link>
             <div className="ml-auto flex items-center gap-3">
               <span className="mr-2 hidden text-sm tabular-nums text-ink/70 sm:inline">
                 {index + 1} / {count}

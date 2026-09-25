@@ -56,3 +56,8 @@ Decisions are appended as they are approved, newest last. Each entry: date, what
 - **Accent words:** `Em` component, Bodoni Moda Italic in the accent colour, one phrase per heading (hero, About, Four families, Best sellers, testimonials, closing).
 - **Cap:** the owner prefers the original traced cap over the redrawn one. The repair was removed; `scripts/prepare-hero-art.py` now only strips the flat background.
 - **Robustness:** the hero falls back to product photos if no scent has hero artwork, so it can never render empty (`buildHeroSlides`).
+
+## 2026-09-25: Cap fixed at the root; hero layout for narrower desktops
+
+- **Cause of the "cropped" cap:** the traced SVG never drew the black stopper. It was the flat black background showing through, with grey highlight fragments on top. Removing the background for the curtain removed the stopper body too. `scripts/prepare-hero-art.py` now restores a solid stopper body and stem in the removed background's colour, underneath the original traced highlights.
+- **Hero at about 1100 px wide:** the headline was crossing the bottle. Below 1280 px the glass card is hidden, the headline is narrower, and the scent name becomes a link at the bottom left. The glass card shows from 1280 px up.
