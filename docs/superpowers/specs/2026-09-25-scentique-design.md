@@ -80,7 +80,7 @@ Client state: cart in Zustand (persisted to localStorage, versioned key). Server
 
 ## 5. Domain model (in `packages/shared`)
 
-- `Product`: id, slug, name, tagline, description, family (`woody | floral | citrus | oud`), gender (`feminine | masculine | unisex`), notes `{ top[], heart[], base[] }`, variants[], media[], featured, createdAt.
+- `Product`: id, slug, name, tagline, description, family (`woody | floral | citrus | oud`), gender (`feminine | masculine | unisex`), notes `{ top[], heart[], base[] }`, variants[], media[] (each `{ src?, alt, promptBrief }`; `promptBrief` is the description used to generate the real image, mirrored in `docs/image-briefs.md`), featured, createdAt.
 - `Variant`: id, sku, size (ml), concentration (`eau_de_toilette | eau_de_parfum | extrait`), priceCents, stock.
 - `CartItem`: productId, variantId, quantity. Prices are looked up, never trusted from the client.
 - `Order`: id, number, customer, items (snapshot of name, size, price), status (`pending | paid | packed | shipped | delivered | cancelled`), totals, shipping address, timestamps.

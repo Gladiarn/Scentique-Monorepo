@@ -25,3 +25,6 @@ graphify-out/
 .impeccable/mocks/
 .impeccable/review/
 .impeccable/build/
+
+# executing-plans ledger
+.superpowers/

@@ -264,7 +264,7 @@ Scope note: only primitives the landing page needs now. Select, checkbox, dialog
 
 - [ ] **Step 1: Write failing tests** for the mock product repository: `findFeatured` returns only featured products; `findBySlug("unknown")` resolves `null`; `findAll({ family: "oud" })` returns only oud products; results arrive asynchronously.
 - [ ] **Step 2:** Run; expect FAIL.
-- [ ] **Step 3:** Define types in `packages/shared` per the spec's domain model. Write realistic fixtures: about 24 scents across the four families with notes, variants and stock (some out of stock), 4 collections, 6 testimonials of varied length.
+- [ ] **Step 3:** Define types in `packages/shared` per the spec's domain model. Every `media` entry is `{ src?: string; alt: string; promptBrief: string }`, so each placeholder carries the description used to generate its real image. Write realistic fixtures: about 24 scents across the four families with notes, variants and stock (some out of stock), 4 collections, 6 testimonials of varied length. All fixture copy is synthetic and labelled so in a header comment.
 - [ ] **Step 4:** Implement `simulate.ts` (`simulateLatency()` 150 to 600 ms, `maybeFail()` with a configurable rate, default 0) and the mock repositories.
 - [ ] **Step 5:** `data/index.ts` binds mock or API by `NEXT_PUBLIC_USE_MOCKS` (default `true`). This is the only file that names implementations.
 - [ ] **Step 6:** Run tests; expect PASS. Commit `feat: domain types and mock data layer`.
@@ -306,7 +306,7 @@ The section order may change if you ask. Add or drop sections as the design evol
 - [ ] **Step 5:** Run tests; expect PASS. Run `impeccable detect --json` on the changed files and fix mechanical findings.
 - [ ] **Step 6: Show the user.** Start `pnpm dev`, capture desktop (1440) and mobile (390) screenshots, and present them.
 - [ ] **Step 7: Iterate** on the user's feedback for this section only, until approved.
-- [ ] **Step 8: Lock.** Append the decisions to `docs/design-log.md`. Commit `feat(landing): <section> section`.
+- [ ] **Step 8: Lock.** Append the decisions to `docs/design-log.md` and add an entry for every image the section uses to `docs/image-briefs.md` (path, ratio, prompt, alt text) so the real images can be generated later. Commit `feat(landing): <section> section`.
 
 ### Task 3.10: Landing finish
 
