@@ -16,6 +16,8 @@ export interface NavItem {
 export const siteConfig = {
   name: "Scentique",
   tagline: "Small-batch perfumes made with rare ingredients.",
+  /** The scent featured in the landing hero. */
+  heroProductSlug: "bois-fume-precieux",
   nav: [
     { label: "Home", href: "/" },
     {

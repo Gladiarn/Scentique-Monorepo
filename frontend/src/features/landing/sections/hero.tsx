@@ -1,8 +1,11 @@
+import { siteConfig } from "@/config/site";
 import { productRepository } from "@/data";
-import { buildHeroSlides } from "../hero-slides";
-import { HeroSlider } from "../hero-slider";
+import { buildHeroContent } from "../hero-content";
+import { Hero } from "../hero";
 
 export async function HeroSection() {
-  const featured = await productRepository.findFeatured();
-  return <HeroSlider slides={buildHeroSlides(featured)} backdrop="/images/hero/silk-backdrop.webp" />;
+  const chosen = await productRepository.findBySlug(siteConfig.heroProductSlug);
+  // Never render an empty hero: fall back to the first featured scent if the chosen one is missing.
+  const product = chosen ?? (await productRepository.findFeatured())[0];
+  return <Hero content={buildHeroContent(product)} />;
 }

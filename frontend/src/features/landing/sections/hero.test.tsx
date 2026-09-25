@@ -3,14 +3,9 @@ import { describe, expect, it } from "vitest";
 import { HeroSection } from "./hero";
 
 describe("HeroSection", () => {
-  it("opens on Ambre Fumé, the first featured scent", async () => {
+  it("features Bois Fumé Précieux", async () => {
     render(await HeroSection());
-    expect(screen.getByTestId("current-name").textContent).toBe("Ambre Fumé");
-  });
-
-  it("only offers scents that have hero artwork", async () => {
-    render(await HeroSection());
-    expect(screen.getByText("1 of 4: Ambre Fumé")).toBeInTheDocument();
+    expect(screen.getByTestId("hero-scent-name").textContent).toBe("Bois Fumé Précieux");
   });
 
   it("has no waving banner behind it (that belongs to the closing section)", async () => {

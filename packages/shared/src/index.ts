@@ -11,8 +11,6 @@ export interface MediaAsset {
   objectPosition?: string;
   /** Crop position on large screens, when the subject sits differently in a wide frame than in a narrow one. */
   objectPositionDesktop?: string;
-  /** Art with its own dark background: fade its outer edges into the page background instead of showing a hard box. */
-  featherEdges?: boolean;
   /** Photo layered under transparent artwork (e.g. a traced SVG) so the scene keeps its backdrop. */
   backdrop?: string;
   /** `hero` is landing-page artwork; `photo` is a real product photograph for shop and product pages. */

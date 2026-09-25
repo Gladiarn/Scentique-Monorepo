@@ -72,3 +72,10 @@ Decisions are appended as they are approved, newest last. Each entry: date, what
 - **Why:** the supplied Sauvage/Éternel SVGs are traces that flattened the curtain to black and never drew the stopper (it was the black background). Every attempt to cut that background out lost the stopper and the shadows.
 - **Decision:** re-trace the ORIGINAL photos with the same tool (VTracer), tuned to keep the curtain folds, the smoke and the stopper (`frontend/scripts/trace-perfume-art.py`). Done for Ambre Fumé and Bois Fumé Précieux (the originals we have). The Sauvage and Éternel SVGs are used as supplied with feathered edges until their original photos are provided.
 - **Hero order:** Ambre Fumé, Bois Fumé Précieux, L'Ambre Sauvage, L'Ambre Éternel. The real photos remain on shop tiles.
+
+## 2026-09-25: Hero is one static image: Bois Fumé Précieux
+
+- **Decision (user):** Bois Fumé Précieux (the painted photo trace) is the landing hero. The slider is removed: no arrows, swipe, keyboard control or changing background.
+- **Card:** frosted glass card with the scent name, concentration, its real photo as the thumbnail, tagline, price and Explore. Below 1280 px it becomes a slim glass bar at the bottom.
+- **Config:** the featured scent is `siteConfig.heroProductSlug`. If it is missing, the hero falls back to the first featured scent, so it is never empty.
+- **Removed:** slider, next-thumbnail button, edge feathering, and the Ambre Fumé painted trace. The trace recipe stays in `scripts/trace-perfume-art.py`. The Sauvage and Éternel SVGs remain in the data for shop tiles.
