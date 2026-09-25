@@ -2,10 +2,12 @@
 
 import Link from "next/link";
 import { useCallback, useRef, useState, type CSSProperties, type KeyboardEvent, type PointerEvent } from "react";
+import Image from "next/image";
 import { ProductImage } from "@/components/brand/product-image";
 import { ArrowRightIcon, ChevronLeftIcon, ChevronRightIcon } from "@/components/ui/icons";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import { Em } from "@/components/ui/em";
 import { GlassPanel } from "@/components/ui/glass-panel";
 import { formatMoney } from "@/lib/format";
 import { cn } from "@/lib/cn";
@@ -40,7 +42,7 @@ const arrowButton =
   "grid size-12 cursor-pointer place-items-center rounded-pill border border-ink/25 bg-page/35 text-ink backdrop-blur-md transition-colors hover:border-accent hover:text-accent";
 
 /** Full-bleed hero that steps through the featured scents with arrows, keys or swipe. No autoplay. */
-export function HeroSlider({ slides }: { slides: HeroSlide[] }) {
+export function HeroSlider({ slides, backdrop }: { slides: HeroSlide[]; backdrop?: string }) {
   const [index, setIndex] = useState(0);
   const swipeStart = useRef<number | null>(null);
   const count = slides.length;
@@ -75,6 +77,7 @@ export function HeroSlider({ slides }: { slides: HeroSlide[] }) {
       className="relative isolate min-h-svh overflow-hidden"
     >
       <div className="absolute inset-x-0 top-0 -z-10 h-[68svh] bg-page lg:inset-0 lg:h-auto">
+        {backdrop && <Image src={backdrop} alt="" fill priority sizes="100vw" quality={90} className="object-cover" />}
         {slides.map((slide, i) => (
           <div
             key={slide.id}
@@ -100,7 +103,7 @@ export function HeroSlider({ slides }: { slides: HeroSlide[] }) {
       <Container className="grid min-h-svh items-end gap-10 pb-28 pt-[56svh] lg:grid-cols-[minmax(0,1fr)_21rem] lg:items-center lg:pb-24 lg:pt-36">
         <div className="max-w-2xl">
           <h1 className="font-display text-[clamp(2.5rem,1.3rem+3.6vw,4.5rem)] leading-[1.04] tracking-[-0.02em] text-balance">
-            Made in small batches from rare ingredients
+            Made in small batches from <Em>rare ingredients</Em>
           </h1>
           <p className="mt-6 max-w-md text-lg text-ink/75">
             Four scent families, blended by hand in twelve-litre lots and rested for six weeks before they are bottled.
@@ -148,6 +151,11 @@ export function HeroSlider({ slides }: { slides: HeroSlide[] }) {
                   sizes="336px"
                   className="transition-transform duration-700 ease-out group-hover:scale-105"
                 />
+                <span aria-hidden="true" className="absolute inset-0 grid place-items-center">
+                  <span className="grid size-12 place-items-center rounded-pill border border-ink/30 bg-page/40 text-ink backdrop-blur-md transition-colors group-hover:border-accent group-hover:text-accent">
+                    <ChevronRightIcon />
+                  </span>
+                </span>
               </button>
             )}
             <p className="mt-4 text-sm text-ink/80">{current.tagline}</p>

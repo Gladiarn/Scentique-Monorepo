@@ -3,6 +3,7 @@ import { ProductImage } from "@/components/brand/product-image";
 import { ArrowRightIcon } from "@/components/ui/icons";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import { Em } from "@/components/ui/em";
 import { GlassPanel } from "@/components/ui/glass-panel";
 import { productRepository } from "@/data";
 import { cn } from "@/lib/cn";
@@ -98,7 +99,7 @@ export async function BestSellersSection() {
     <section className="border-t border-line bg-surface py-24 md:py-32">
       <Container>
         <div className="flex flex-wrap items-end justify-between gap-6">
-          <h2 className="font-display text-4xl leading-[1.08] md:text-[length:var(--text-4xl)]">Best sellers</h2>
+          <h2 className="font-display text-4xl leading-[1.08] md:text-[length:var(--text-4xl)]">Best <Em>sellers</Em></h2>
           <Button href="/shop" variant="secondary">View the full shelf</Button>
         </div>
 

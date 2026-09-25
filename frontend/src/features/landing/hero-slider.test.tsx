@@ -63,4 +63,21 @@ describe("HeroSlider", () => {
     expect(img.style.getPropertyValue("--pos-m")).toBe("67% 50%");
     expect(img.style.getPropertyValue("--pos-d")).toBe("75% 50%");
   });
+
+  it("renders the shared backdrop photo behind the slides", () => {
+    const { container } = render(<HeroSlider slides={slides} backdrop="/images/hero/silk-backdrop.webp" />);
+    expect(container.querySelector('img[src*="silk-backdrop"]')).toBeInTheDocument();
+  });
+
+  it("highlights an accent word in the headline with the accent font", () => {
+    render(<HeroSlider slides={slides} />);
+    const accent = screen.getByRole("heading", { level: 1 }).querySelector("em");
+    expect(accent?.className).toContain("font-accent");
+  });
+
+  it("lets the thumbnail of the next scent be clicked to advance", async () => {
+    render(<HeroSlider slides={slides} />);
+    await userEvent.click(screen.getByRole("button", { name: "Show Bois Fumé Précieux" }));
+    expect(slideName()).toBe("Bois Fumé Précieux");
+  });
 });

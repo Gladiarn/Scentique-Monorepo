@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { BottleIcon, DropIcon, HourglassIcon } from "@/components/ui/icons";
 import { Container } from "@/components/ui/container";
+import { Em } from "@/components/ui/em";
 import { cn } from "@/lib/cn";
 
 const INGREDIENTS = [
@@ -28,7 +29,7 @@ export function StorySection() {
             <Image src="/images/hero/silk-backdrop.webp" alt="" fill sizes="(min-width: 1024px) 58vw, 100vw" quality={90} className="object-cover" />
             <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-page/90 via-page/45 to-page/10" />
             <div className="relative max-w-xl p-7 md:p-10">
-              <h2 className="font-display text-3xl leading-[1.1] text-balance md:text-[length:var(--text-4xl)]">A small house with a long process</h2>
+              <h2 className="font-display text-3xl leading-[1.1] text-balance md:text-[length:var(--text-4xl)]">A small house with a <Em>long process</Em></h2>
               <p className="mt-5 max-w-[52ch] text-lg text-ink/80">
                 We make fewer scents than we could, and we make them slowly. Each one starts with a single raw material we want to show
                 properly, then we build the rest of the blend around it until nothing is left to take away.

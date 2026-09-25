@@ -3,6 +3,7 @@ import { ProductImage } from "@/components/brand/product-image";
 import { ArrowRightIcon } from "@/components/ui/icons";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import { Em } from "@/components/ui/em";
 import { collectionRepository } from "@/data";
 import { cn } from "@/lib/cn";
 import type { Collection, ScentFamily } from "@scentique/shared";
@@ -56,7 +57,7 @@ export async function CollectionsSection() {
     <section id="collections" className="pb-24 md:pb-32">
       <Container>
         <div className="flex flex-wrap items-end justify-between gap-6">
-          <h2 className="font-display text-4xl leading-[1.08] md:text-[length:var(--text-4xl)]">Four families, one shelf</h2>
+          <h2 className="font-display text-4xl leading-[1.08] md:text-[length:var(--text-4xl)]">Four families, <Em>one shelf</Em></h2>
           <Button href="/shop" variant="ghost">Shop all scents</Button>
         </div>
 
@@ -73,7 +74,7 @@ export async function CollectionsSection() {
                 className="group flex h-full min-h-[8rem] items-center justify-between gap-6 rounded-xl border border-accent/40 bg-raised px-7 py-6 transition-colors hover:border-accent md:px-10"
               >
                 <div>
-                  <p className="font-display text-2xl md:text-3xl">Not sure which family is yours?</p>
+                  <p className="font-display text-2xl md:text-3xl">Not sure which family is <Em>yours</Em>?</p>
                   <p className="mt-1 text-muted">Answer four short questions and we will suggest two or three scents.</p>
                 </div>
                 <span className="inline-flex shrink-0 items-center gap-3 text-accent">

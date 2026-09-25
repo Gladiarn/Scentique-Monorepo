@@ -29,6 +29,7 @@
 
   /* Typography: faces are bound in lib/fonts.ts; these are the fallbacks */
   --font-display: var(--font-display-face), "Times New Roman", serif;
+  --font-accent: var(--font-accent-face), "Times New Roman", serif;
   --font-body: var(--font-body-face), system-ui, sans-serif;
 
   /* Type scale (~1.25 ratio); body never below 16px */

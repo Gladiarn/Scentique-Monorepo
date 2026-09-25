@@ -1,4 +1,5 @@
 import { Container } from "@/components/ui/container";
+import { Em } from "@/components/ui/em";
 import { testimonialRepository } from "@/data";
 
 export async function TestimonialsSection() {
@@ -8,7 +9,7 @@ export async function TestimonialsSection() {
   return (
     <section className="border-t border-line py-24 md:py-32">
       <Container>
-        <h2 className="font-display text-4xl leading-[1.08] md:text-[length:var(--text-4xl)]">What people say</h2>
+        <h2 className="font-display text-4xl leading-[1.08] md:text-[length:var(--text-4xl)]">What <Em>people</Em> say</h2>
         <ul className="mt-14 grid gap-12 md:grid-cols-3 md:gap-0 md:divide-x md:divide-line">
           {testimonials.map((t) => (
             <li key={t.id} className="md:px-10 md:first:pl-0 md:last:pr-0">

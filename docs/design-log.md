@@ -49,3 +49,10 @@ Decisions are appended as they are approved, newest last. Each entry: date, what
 - **Curtain backdrop:** moved out of the hero into the About bento tile.
 - **Bento layouts:** About (curtain statement tile, real ingredient close-ups cropped from the supplied photos, process tile), Four families (large, tall and small tiles plus a quiz tile), Best sellers (featured scent with notes pyramid, small tiles, wide tile). Layouts were changed on purpose to move away from the reference's centred hero / equal-card rows.
 - **Crop per slide:** each painted bottle has its own mobile and desktop crop position so it lands between the headline and the glass card.
+
+## 2026-09-25: Hero matches the reference; original cap restored
+
+- **Hero:** full-bleed silk photo (`silk-backdrop.webp`) behind the painterly perfume, headline with one accent phrase in gold italic, frosted glass card, pill call to action, family chips. Waves stay only in the closing section. The silk is also used in the About bento tile.
+- **Accent words:** `Em` component, Bodoni Moda Italic in the accent colour, one phrase per heading (hero, About, Four families, Best sellers, testimonials, closing).
+- **Cap:** the owner prefers the original traced cap over the redrawn one. The repair was removed; `scripts/prepare-hero-art.py` now only strips the flat background.
+- **Robustness:** the hero falls back to product photos if no scent has hero artwork, so it can never render empty (`buildHeroSlides`).
