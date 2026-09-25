@@ -1,0 +1,27 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# builds
+.next/
+dist/
+out/
+.turbo/
+coverage/
+
+# env
+.env
+.env.*
+!.env.example
+
+# logs / os / editor
+*.log
+.DS_Store
+.vscode/
+.idea/
+
+# tooling output
+graphify-out/
+.impeccable/mocks/
+.impeccable/review/
+.impeccable/build/
