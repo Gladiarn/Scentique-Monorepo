@@ -1,0 +1,6 @@
+{
+  "name": "@scentique/config",
+  "version": "0.0.0",
+  "private": true,
+  "files": ["tsconfig.base.json", "prettier.config.mjs"]
+}
