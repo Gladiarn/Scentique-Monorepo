@@ -1,0 +1,4 @@
+{
+  "extends": "@scentique/config/tsconfig.base.json",
+  "include": ["src"]
+}

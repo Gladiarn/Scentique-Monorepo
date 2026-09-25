@@ -1,0 +1,14 @@
+{
+  "name": "scentique",
+  "private": true,
+  "packageManager": "pnpm@11.6.0",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "dev": "turbo run dev --filter=@scentique/frontend",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test"
+  },
+  "devDependencies": { "turbo": "^2" }
+}
