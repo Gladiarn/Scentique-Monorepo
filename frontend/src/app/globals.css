@@ -4,6 +4,9 @@
 @layer base {
   :root {
     color-scheme: dark;
+    /* Temporary bindings until the specimen decision; see lib/fonts.ts */
+    --font-display-face: var(--font-gilda);
+    --font-body-face: var(--font-hanken);
   }
 
   html {

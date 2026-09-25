@@ -1,9 +1,10 @@
 /*
  * Scentique design tokens. The ONLY file allowed to contain hex colours.
+ * `@theme static` so every token is emitted as a CSS variable even when no utility uses it.
  * Tailwind v4 turns each --color-* into utilities (bg-page, text-ink, border-line…)
  * and exposes it as a CSS variable. Palette values are proposals, tuned by eye in Phase 2.
  */
-@theme {
+@theme static {
   /* Surfaces */
   --color-page: #14100c; /* Espresso */
   --color-surface: #1e1712; /* Umber */

@@ -28,3 +28,6 @@ graphify-out/
 
 # executing-plans ledger
 .superpowers/
+
+# screenshots
+frontend/.shots/
