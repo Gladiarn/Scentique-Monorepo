@@ -24,3 +24,11 @@ Decisions are appended as they are approved, newest last. Each entry: date, what
 - **Header behaviour (user-specified):** at the top it is tall with the full lockup; on scroll it shrinks to a slim solid bar and the logo swaps to the wordmark only.
 - **Icons:** one hairline set at 1.25 stroke to match the logo line weight.
 - **Image ratios:** 16:9 for wide images, 4:5 for everything else (see docs/image-briefs.md).
+
+## 2026-09-25: Hero slider with the supplied perfume photography
+
+- **Look:** follows the reference: full-bleed photo, headline left, outlined pill call to action, family chips, frosted-glass card (translucent, blurred, hairline edge) at the right showing the current scent and a thumbnail of the next.
+- **Slider:** left and right arrows (also arrow keys and touch swipe), no autoplay, so each scent can be judged for the hero. Slides are the featured scents from the data layer.
+- **Supplied images:** Ambre Fumé and Bois Fumé Précieux are 1376x768 JPEGs (good). L'Ambre Éternel and L'Ambre Sauvage arrived as SVG auto-traces of photos: posterized, garbled labels, detached stopper. Kept in the slider for comparison only; the original photos are needed.
+- **Resolution:** a photo cannot gain real detail from a format change. Upscaled 2x with a neural super-resolution model (EDSR) for the JPEGs; the real fix is regenerating at 2560 px or wider.
+- **Mobile:** the wide photo fills the top 68% of the screen and the headline sits below in the fade; arrows sit on the photo.

@@ -7,6 +7,8 @@ export interface MediaAsset {
   src?: string;
   alt: string;
   promptBrief: string;
+  /** CSS object-position so tall crops of a wide photo keep the bottle in frame. */
+  objectPosition?: string;
 }
 
 export interface Variant {

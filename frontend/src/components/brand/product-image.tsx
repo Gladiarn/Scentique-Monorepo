@@ -9,14 +9,23 @@ interface ProductImageProps {
   src?: string;
   width?: number;
   height?: number;
+  /** Fill the parent (which must be positioned) instead of using fixed dimensions. */
+  fill?: boolean;
+  sizes?: string;
   priority?: boolean;
+  objectPosition?: string;
   className?: string;
 }
 
 /** Tonal placeholder (scent-family wash + bottle silhouette) until real photography arrives. */
-export function ProductImage({ family, alt, src, width, height, priority, className }: ProductImageProps) {
+export function ProductImage({ family, alt, src, width, height, fill, sizes, priority, objectPosition, className }: ProductImageProps) {
   if (src) {
-    return <Image src={src} alt={alt} width={width ?? 800} height={height ?? 1000} priority={priority} className={cn("h-full w-full object-cover", className)} />;
+    const common = { src, priority, quality: 90, sizes, style: objectPosition ? { objectPosition } : undefined };
+    return fill ? (
+      <Image {...common} alt={alt} fill className={cn("object-cover", className)} />
+    ) : (
+      <Image {...common} alt={alt} width={width ?? 800} height={height ?? 1000} className={cn("h-full w-full object-cover", className)} />
+    );
   }
   const tint = `var(--color-${family})`;
   return (

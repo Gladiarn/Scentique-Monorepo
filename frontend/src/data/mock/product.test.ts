@@ -31,3 +31,11 @@ describe("MockProductRepository", () => {
     }
   });
 });
+
+describe("featured scents for the landing slider", () => {
+  it("has at least four featured scents, each with a real hero image", async () => {
+    const featured = await repo.findFeatured();
+    expect(featured.length).toBeGreaterThanOrEqual(4);
+    expect(featured.every((p) => Boolean(p.media[0]?.src))).toBe(true);
+  });
+});

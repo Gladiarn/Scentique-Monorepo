@@ -40,3 +40,18 @@
     }
   }
 }
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility animate-hero-rise {
+  animation: hero-rise 700ms var(--ease-out-quart) both;
+}
