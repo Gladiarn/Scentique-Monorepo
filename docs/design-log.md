@@ -96,3 +96,8 @@ Decisions are appended as they are approved, newest last. Each entry: date, what
 - **Categories:** the four family tiles use the supplied ingredient still-lifes (wood, florals, citrus, oud), so every tile has a real photograph and there are no placeholders. Small tiles (Oud, Citrus) show the name only, so text is not laid over busy detail.
 - **Best sellers (user decision):** static for now; the real ranking comes with the backend. The UI asks `productRepository.findBestSellers(limit)`; the mock returns a fixed ranked list (`fixtures/best-sellers.ts`), the API version will rank by sales. Swapping is one method, no UI change.
 - **glad-frontend audit:** no component imports mock or API classes; each data section is wrapped in a `SectionBoundary` (error with retry) plus a Suspense skeleton (loading) plus an empty state; `NEXT_PUBLIC_MOCK_FAILURE_RATE=1` forces the error states.
+
+## 2026-09-26: Closing waves in tonal browns
+
+- **Decision (user):** waves use different browns instead of oxblood and gold. The front wave matches the page background, and each wave behind it is a lighter brown (more `--color-woody` mixed into the page colour). The sky above is the lightest brown.
+- **Where to adjust:** the `brown(percent)` values in `components/brand/wave-backdrop.tsx`. Tests check that the front wave is the page colour, that lightness increases toward the back, and that no oxblood or gold is used.
