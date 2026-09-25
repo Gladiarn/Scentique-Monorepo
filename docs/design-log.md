@@ -10,3 +10,10 @@ Decisions are appended as they are approved, newest last. Each entry: date, what
 - **Logo:** placeholder wordmark component; user supplies the real logo.
 - **Images:** placeholders with written briefs in `docs/image-briefs.md`; user generates or shoots the real ones.
 - **Landing page workflow:** designed section by section, top to bottom, with user approval after each section.
+
+## 2026-09-25: Palette, fonts and logo approved
+
+- **Palette:** approved as proposed (Espresso, Umber, Cocoa, Hairline, Bone, Taupe, Champagne; scent tints Cedar, Dusty rose, Zest, Oud oxblood).
+- **Type:** Gilda Display (headlines) + Hanken Grotesk (body). The other candidates were removed.
+- **Logo:** supplied by the owner; extracted and traced to vectors in `public/brand/` (see `docs/brand-assets.md`). Navbar shows the name only; footer shows the full lockup; the icon is the favicon.
+- **Landing page:** a full draft exists for colour preview only. Sections are now refined one at a time from the top, each approved before the next.
