@@ -8,6 +8,7 @@ const content: HeroContent = {
   name: "Bois Fumé Précieux",
   concentration: "Extrait de Parfum",
   tagline: "Frankincense, cinnamon bark and smoked woods.",
+  notes: { top: ["Cinnamon bark", "Pink pepper"], heart: ["Frankincense", "Dried leaves"], base: ["Smoked woods", "Amber"] },
   family: "woody",
   priceFromCents: 9200,
   image: { src: "/images/hero/art.svg", alt: "Painted bottle", objectPosition: "66% 50%", objectPositionDesktop: "64% 50%" },
@@ -50,5 +51,27 @@ describe("Hero", () => {
     render(<Hero content={content} />);
     const cls = screen.getByRole("link", { name: /discover collection/i }).className;
     for (const c of ["rounded-pill", "uppercase", "tracking-[0.16em]", "backdrop-blur-glass"]) expect(cls).toContain(c);
+  });
+
+  it("the card leads with the three note tiers, top, heart and base", () => {
+    render(<Hero content={content} />);
+    const card = screen.getByRole("link", { name: /explore bois fumé précieux/i });
+    for (const [label, notes] of [["Top", "Cinnamon bark, Pink pepper"], ["Heart", "Frankincense, Dried leaves"], ["Base", "Smoked woods, Amber"]]) {
+      expect(card).toHaveTextContent(label!);
+      expect(card).toHaveTextContent(notes!);
+    }
+  });
+
+  it("the whole card is a single link, with no nested links, and shows the price", () => {
+    render(<Hero content={content} />);
+    const card = screen.getByRole("link", { name: /explore bois fumé précieux/i });
+    expect(card.querySelectorAll("a")).toHaveLength(0);
+    expect(card).toHaveTextContent("From $92.00");
+    expect(card).toHaveAttribute("href", "/product/bois-fume-precieux");
+  });
+
+  it("does not repeat the tagline inside the card", () => {
+    render(<Hero content={content} />);
+    expect(screen.queryByText(content.tagline)).not.toBeInTheDocument();
   });
 });

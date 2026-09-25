@@ -6,6 +6,7 @@ const media = (alt: string, role?: MediaAsset["role"]): MediaAsset => ({ alt, pr
 const product = (...m: MediaAsset[]): Product =>
   ({
     id: "p", slug: "p", name: "P", tagline: "t", family: "woody",
+    notes: { top: ["Pink pepper"], heart: ["Frankincense"], base: ["Smoked woods"] },
     variants: [
       { id: "a", sku: "a", sizeMl: 30, concentration: "eau_de_parfum", priceCents: 9200, stock: 5 },
       { id: "b", sku: "b", sizeMl: 50, concentration: "extrait", priceCents: 13200, stock: 5 },
@@ -44,5 +45,9 @@ describe("buildHeroContent", () => {
 
   it("uses the only photo when there is just one", () => {
     expect(buildHeroContent(product(media("only", "photo"), media("art", "hero")))?.photo?.alt).toBe("only");
+  });
+
+  it("carries the fragrance notes into the card", () => {
+    expect(buildHeroContent(product(media("art", "hero")))?.notes).toEqual({ top: ["Pink pepper"], heart: ["Frankincense"], base: ["Smoked woods"] });
   });
 });

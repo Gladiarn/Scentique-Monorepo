@@ -66,34 +66,56 @@ export function Hero({ content }: { content: HeroContent | null }) {
         </div>
 
         {content && (
-          <GlassPanel className="hidden w-full p-5 xl:block">
-            <p data-testid="hero-scent-name" className="font-display text-2xl leading-tight">
-              {content.name}
-            </p>
-            <p className="mt-1 text-sm text-ink/70">{content.concentration}</p>
-            {content.photo?.src && (
-              <div className="relative mt-4 aspect-[4/3] w-full overflow-hidden rounded-lg border border-ink/15">
-                <ProductImage
-                  fill
-                  family={content.family}
-                  src={content.photo.src}
-                  alt=""
-                  objectPosition={content.photo.objectPosition}
-                  sizes="336px"
-                />
+          <Link
+            href={`/product/${content.slug}`}
+            aria-label={`Explore ${content.name}`}
+            className="group hidden w-full xl:block"
+          >
+            <GlassPanel className="p-4 transition-colors duration-300 group-hover:border-accent/50">
+              {content.photo?.src && (
+                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg">
+                  <ProductImage
+                    fill
+                    family={content.family}
+                    src={content.photo.src}
+                    alt=""
+                    objectPosition={content.photo.objectPosition}
+                    sizes="336px"
+                    className="transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                  />
+                </div>
+              )}
+
+              <div className="px-1 pt-5">
+                <p data-testid="hero-scent-name" className="font-display text-[1.625rem] leading-tight">
+                  {content.name}
+                </p>
+                <p className="mt-1 text-sm text-ink/70">{content.concentration}</p>
+
+                <dl className="mt-5 space-y-3.5 text-sm">
+                  {(
+                    [
+                      ["Top", content.notes.top],
+                      ["Heart", content.notes.heart],
+                      ["Base", content.notes.base],
+                    ] as const
+                  ).map(([label, notes]) => (
+                    <div key={label} className="grid grid-cols-[3.5rem_1fr] items-baseline gap-3">
+                      <dt className="text-xs text-ink/55">{label}</dt>
+                      <dd className="text-ink/90">{notes.join(", ")}</dd>
+                    </div>
+                  ))}
+                </dl>
+
+                <div className="mt-6 flex items-center justify-between pb-1">
+                  <p className="text-sm text-ink/80">From {formatMoney(content.priceFromCents)}</p>
+                  <span className="grid size-11 place-items-center rounded-pill border border-ink/30 backdrop-blur-glass transition-colors group-hover:border-accent group-hover:text-accent">
+                    <ArrowRightIcon width={18} height={18} className="transition-transform duration-300 group-hover:translate-x-0.5" />
+                  </span>
+                </div>
               </div>
-            )}
-            <p className="mt-4 text-sm text-ink/80">{content.tagline}</p>
-            <p className="mt-1 text-sm text-ink/60">From {formatMoney(content.priceFromCents)}</p>
-            <Link
-              href={`/product/${content.slug}`}
-              aria-label={`Explore ${content.name}`}
-              className="mt-5 flex items-center justify-between border-t border-ink/15 pt-4 text-xs uppercase tracking-[0.16em] text-ink/90 transition-colors hover:text-accent"
-            >
-              Explore
-              <ArrowRightIcon width={18} height={18} />
-            </Link>
-          </GlassPanel>
+            </GlassPanel>
+          </Link>
         )}
       </Container>
 

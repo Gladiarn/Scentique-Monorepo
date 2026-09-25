@@ -122,3 +122,9 @@ Decisions are appended as they are approved, newest last. Each entry: date, what
 ## 2026-09-26: Glass blur back up to 10px
 
 - **Decision (user):** the shared glass blur was raised by 5px again: `--blur-glass` is **10px** (5px was too light). Still one token, still plain glass with no fill, sheen or shadow.
+
+## 2026-09-26: New design for the featured perfume card
+
+- **Concept:** the featured card is a "scent card", not a generic product card. Content order: slim photo window (the product's second photo), name in Prata, concentration, then the three note tiers (Top, Heart, Base) as the main content, then the price and a round glass arrow. It replaces the tagline, so the card carries craft information rather than marketing copy.
+- **Behaviour:** the whole card is one link to the product page (no nested links); on hover the border warms to the accent, the photo eases in slightly and the arrow nudges.
+- **Constraints kept:** plain glass (no fill, sheen or shadow), one 10px glass blur, no decorative lines.

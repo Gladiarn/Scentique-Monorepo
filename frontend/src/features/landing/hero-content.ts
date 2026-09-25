@@ -1,4 +1,4 @@
-import type { MediaAsset, Product, ScentFamily } from "@scentique/shared";
+import type { MediaAsset, Notes, Product, ScentFamily } from "@scentique/shared";
 import { formatConcentration } from "@/lib/format";
 import { heroArt, photoMedia } from "@/lib/media";
 
@@ -12,6 +12,7 @@ export interface HeroContent {
   concentration: string;
   tagline: string;
   family: ScentFamily;
+  notes: Notes;
   priceFromCents: number;
   /** Full-bleed background art. */
   image: Pick<MediaAsset, "src" | "alt" | "objectPosition" | "objectPositionDesktop">;
@@ -36,6 +37,7 @@ export function buildHeroContent(product: Product | null | undefined): HeroConte
     concentration: richest ? formatConcentration(richest.concentration) : "",
     tagline: product.tagline,
     family: product.family,
+    notes: product.notes,
     priceFromCents: Math.min(...product.variants.map((v) => v.priceCents)),
     image: { src: image.src, alt: image.alt, objectPosition: image.objectPosition, objectPositionDesktop: image.objectPositionDesktop },
     photo: photo ? { src: photo.src, alt: photo.alt, objectPosition: photo.objectPosition } : undefined,
