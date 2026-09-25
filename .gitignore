@@ -31,3 +31,6 @@ graphify-out/
 
 # screenshots
 frontend/.shots/
+
+# Windows download metadata
+*:Zone.Identifier

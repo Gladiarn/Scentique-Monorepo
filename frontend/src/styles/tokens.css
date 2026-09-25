@@ -40,7 +40,7 @@
   --text-2xl: 1.953rem;
   --text-3xl: 2.441rem;
   --text-4xl: 3.052rem;
-  --text-display: clamp(3rem, 2rem + 5vw, 6.25rem);
+  --text-display: clamp(3rem, 2rem + 5vw, 6rem);
 
   /* Radius: small and precise, luxury rather than bubbly */
   --radius-sm: 2px;
