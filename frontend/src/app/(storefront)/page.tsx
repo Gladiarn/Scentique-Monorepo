@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { SectionBoundary } from "@/features/landing/section-boundary";
 import { SectionSkeleton } from "@/features/landing/section-skeleton";
 import { BestSellersSection } from "@/features/landing/sections/best-sellers";
 import { ClosingSection } from "@/features/landing/sections/closing";
@@ -14,15 +15,21 @@ export default function HomePage() {
         <HeroSection />
       </Suspense>
       <StorySection />
-      <Suspense fallback={<SectionSkeleton className="min-h-[40rem]" />}>
-        <CollectionsSection />
-      </Suspense>
-      <Suspense fallback={<SectionSkeleton className="min-h-[36rem]" />}>
-        <BestSellersSection />
-      </Suspense>
-      <Suspense fallback={<SectionSkeleton className="min-h-[20rem]" />}>
-        <TestimonialsSection />
-      </Suspense>
+      <SectionBoundary label="the collections">
+        <Suspense fallback={<SectionSkeleton className="min-h-[40rem]" />}>
+          <CollectionsSection />
+        </Suspense>
+      </SectionBoundary>
+      <SectionBoundary label="best sellers">
+        <Suspense fallback={<SectionSkeleton className="min-h-[36rem]" />}>
+          <BestSellersSection />
+        </Suspense>
+      </SectionBoundary>
+      <SectionBoundary label="reviews">
+        <Suspense fallback={<SectionSkeleton className="min-h-[20rem]" />}>
+          <TestimonialsSection />
+        </Suspense>
+      </SectionBoundary>
       <ClosingSection />
     </>
   );

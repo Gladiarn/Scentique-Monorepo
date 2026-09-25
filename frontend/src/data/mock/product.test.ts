@@ -39,3 +39,20 @@ describe("featured scents for the landing slider", () => {
     expect(featured.every((p) => Boolean(p.media[0]?.src))).toBe(true);
   });
 });
+
+describe("findBestSellers (static ranking until the backend has sales data)", () => {
+  it("returns the ranked scents in order, up to the limit", async () => {
+    const top = await repo.findBestSellers(4);
+    expect(top.map((p) => p.slug)).toEqual(["ambre-fume", "bois-fume-precieux", "nocturne-absolu", "mystique-bois"]);
+  });
+
+  it("respects a smaller limit", async () => {
+    expect(await repo.findBestSellers(2)).toHaveLength(2);
+  });
+
+  it("returns at most the limit and never an undefined entry", async () => {
+    const many = await repo.findBestSellers(50);
+    expect(many.length).toBeLessThanOrEqual(50);
+    expect(many.every(Boolean)).toBe(true);
+  });
+});

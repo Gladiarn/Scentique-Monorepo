@@ -92,7 +92,7 @@ function SmallTile({ product, wide }: { product: Product; wide?: boolean }) {
 }
 
 export async function BestSellersSection() {
-  const products = (await productRepository.findAll()).slice(0, 4);
+  const products = await productRepository.findBestSellers(4);
   const [featured, second, third, fourth] = products;
 
   return (
