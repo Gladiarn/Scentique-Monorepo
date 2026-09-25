@@ -28,10 +28,19 @@ Composition rules:
 
 ## Files supplied by the owner (current state)
 
-| File | What it is | Used for |
+Original photos live in `frontend/public/perfumes/` and are never modified. The site uses web-ready copies in `frontend/public/images/products/`.
+
+| Original | Scent | Site file |
 |---|---|---|
-| `public/perfumes/AMBRE FUMÉ.jpg`, `BOIS FUMÉ PRÉCIEUX.jpg` | Original photos, 1376x768 | Kept untouched. Upscaled 2x copies in `public/images/hero/*.webp` are used on shop pages; painterly SVG traces made from them (`*-painted.svg`, `scripts/trace-perfume-art.py`) are used in the landing hero. |
-| `public/perfumes/L'AMBRE ÉTERNEL.svg`, `LAMBRE-SAUVAGE.svg` | Auto-traced SVGs of photos (no originals supplied) | Used as supplied for the painterly hero art (the art keeps its own dark background; its edges are feathered into the curtain in CSS). Please supply the original photos. |
+| `AMBRE FUMÉ.jpg` | Ambre Fumé | `products/ambre-fume.webp` (2x upscaled) |
+| `BOIS FUMÉ PRÉCIEUX.jpg` | Bois Fumé Précieux | `products/bois-fume-precieux.webp` (2x upscaled); also traced to `hero/bois-fume-precieux-painted.svg` for the landing hero (`scripts/trace-perfume-art.py`) |
+| `BOIS FUME PRECIEUX.jpg` | Bois Fumé Précieux, second bottle ("Aurélia Noire") | `products/bois-fume-precieux-2.webp` (gallery photo) |
+| `lambre sauvage.jpg` | L'Ambre Sauvage | `products/l-ambre-sauvage.webp` |
+| `AURA NOCTURNE.jpg` | L'Ambre Éternel | `products/l-ambre-eternel.webp` |
+| `NOCTURNE ABSOLU.jpg` | Nocturne Absolu | `products/nocturne-absolu.webp` |
+| `MYSTIQUE-BOIS.jpg` | Mystique Bois | `products/mystique-bois.webp` |
+
+The earlier SVG traces of Sauvage and Éternel and the `Original/` folder are no longer used by the site. Cards show real photographs only (guarded by `media-integrity.test.ts`).
 
 ## Format for entries
 

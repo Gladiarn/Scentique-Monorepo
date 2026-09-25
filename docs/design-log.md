@@ -84,3 +84,9 @@ Decisions are appended as they are approved, newest last. Each entry: date, what
 
 - **Decision (user):** outside the landing hero, cards (Four families, Best sellers, and later shop and product pages) must use the original supplied images for these two scents, not any processed version.
 - **How:** byte-for-byte copies of the supplied originals live at `frontend/public/images/products/l-ambre-{sauvage,eternel}.svg` under new file names that nothing else touches (a new URL also defeats stale browser caches). A test (`original-art.test.ts`) fails if these differ from `public/perfumes/Original/*.svg` or if a card points anywhere else. The old copies in `public/images/hero/` were removed.
+
+## 2026-09-26: Real photos for every card; new perfumes
+
+- **Supplied:** real photos of L'Ambre Sauvage and L'Ambre Éternel (the latter is `AURA NOCTURNE.jpg`, its label reads "L'Ambre Éternel"), two new scents (Nocturne Absolu, Mystique Bois), and a second Bois Fumé Précieux bottle.
+- **Decision (user):** do not use the `Original` folder. Cards use real photographs everywhere; the traced SVG copies were removed. Best sellers now shows Ambre Fumé (featured), Bois Fumé Précieux, Nocturne Absolu and Mystique Bois; the Floral card uses the real Sauvage photo.
+- **Catalog:** 7 real scents plus 4 placeholders without photos. Nocturne Absolu (oud) and Mystique Bois (woody) notes, taglines and prices are placeholders derived from what is visible in the photos.

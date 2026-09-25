@@ -19,7 +19,7 @@ function variants(id: string, base: number, soldOut = false): Variant[] {
   ];
 }
 
-const HERO_POSITION = "64% 50%";
+const POSITION = "64% 50%";
 
 export const productFixtures: Product[] = [
   {
@@ -28,8 +28,8 @@ export const productFixtures: Product[] = [
     description: "A warm smoulder of amber resin and cinnamon, softened by vanilla and dried leaves.",
     notes: { top: ["Star anise", "Cinnamon"], heart: ["Dried leaves", "Tobacco flower"], base: ["Amber resin", "Vanilla pod"] },
     variants: variants("ambre-fume", 8800),
-    media: [{ src: "/images/hero/ambre-fume.webp", alt: "Ambre Fumé perfume bottle on a stone plinth among amber, vanilla and cinnamon", objectPosition: HERO_POSITION,
-      promptBrief: "Faceted amber-glass flacon with a gold spray collar on a rough stone plinth, amber resin, vanilla pods and cinnamon sticks around it, dark silk behind. Dark warm luxury still life, soft directional amber light, film grain, 16:9."  }],
+    media: [{ src: "/images/products/ambre-fume.webp", role: "photo", alt: "Ambre Fumé perfume bottle on a stone plinth among amber, vanilla and cinnamon", objectPosition: POSITION,
+      promptBrief: "Faceted amber-glass flacon with a gold spray collar on a rough stone plinth, amber resin, vanilla pods and cinnamon sticks around it, dark silk behind. Dark warm luxury still life of the bottle on a rough stone plinth against crumpled brown silk, soft directional light, film grain, 16:9." }],
     createdAt: "2026-03-02",
   },
   {
@@ -38,11 +38,35 @@ export const productFixtures: Product[] = [
     description: "Precious woods and frankincense resin wrapped in a thread of smoke.",
     notes: { top: ["Cinnamon bark", "Pink pepper"], heart: ["Frankincense", "Dried leaves"], base: ["Smoked woods", "Amber"] },
     variants: variants("bois-fume-precieux", 9200),
-    media: [{ src: "/images/hero/bois-fume-precieux.webp", alt: "Bois Fumé Précieux perfume bottle on a stone plinth with frankincense and bark", objectPosition: HERO_POSITION,
-      promptBrief: "Rounded teardrop glass flacon with a faceted smoky-amber stopper on a rough stone plinth, frankincense resin and curled cinnamon bark around it, dark silk behind. Dark warm luxury still life, film grain, 16:9." },
+    media: [
+      { src: "/images/products/bois-fume-precieux.webp", role: "photo", alt: "Bois Fumé Précieux perfume bottle on a stone plinth with frankincense and bark", objectPosition: POSITION,
+        promptBrief: "Rounded teardrop glass flacon with a faceted smoky-amber stopper on a rough stone plinth, frankincense resin and curled cinnamon bark around it. Dark warm luxury still life of the bottle on a rough stone plinth against crumpled brown silk, soft directional light, film grain, 16:9." },
       { src: "/images/hero/bois-fume-precieux-painted.svg", role: "hero", alt: "Bois Fumé Précieux perfume bottle on a stone plinth with frankincense and bark, in a painted style", objectPosition: "66% 50%", objectPositionDesktop: "64% 50%",
-        promptBrief: "Painterly vector version of the product photograph, traced from the original photo with its curtain backdrop and stopper intact." },],
+        promptBrief: "Painterly vector version of the product photograph, traced from the original photo with its curtain backdrop and stopper intact." },
+      { src: "/images/products/bois-fume-precieux-2.webp", role: "photo", alt: "Bois Fumé Précieux in a round glass bottle with a hammered stone stopper, beside frankincense and juniper berries", objectPosition: "54% 50%",
+        promptBrief: "Round faceted glass flacon with a hammered dark stone stopper on a rough stone slab, frankincense tears, juniper berries and charred wood. Dark warm luxury still life of the bottle on a rough stone plinth against crumpled brown silk, soft directional light, film grain, 16:9." },
+    ],
     createdAt: "2026-04-11",
+  },
+  {
+    id: "nocturne-absolu", slug: "nocturne-absolu", name: "Nocturne Absolu", featured: true, family: "oud", gender: "unisex",
+    tagline: "Dark oud, roasted coffee and warm spice.",
+    description: "A dark, intense oud lifted by coffee and nutmeg, with a long smoky finish.",
+    notes: { top: ["Pink pepper", "Nutmeg"], heart: ["Roasted coffee", "Star anise"], base: ["Oud wood", "Amber"] },
+    variants: variants("nocturne-absolu", 9800),
+    media: [{ src: "/images/products/nocturne-absolu.webp", role: "photo", alt: "Nocturne Absolu perfume bottle on a marble plinth among oud wood, coffee beans and star anise", objectPosition: "69% 50%",
+      promptBrief: "Faceted smoked-glass flacon with a black crystal stopper on a marbled stone plinth, oud chips, coffee beans, star anise and nutmeg around it. Dark warm luxury still life of the bottle on a rough stone plinth against crumpled brown silk, soft directional light, film grain, 16:9." }],
+    createdAt: "2026-08-05",
+  },
+  {
+    id: "mystique-bois", slug: "mystique-bois", name: "Mystique Bois", featured: true, family: "woody", gender: "unisex",
+    tagline: "Sandalwood, lavender and tonka in a drift of smoke.",
+    description: "Creamy sandalwood and lavender over tonka and amber, drifting with incense smoke.",
+    notes: { top: ["Lavender", "Cardamom"], heart: ["Patchouli leaf", "Sandalwood"], base: ["Tonka bean", "Amber"] },
+    variants: variants("mystique-bois", 8600),
+    media: [{ src: "/images/products/mystique-bois.webp", role: "photo", alt: "Mystique Bois perfume bottle among sandalwood, lavender, cardamom and tonka beans", objectPosition: "68% 50%",
+      promptBrief: "Faceted amber-glass flacon with a crystal stopper on a stone plinth, sandalwood chips, lavender, cardamom pods, patchouli leaves and tonka beans, with wisps of smoke. Dark warm luxury still life of the bottle on a rough stone plinth against crumpled brown silk, soft directional light, film grain, 16:9." }],
+    createdAt: "2026-08-20",
   },
   {
     id: "l-ambre-sauvage", slug: "l-ambre-sauvage", name: "L'Ambre Sauvage", featured: true, family: "floral", gender: "unisex",
@@ -50,8 +74,8 @@ export const productFixtures: Product[] = [
     description: "Jasmine and coffee over an amber base, a little wild and a little dark.",
     notes: { top: ["Coffee bean"], heart: ["Jasmine sambac", "Green leaves"], base: ["Amber", "Dry cedar"] },
     variants: variants("l-ambre-sauvage", 9000),
-    media: [{ src: "/images/products/l-ambre-sauvage.svg", role: "photo", alt: "L'Ambre Sauvage perfume bottle with jasmine flowers and coffee beans", objectPosition: "61% 50%",
-      promptBrief: "Faceted clear-glass flacon with a gold spray collar on a rough stone plinth, jasmine flowers and roasted coffee beans around it, deep black background. Dark warm luxury still life, film grain, 16:9. (Supplied as a traced SVG; replace with the original photo.)" }],
+    media: [{ src: "/images/products/l-ambre-sauvage.webp", role: "photo", alt: "L'Ambre Sauvage perfume bottle on a stone plinth with jasmine flowers and coffee beans", objectPosition: "69% 50%",
+      promptBrief: "Faceted clear-glass flacon with a black faceted stopper and gold spray collar on a rough stone plinth, jasmine flowers and roasted coffee beans around it. Dark warm luxury still life of the bottle on a rough stone plinth against crumpled brown silk, soft directional light, film grain, 16:9." }],
     createdAt: "2026-06-03",
   },
   {
@@ -60,8 +84,8 @@ export const productFixtures: Product[] = [
     description: "An amber that keeps going: spiced at first, then resinous and quietly woody.",
     notes: { top: ["Star anise", "Cardamom"], heart: ["Cinnamon", "Clove"], base: ["Amber", "Cedar shavings"] },
     variants: variants("l-ambre-eternel", 9600),
-    media: [{ src: "/images/products/l-ambre-eternel.svg", role: "photo", alt: "L'Ambre Éternel perfume bottle on a stone plinth with star anise and cinnamon", objectPosition: "54% 50%",
-      promptBrief: "Faceted golden-amber glass flacon on a rough stone plinth with star anise, cinnamon sticks and cedar shavings, deep black background. Dark warm luxury still life, film grain, 16:9. (Supplied as a traced SVG; replace with the original photo.)" }],
+    media: [{ src: "/images/products/l-ambre-eternel.webp", role: "photo", alt: "L'Ambre Éternel perfume bottle on a stone plinth with star anise, cinnamon and cedar shavings", objectPosition: "62% 50%",
+      promptBrief: "Faceted golden-amber glass flacon with a black faceted stopper on a rough stone plinth, star anise, cinnamon sticks and cedar shavings, dark orchids behind. Dark warm luxury still life of the bottle on a rough stone plinth against crumpled brown silk, soft directional light, film grain, 16:9." }],
     createdAt: "2026-05-20",
   },
   {
