@@ -61,3 +61,8 @@ Decisions are appended as they are approved, newest last. Each entry: date, what
 
 - **Cause of the "cropped" cap:** the traced SVG never drew the black stopper. It was the flat black background showing through, with grey highlight fragments on top. Removing the background for the curtain removed the stopper body too. `scripts/prepare-hero-art.py` now restores a solid stopper body and stem in the removed background's colour, underneath the original traced highlights.
 - **Hero at about 1100 px wide:** the headline was crossing the bottle. Below 1280 px the glass card is hidden, the headline is narrower, and the scent name becomes a link at the bottom left. The glass card shows from 1280 px up.
+
+## 2026-09-25: Stopper and shadows: stop removing the background
+
+- **What went wrong:** the traced art's background rectangle is the same colour as the stopper body and the ground shadows, so any attempt to remove the background also removed them. Redrawing the stopper (twice) looked wrong.
+- **Decision:** the painterly art is used exactly as supplied, with its own dark background. In the hero its outer edges are feathered into the silk curtain with a CSS radial mask (`ART_MASK` in `hero-slider.tsx`), so the stopper, the shadows and the original look stay intact while the curtain shows around them. `scripts/prepare-hero-art.py` was deleted.

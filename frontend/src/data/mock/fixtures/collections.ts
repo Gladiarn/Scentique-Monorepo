@@ -12,7 +12,7 @@ export const collectionFixtures: Collection[] = [
   {
     id: "floral", slug: "floral", name: "Floral", family: "floral",
     blurb: "Iris, rose and jasmine, cool at first and then warm.",
-    media: { src: "/images/hero/l-ambre-sauvage.svg", backdrop: "/images/hero/silk-backdrop.webp", objectPosition: "64% 50%", alt: "L'Ambre Sauvage perfume bottle among jasmine flowers", promptBrief: `A blush-tinted perfume bottle beside dark roses and iris on velvet. ${STYLE}` },
+    media: { src: "/images/hero/l-ambre-sauvage.svg", objectPosition: "64% 50%", alt: "L'Ambre Sauvage perfume bottle among jasmine flowers", promptBrief: `A blush-tinted perfume bottle beside dark roses and iris on velvet. ${STYLE}` },
   },
   {
     id: "citrus", slug: "citrus", name: "Citrus", family: "citrus",

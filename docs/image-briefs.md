@@ -31,7 +31,7 @@ Composition rules:
 | File | What it is | Used for |
 |---|---|---|
 | `public/perfumes/AMBRE FUMÉ.jpg`, `BOIS FUMÉ PRÉCIEUX.jpg` | Original photos, 1376x768 | Kept untouched. Upscaled 2x copies in `public/images/hero/*.webp` are used on the site. |
-| `public/perfumes/L'AMBRE ÉTERNEL.svg`, `LAMBRE-SAUVAGE.svg` | Auto-traced SVGs of photos (no originals supplied) | Source for the painterly hero art (`prepare-hero-art.py`). Please supply the original photos. |
+| `public/perfumes/L'AMBRE ÉTERNEL.svg`, `LAMBRE-SAUVAGE.svg` | Auto-traced SVGs of photos (no originals supplied) | Used as supplied for the painterly hero art (the art keeps its own dark background; its edges are feathered into the curtain in CSS). Please supply the original photos. |
 
 ## Format for entries
 

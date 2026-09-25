@@ -35,6 +35,9 @@ function cropVars(image: HeroSlide["image"]): CSSProperties {
 const FAMILIES: ScentFamily[] = ["floral", "woody", "citrus", "oud"];
 const SWIPE_PX = 50;
 
+/* The art keeps its own dark background so the cap and shadows stay intact; its outer edges fade into the curtain. */
+const ART_MASK = "radial-gradient(ellipse 44% 66% at 61% 50%, #000 34%, transparent 100%)";
+
 const chip =
   "inline-flex h-11 items-center gap-2.5 rounded-pill border border-ink/25 bg-page/30 px-5 text-xs uppercase tracking-[0.16em] text-ink/90 backdrop-blur-sm transition-colors hover:border-accent hover:text-ink";
 
@@ -89,7 +92,7 @@ export function HeroSlider({ slides, backdrop }: { slides: HeroSlide[]; backdrop
               family={slide.family}
               src={slide.image.src}
               alt={slide.image.alt}
-              style={cropVars(slide.image)}
+              style={{ ...cropVars(slide.image), maskImage: ART_MASK, WebkitMaskImage: ART_MASK }}
               priority={i === 0}
               sizes="100vw"
               className="scale-[1.02] [object-position:var(--pos-m,50%_50%)] lg:[object-position:var(--pos-d,var(--pos-m,50%_50%))]"
