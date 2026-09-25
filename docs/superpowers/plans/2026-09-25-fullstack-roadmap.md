@@ -32,6 +32,33 @@
 
 ---
 
+## Status (updated 2026-09-26)
+
+| Milestone | State |
+|---|---|
+| M0 Repo foundation | Done: pnpm and Turborepo workspace, `packages/shared`, `packages/config`, `frontend/`, empty `backend/`, CI workflow (not yet run on GitHub). Work is on `feat/landing-header`; only the first docs commit is on GitHub. |
+| M1 Frontend | In progress. Phases 0 to 2 done. Phase 3 (landing page) built as a first pass; a revision round is next, then the landing page becomes the design reference for Phases 4 to 9. See the frontend plan's Status section. |
+| M2 Backend | Not started (starts after the frontend is accepted). |
+| M3, M4 | Not started. |
+
+**API contract the frontend has defined so far** (input for the M2 plan). The frontend reads only through these repository methods; `ApiProductRepository`, `ApiCollectionRepository` and `ApiTestimonialRepository` are stubs that must implement them.
+
+| Repository method | Meaning | Suggested endpoint |
+|---|---|---|
+| `products.findAll(filters?)` | Catalog; filters: family, gender, max price | `GET /products` |
+| `products.findBySlug(slug)` | One product, or null | `GET /products/:slug` |
+| `products.findFeatured()` | Products flagged featured | `GET /products?featured=true` |
+| `products.findHeroFeatured()` | The single item featured in the landing hero, or null; set by an admin | `GET /products/hero-featured` |
+| `products.findBestSellers(limit)` | Top sellers, best first, ranked from real sales (the mock uses a fixed list) | `GET /products/best-sellers?limit=4` |
+| `collections.findAll()` | The four scent-family collections with their photograph | `GET /collections` |
+| `testimonials.findAll()` | Customer reviews | `GET /testimonials` |
+
+Data the API must return per product (see `packages/shared`): slug, name, tagline, description, family, gender, notes (top, heart, base), variants (size, concentration, price in cents, stock), and media entries `{ src, alt, role: "hero" | "photo", objectPosition, objectPositionDesktop }`. Admin needs a way to set the hero-featured item and upload several photos per product (the second photo is used by the hero card). Money is integer cents.
+
+Still to define when their pages are built: cart and orders, customers and addresses, admin metrics (revenue, top products, low stock), order status transitions.
+
+---
+
 ## Milestones
 
 | # | Milestone | Output | Depends on |

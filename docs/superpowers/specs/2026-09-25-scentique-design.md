@@ -25,7 +25,7 @@ Non-goals (for now): real payments, real email, real inventory sync, multi-curre
 | Tooling | pnpm workspaces + Turborepo |
 | Build order | Frontend first on mock data, then backend + database |
 | Backend | Node.js + Express (TypeScript) |
-| Images | Placeholders now; user provides photography later |
+| Images | Real photography supplied by the owner (7 scents, 4 category photos); 4 placeholder scents still have none |
 | Visual base | Dark, warm, luxurious, from the user's reference image; own identity |
 | Special effect | Custom `WavyBackground` (Vercel/Aceternity-style canvas waves), not the `capsule-render` service |
 
@@ -80,7 +80,7 @@ Client state: cart in Zustand (persisted to localStorage, versioned key). Server
 
 ## 5. Domain model (in `packages/shared`)
 
-- `Product`: id, slug, name, tagline, description, family (`woody | floral | citrus | oud`), gender (`feminine | masculine | unisex`), notes `{ top[], heart[], base[] }`, variants[], media[] (each `{ src?, alt, promptBrief }`; `promptBrief` is the description used to generate the real image, mirrored in `docs/image-briefs.md`), featured, createdAt.
+- `Product`: id, slug, name, tagline, description, family (`woody | floral | citrus | oud`), gender (`feminine | masculine | unisex`), notes `{ top[], heart[], base[] }`, variants[], media[] (each `{ src?, alt, promptBrief, role?, objectPosition?, objectPositionDesktop?, backdrop? }`; `role` is `hero` for landing art or `photo` for real photographs; `promptBrief` is the description used to generate the real image, mirrored in `docs/image-briefs.md`), featured, createdAt.
 - `Variant`: id, sku, size (ml), concentration (`eau_de_toilette | eau_de_parfum | extrait`), priceCents, stock.
 - `CartItem`: productId, variantId, quantity. Prices are looked up, never trusted from the client.
 - `Order`: id, number, customer, items (snapshot of name, size, price), status (`pending | paid | packed | shipped | delivered | cancelled`), totals, shipping address, timestamps.
@@ -110,7 +110,7 @@ One system across storefront and admin: same tokens, type scale, spacing and com
 
 Gold is the action colour only. The four scent-family tints carry product identity (chips, tile washes, notes pyramid, admin chart series) as low-opacity washes, with full strength reserved for small marks. Warning colour is never the sole signal; it always pairs with an icon and label.
 
-**Type.** Display face chosen by eye on a `/design` specimen page from the shortlist Gilda Display, Bodoni Moda, Zodiak. Body face from Hanken Grotesk, Albert Sans. Not Inter, Roboto, Arial, Cormorant, Playfair, Fraunces or Newsreader. Fonts are exposed as CSS variables so the choice is a one-line swap. Modular scale, body at least 16px, line length under 80 characters, serif display with more leading than sans.
+**Type (decided).** Prata for headlines and bold text, chosen by eye as the closest match to the logo wordmark; Bodoni Moda Italic for highlighted phrases (via the `Em` component, in the accent colour, at most one phrase per heading); Hanken Grotesk for body and UI. Not Inter, Roboto, Arial, Cormorant, Playfair, Fraunces or Newsreader. Fonts are CSS variables (`lib/fonts.ts`, `styles/tokens.css`).
 
 **Layout.** 4px base grid; one radius family; hairline borders rather than heavy shadows; generous negative space on storefront, denser tables on admin. The storefront hero is product-led with the wavy background behind it.
 

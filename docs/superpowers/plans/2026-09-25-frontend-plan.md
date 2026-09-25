@@ -10,6 +10,50 @@
 
 **Spec:** `docs/superpowers/specs/2026-09-25-scentique-design.md`
 
+## Status (updated 2026-09-26, end of session 1)
+
+**Where we are:** phases 0, 1 and 2 are done. Phase 3 (landing page) has a complete first pass, built and tested (124 tests, typecheck and lint clean, no horizontal overflow from 360 to 1440 px). **The landing page still needs a design revision round before any other page starts.** Once the landing page is approved, it becomes the design reference and every other page follows its pattern (see "Design reference: the landing page").
+
+**Built so far**
+
+| Area | State |
+|---|---|
+| Monorepo, Next.js 16, Vitest, Playwright config, CI workflow | Done. CI has never run on GitHub. |
+| Design system | Done: tokens (`styles/tokens.css`), fonts Prata (headlines), Bodoni Moda italic (accent phrases via `Em`), Hanken Grotesk (body); plain glass with one 10px blur token; `Button` variants including the glass pill; `GlassPanel`; hairline icons. |
+| Brand | Done: vector logo (mark, wordmark, lockup, favicons, traced from the owner's JPEG), `ProductImage` (placeholder or real photo, crop positions), `WaveBackdrop` (tonal brown waves), `Logo`. |
+| Data layer | Done: shared types; repositories for products (`findAll`, `findBySlug`, `findFeatured`, `findHeroFeatured`, `findBestSellers`), collections and testimonials; mock implementations with latency and `NEXT_PUBLIC_MOCK_FAILURE_RATE`; API stubs. Every landing section reads through it. |
+| Catalog | 7 real scents with real photographs (Ambre Fumé, Bois Fumé Précieux with 2 photos, L'Ambre Sauvage, L'Ambre Éternel, Nocturne Absolu, Mystique Bois) plus 4 placeholders without photos. Four category photographs. |
+| Landing page, first pass | Header (floating, shrinks and swaps to the wordmark on scroll), hero (painted Bois Fumé on the silk backdrop, scent card with note tiers), About bento, Four families bento, Best sellers bento, Testimonials (old three-column layout), closing waves, footer. |
+
+**Landing revision: the next session starts here** (before Phase 4)
+
+- [ ] Testimonials section redesigned to the same pattern (bento or glass cards), with real-feeling content.
+- [ ] Footer reviewed against the principles (glass, minimal).
+- [ ] Nav dropdown and mobile menu brought onto plain glass.
+- [ ] Spacing rhythm and section heights reviewed top to bottom; anything still too big is shrunk.
+- [ ] Accent italic usage reviewed (currently one phrase in every section heading; keep or reduce).
+- [ ] Hero background is a 2.7 MB traced SVG: decide whether to trade detail for size, and check load time.
+- [ ] Mobile pass on every section (375, 390, 768), including the hero card replacement bar.
+- [ ] Accessibility and best-practice review: `web-design-guidelines`, the impeccable detector, ui-ux-pro-max pre-delivery checklist, then the impeccable finish review.
+- [ ] Owner approves the landing page. It is then frozen as the design reference.
+
+**Needs input from the owner**
+
+- Photos for the 4 placeholder scents (Bitter Orange Hour, Night Iris, Lemon Ash, Petal Smoke), or remove them.
+- Notes, taglines and prices for the new scents are placeholders derived from the photos. Testimonials and brand copy are placeholders.
+- The `public/perfumes/Original/` folder and the two SVG traces (Sauvage, Éternel) are no longer used and can be deleted.
+- A vector original of the logo (the current one is traced from a low-resolution JPEG).
+- Decision on pushing: nothing since the first docs commit is on GitHub. Work is on branch `feat/landing-header`, not yet merged into `staging`.
+
+**How to resume**
+
+- `pnpm install`, then `pnpm dev` (frontend on http://localhost:3000). Tests: `pnpm test`. Checks: `pnpm typecheck`, `pnpm lint`.
+- Screenshots and overflow checks: `node frontend/scripts/screenshot.mjs <path> <name> --full` and `node frontend/scripts/check-overflow.mjs /`. Always check with normal motion (not "reduce motion").
+- Known quirk: after editing Tailwind classes the dev server can serve a stale stylesheet (missing utilities, collapsed sections). Restart `pnpm dev`. Do not run `pnpm build` while the dev server is running.
+- Decisions and their reasons are in `docs/design-log.md`. Image sources and how each site image was made are in `docs/image-briefs.md` and `docs/brand-assets.md`. The execution ledger is in `.superpowers/sdd/` (git-ignored).
+
+---
+
 ## Global Constraints
 
 - **Design direction (binding, from the owner): modern, minimalist, luxury. Cards are glass.** See "Design principles" below. Every page and section is checked against it before it is shown.
@@ -71,18 +115,18 @@ Consequences for the plan:
 
 ## Phase overview
 
-| Phase | Deliverable | Detail level here |
+| Phase | Deliverable | Status |
 |---|---|---|
-| 0 | Design direction: `PRODUCT.md`, direction contract, type specimen | tasks |
-| 1 | Monorepo and Next.js scaffold, tooling | tasks |
-| 2 | Tokens, core primitives, brand components, data layer for the landing | tasks |
-| 3 | **Landing page, section by section** | cycle + section list |
-| 4 | Shop (filters, sort) and product detail | acceptance criteria |
-| 5 | Scent quiz | acceptance criteria |
-| 6 | Cart and checkout | acceptance criteria |
-| 7 | Customer account | acceptance criteria |
-| 8 | Admin: dashboard, orders pipeline, product form | acceptance criteria |
-| 9 | Polish: accessibility, performance, e2e, `DESIGN.md` | acceptance criteria |
+| 0 | Design direction: `PRODUCT.md`, direction contract, type specimen | Done |
+| 1 | Monorepo and Next.js scaffold, tooling | Done |
+| 2 | Tokens, core primitives, brand components, data layer | Done |
+| 3 | **Landing page, section by section** | First pass built; **revision round pending** (see Status) |
+| 4 | Shop (filters, sort) and product detail | Not started. Starts after the landing page is approved. |
+| 5 | Scent quiz | Not started |
+| 6 | Cart and checkout | Not started |
+| 7 | Customer account | Not started |
+| 8 | Admin: dashboard, orders pipeline, product form | Not started |
+| 9 | Polish: accessibility, performance, e2e, `DESIGN.md` | Not started |
 
 ---
 
@@ -293,21 +337,22 @@ Scope note: only primitives the landing page needs now. Select, checkbox, dialog
 
 Route: `frontend/src/app/(storefront)/page.tsx` composes section components from `frontend/src/features/landing/sections/`. Each section reads only through repository hooks and has loading, error and empty states.
 
-Sections, in build order (top to bottom). Each runs the full section loop from the working agreement, and **nothing later starts until the previous is approved**:
+The landing page as built in the first pass (top to bottom). Files are in `frontend/src/features/landing/` and `frontend/src/components/layout/`. Each section still gets a revision check before the landing page is approved (see Status).
 
-| # | Section | Intent | Data |
-|---|---|---|---|
-| 3.1 | Site header and announcement bar | Brand, navigation, cart entry; sticky behaviour | `siteConfig`, cart count |
-| 3.2 | **Hero** | Signature scent, product-led, wavy background, one clear action | `findFeatured()` |
-| 3.3 | Brand story / about | Who Scentique is, why it exists; editorial, negative space | static copy |
-| 3.4 | Featured collections | Browse by scent family / collection | `collectionRepository` |
-| 3.5 | Best sellers / new arrivals | Product tiles with real add-to-cart entry points | `findAll()` |
-| 3.6 | Craft and ingredients | What goes into the scents; proof over claims | static copy |
-| 3.7 | Testimonials | Real-feeling reviews with varied lengths | `testimonialRepository` |
-| 3.8 | Scent quiz teaser | Lead into the quiz | static |
-| 3.9 | Footer with closing call to action | Wavy background moment three; links, newsletter form | `siteConfig` |
+| # | Section | What it is now | Data (through repositories) | State |
+|---|---|---|---|---|
+| 3.1 | Header | Fixed and floating over the hero; tall with the lockup at the top, slim with the wordmark once scrolled; hover/keyboard dropdowns; mobile menu; hairline icons; no border | `siteConfig.nav` | Built, revise: dropdown and mobile menu to plain glass |
+| 3.2 | Hero | Painted Bois Fumé Précieux on the silk backdrop, headline with one gold italic phrase, glass pill button, family chips, scent card (photo, note tiers, price, arrow) | `findHeroFeatured()` | Built, revise: 2.7 MB SVG weight, mobile check |
+| 3.3 | About (bento) | Curtain statement tile, real ingredient close-ups cropped from the photos, glass process card | static copy and photos | Built, revise: spacing |
+| 3.4 | Four families (bento) | Large, tall and small tiles using the four category photographs, glass quiz card | `collectionRepository.findAll()` | Built |
+| 3.5 | Best sellers (bento) | Featured scent with note tiers on plain glass, two small tiles, one wide tile | `findBestSellers(4)` (static list until the backend has sales data) | Built |
+| 3.6 | Testimonials | Three columns with dividers, placeholder reviews | `testimonialRepository.findAll()` | **Redesign: still the old layout** |
+| 3.7 | Closing | Tonal brown waves on both edges, text directly on them, glass pill button; about 430 px tall | static | Built |
+| 3.8 | Footer | Lockup, link columns, copyright row; no top border | `siteConfig` | Revise |
 
-The section order may change if you ask. Add or drop sections as the design evolves; the loop stays the same.
+Data sections are wrapped in a `SectionBoundary` (error with retry) and a Suspense skeleton, and each handles its empty state.
+
+The section order may change if the owner asks. The loop stays the same.
 
 ### Section cycle (repeat for each section)
 
@@ -326,7 +371,9 @@ The section order may change if you ask. Add or drop sections as the design evol
 - [ ] **Step 7: Iterate** on the user's feedback for this section only, until approved.
 - [ ] **Step 8: Lock.** Append the decisions to `docs/design-log.md` and add an entry for every image the section uses to `docs/image-briefs.md` (path, ratio, prompt, alt text) so the real images can be generated later. Commit `feat(landing): <section> section`.
 
-### Task 3.10: Landing finish
+### Task 3.10: Landing finish (PENDING: this is the revision round)
+
+Nothing below has been done yet. Do the revision checklist in Status first, then this task, then get the owner's approval.
 
 - [ ] **Step 1:** Run the full page at 375, 768, 1024, 1440. Fix layout defects in one batch.
 - [ ] **Step 2:** Run `web-design-guidelines` review on `features/landing/**` and `app/(storefront)/page.tsx`; fix findings.
@@ -336,11 +383,38 @@ The section order may change if you ask. Add or drop sections as the design evol
 
 ---
 
+## Design reference: the landing page
+
+**Rule (from the owner, 2026-09-26):** the landing page is finished and revised first. After it is approved, **every other page follows its design pattern** so the whole site reads as one system. Nothing in Phases 4 to 9 invents a new visual pattern; it reuses these.
+
+| Pattern | Where it lives | How other pages use it |
+|---|---|---|
+| Tokens: palette, type scale, radii, glass blur | `styles/tokens.css` | The only source of colour and sizes. No hex in components. |
+| Fonts: Prata headlines, Bodoni Moda italic accent, Hanken Grotesk body | `lib/fonts.ts`, `Em` | Page titles use Prata at the section scale; one gold italic phrase at most per heading. |
+| Plain glass card | `components/ui/glass-panel.tsx` | Every card: filter panels, order summary, forms, account cards, admin cards. No fill, sheen, shadow or extra blur. |
+| Glass pill button | `Button variant="glass"` | The main action over photography (shop hero, quiz start, checkout on images). Other actions use `primary`, `secondary`, `ghost`. |
+| Bento layout | `sections/collections.tsx`, `story.tsx`, `best-sellers.tsx` | Mixed tile sizes on shop landing states, account overview, admin dashboard. |
+| Scent card (photo, name, note tiers, price, arrow) | `hero.tsx`, best-sellers featured tile | Basis for the product card on the shop grid and the product page summary. |
+| Photography: `ProductImage`, media roles (`hero` and `photo`), crop positions | `components/brand/product-image.tsx`, `lib/media.ts` | Product cards use `photo`; only the landing hero uses `hero` art. Real photographs everywhere. |
+| Section states: skeleton, error boundary with retry, empty state | `section-skeleton.tsx`, `section-boundary.tsx` | Every data-bound page region. |
+| Data through repositories | `data/` | Every page reads through an interface. Adding a page means adding repository methods, never importing mocks. |
+| Waves banner (tonal browns, compact) | `wave-backdrop.tsx`, `closing.tsx` | Only for closing or empty-state banners; keep the same size and no lines. |
+| Header and footer | `components/layout/` | Shared by every storefront page (admin has its own shell built from the same parts). |
+| Motion | `animate-hero-rise`, wave drift, hover eases | Sparing; respects reduced motion. |
+
+Admin (Phase 8) uses the same tokens, fonts and glass cards with a denser, calmer layout.
+
+---
+
 ## Phases 4 to 9: scope and acceptance
+
+**These start only after the landing page is approved, and every page reuses the landing page's design pattern above.** Each still runs the propose, build, show, iterate, lock loop. Each phase's own step-level plan states which landing patterns it reuses.
 
 Each phase gets its own step-level plan when it starts. **Every page here follows the same section-by-section loop** as the landing page: propose, build, show, iterate, lock.
 
 ### Phase 4: Shop and product detail
+
+- Design: reuse the scent card for the product grid, plain glass for the filter panel, the glass pill for primary actions, the shared header and footer, and Best sellers' bento rhythm for featured rows.
 - Routes: `/shop`, `/product/[slug]`. Features: `catalog`, `product`.
 - Shop: filter by scent family, gender, price range; sort (featured, price low/high, newest); filters reflected in the URL; zero-result empty state; loading skeleton grid.
 - Product: image gallery, size and concentration selector with live price and stock, notes pyramid (top, heart, base), add to cart, related scents.
