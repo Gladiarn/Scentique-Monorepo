@@ -2,3 +2,7 @@ packages:
   - frontend
   - backend
   - packages/*
+
+allowBuilds:
+  sharp: false
+  unrs-resolver: false
