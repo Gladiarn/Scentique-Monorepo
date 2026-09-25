@@ -11,6 +11,21 @@ Every placeholder image in the build has an entry here. Copy the **prompt** into
 - Real glass, real materials, natural shadows. No plastic-looking 3D render, no neon, no purple gradients.
 - Deliver at least 2400 px on the long edge, sRGB, WebP or high-quality JPEG.
 
+## Aspect ratios (only three formats, on purpose)
+
+| Ratio | Size to generate | Used for |
+|---|---|---|
+| **16:9** landscape | 2560 x 1440 | Desktop hero, wide banners (story, closing call to action) |
+| **4:5** portrait | 2000 x 2500 | Every product shot, collection tile, and the mobile hero |
+| **1:1** square | not generated | Cart and search thumbnails are cropped from the 4:5 centre by code |
+
+Avoid 4:3 and 9:16 (9:16 only if you later make a video or reel). Fewer formats means the whole catalogue looks like one shoot.
+
+Composition rules:
+- **Hero 16:9:** bottle in the right-centre (about 60 to 70 percent across), the left 45 percent calm and dark for the headline, the top 15 percent low detail because the header sits over it.
+- **4:5 product shots:** bottle centred with at least 12 percent margin on every side, so the square thumbnail crop never cuts the cap.
+- **Same lighting direction and background tone across the set.**
+
 ## Format for entries
 
 ```
@@ -24,4 +39,32 @@ Every placeholder image in the build has an entry here. Copy the **prompt** into
 
 ## Entries
 
-(Added section by section during Phase 3.)
+### hero-desktop: signature scent hero
+- Path: frontend/public/images/hero-desktop.webp
+- Ratio: 16:9, 2560 x 1440
+- Used in: landing hero
+- Prompt: Cinematic dark luxury still life of a square amber-glass perfume flacon with a heavy dark marble-and-gold stopper, resting on a rough stone plinth, dark folded silk draped behind, cream orchids and vanilla pods at the lower right, warm directional amber light from the upper left, deep espresso-brown shadows, subtle film grain. Bottle sits right of centre, left 45 percent of the frame is soft dark silk with no detail, top 15 percent low detail. Label area blank. No text, no logos.
+- Alt text: Ember Oud perfume bottle on a stone plinth among orchids and vanilla pods
+
+### hero-mobile: signature scent hero, portrait
+- Path: frontend/public/images/hero-mobile.webp
+- Ratio: 4:5, 2000 x 2500
+- Used in: landing hero on phones
+- Prompt: Same scene and lighting as hero-desktop, recomposed for portrait: bottle centred in the lower two thirds, dark silk above with no detail for the header and headline.
+- Alt text: Ember Oud perfume bottle on a stone plinth among orchids and vanilla pods
+
+### collection-woody / collection-floral / collection-citrus / collection-oud
+- Path: frontend/public/images/collection-<family>.webp
+- Ratio: 4:5, 2000 x 2500 each
+- Used in: landing collections, shop menu
+- Prompt (per family): A perfume bottle centred with generous margin on a dark warm surface, soft directional amber light, film grain. Woody: smoked-glass bottle on a raw cedar plank with wood shavings. Floral: blush-tinted bottle beside dark roses and iris on velvet. Citrus: clear bottle with halved blood orange and green leaves on dark slate. Oud: dark amber bottle beside chunks of oud wood and resin on black stone. No text on the bottle.
+- Alt text: <Family> collection bottle beside <its ingredient>
+
+### product-<slug> (8 scents: ember-oud, bitter-orange-hour, night-iris, cedar-room, lemon-ash, petal-smoke, vetiver-rain, amber-nocturne)
+- Path: frontend/public/images/product-<slug>.webp
+- Ratio: 4:5, 2000 x 2500 each (plus two extra 4:5 shots per scent for the product page gallery later: an ingredient scene and a close-up of the cap)
+- Used in: best sellers, shop, product page, cart
+- Prompt: the per-product `promptBrief` in `frontend/src/data/mock/fixtures/products.ts`, on a deep espresso-brown surface, soft directional amber light, subtle film grain, bottle centred with 12 percent margin, label area blank.
+- Alt text: <Name> perfume bottle
+
+(More entries are added as further sections are built.)

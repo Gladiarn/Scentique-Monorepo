@@ -17,3 +17,10 @@ Decisions are appended as they are approved, newest last. Each entry: date, what
 - **Type:** Gilda Display (headlines) + Hanken Grotesk (body). The other candidates were removed.
 - **Logo:** supplied by the owner; extracted and traced to vectors in `public/brand/` (see `docs/brand-assets.md`). Navbar shows the name only; footer shows the full lockup; the icon is the favicon.
 - **Landing page:** a full draft exists for colour preview only. Sections are now refined one at a time from the top, each approved before the next.
+
+## 2026-09-25: Reference locked, header rebuilt
+
+- **Reference:** a dark full-bleed luxury hero (Luxoria). The header floats over the photo, lockup at the left, centred nav with chevrons and an active dot, hairline icons, gold bag badge.
+- **Header behaviour (user-specified):** at the top it is tall with the full lockup; on scroll it shrinks to a slim solid bar and the logo swaps to the wordmark only.
+- **Icons:** one hairline set at 1.25 stroke to match the logo line weight.
+- **Image ratios:** 16:9 for wide images, 4:5 for everything else (see docs/image-briefs.md).

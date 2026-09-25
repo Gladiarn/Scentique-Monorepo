@@ -16,7 +16,7 @@ export async function HeroSection() {
   return (
     <section className="relative isolate overflow-hidden">
       <WavyBackground className="opacity-70 [mask-image:linear-gradient(to_bottom,black_50%,transparent)]" />
-      <Container className="relative grid items-center gap-14 py-16 lg:min-h-[calc(100svh-4.5rem)] lg:grid-cols-[1.05fr_0.95fr] lg:py-20">
+      <Container className="relative grid items-center gap-14 pb-16 pt-36 lg:min-h-svh lg:grid-cols-[1.05fr_0.95fr]">
         <div className="max-w-xl">
           <h1 className="font-display text-[length:var(--text-display)] leading-[1.02] tracking-[-0.02em] text-balance">
             Made in small batches from rare ingredients

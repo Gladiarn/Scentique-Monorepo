@@ -27,7 +27,7 @@ export async function CollectionsSection() {
                     <ProductImage
                       family={c.family}
                       alt={c.media.alt}
-                      className="aspect-[3/4] w-full transition-transform duration-700 ease-[var(--ease-out-quart)] group-hover:scale-[1.03]"
+                      className="aspect-[4/5] w-full transition-transform duration-700 ease-[var(--ease-out-quart)] group-hover:scale-[1.03]"
                     />
                   </div>
                   <h3 className="mt-5 font-display text-2xl">{c.name}</h3>
