@@ -14,13 +14,24 @@ interface ProductImageProps {
   sizes?: string;
   priority?: boolean;
   objectPosition?: string;
+  /** Photo rendered under `src`, for transparent artwork. */
+  backdrop?: string;
   className?: string;
 }
 
 /** Tonal placeholder (scent-family wash + bottle silhouette) until real photography arrives. */
-export function ProductImage({ family, alt, src, width, height, fill, sizes, priority, objectPosition, className }: ProductImageProps) {
+export function ProductImage({ family, alt, src, width, height, fill, sizes, priority, objectPosition, backdrop, className }: ProductImageProps) {
   if (src) {
     const common = { src, priority, quality: 90, sizes, style: objectPosition ? { objectPosition } : undefined };
+    if (backdrop) {
+      const layers = (
+        <>
+          <Image src={backdrop} alt="" fill sizes={sizes} quality={90} priority={priority} className="object-cover" />
+          <Image {...common} alt={alt} fill className="object-cover" />
+        </>
+      );
+      return fill ? layers : <div className={cn("relative overflow-hidden", className)}>{layers}</div>;
+    }
     return fill ? (
       <Image {...common} alt={alt} fill className={cn("object-cover", className)} />
     ) : (

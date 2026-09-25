@@ -55,4 +55,10 @@ describe("HeroSlider", () => {
     expect(screen.getByRole("link", { name: /discover collection/i })).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "Next scent" })).not.toBeInTheDocument();
   });
+
+  it("renders a slide's backdrop behind its artwork", () => {
+    const withBackdrop: HeroSlide[] = [{ ...slides[0]!, image: { ...slides[0]!.image, backdrop: "/images/hero/silk-backdrop.webp" } }];
+    const { container } = render(<HeroSlider slides={withBackdrop} />);
+    expect(container.querySelector('img[src*="silk-backdrop"]')).toBeInTheDocument();
+  });
 });

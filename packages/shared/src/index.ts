@@ -9,6 +9,10 @@ export interface MediaAsset {
   promptBrief: string;
   /** CSS object-position so tall crops of a wide photo keep the bottle in frame. */
   objectPosition?: string;
+  /** Photo layered under transparent artwork (e.g. a traced SVG) so the scene keeps its backdrop. */
+  backdrop?: string;
+  /** `hero` is landing-page artwork; `photo` is a real product photograph for shop and product pages. */
+  role?: "hero" | "photo";
 }
 
 export interface Variant {

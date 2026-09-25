@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { productRepository } from "@/data";
 import { formatMoney } from "@/lib/format";
+import { photoMedia } from "@/lib/media";
 
 export async function BestSellersSection() {
   const products = (await productRepository.findAll()).slice(0, 4);
@@ -28,7 +29,11 @@ export async function BestSellersSection() {
                   <Link href={`/product/${p.slug}`} className="group block">
                     <ProductImage
                       family={p.family}
-                      alt={p.media[0]?.alt ?? p.name}
+                      src={photoMedia(p)?.src}
+                      backdrop={photoMedia(p)?.backdrop}
+                      objectPosition={photoMedia(p)?.objectPosition}
+                      sizes="(min-width: 1024px) 25vw, 50vw"
+                      alt={photoMedia(p)?.alt ?? p.name}
                       className="aspect-[4/5] w-full rounded-lg border border-line transition-colors group-hover:border-accent"
                     />
                     <div className="mt-4 flex items-center gap-2">

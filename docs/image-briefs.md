@@ -26,6 +26,13 @@ Composition rules:
 - **4:5 product shots:** bottle centred with at least 12 percent margin on every side, so the square thumbnail crop never cuts the cap.
 - **Same lighting direction and background tone across the set.**
 
+## Files supplied by the owner (current state)
+
+| File | What it is | Used for |
+|---|---|---|
+| `public/perfumes/AMBRE FUMÉ.jpg`, `BOIS FUMÉ PRÉCIEUX.jpg` | Original photos, 1376x768 | Kept untouched. Upscaled 2x copies in `public/images/hero/*.webp` are used on the site. |
+| `public/perfumes/L'AMBRE ÉTERNEL.svg`, `LAMBRE-SAUVAGE.svg` | Auto-traced SVGs of photos (no originals supplied) | Source for the painterly hero art (`prepare-hero-art.py`). Please supply the original photos. |
+
 ## Format for entries
 
 ```

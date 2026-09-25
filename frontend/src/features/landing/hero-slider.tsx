@@ -19,7 +19,7 @@ export interface HeroSlide {
   tagline: string;
   family: ScentFamily;
   priceFromCents: number;
-  image: { src?: string; alt: string; objectPosition?: string };
+  image: { src?: string; alt: string; objectPosition?: string; backdrop?: string };
 }
 
 const FAMILIES: ScentFamily[] = ["floral", "woody", "citrus", "oud"];
@@ -79,6 +79,7 @@ export function HeroSlider({ slides }: { slides: HeroSlide[] }) {
               src={slide.image.src}
               alt={slide.image.alt}
               objectPosition={slide.image.objectPosition}
+              backdrop={slide.image.backdrop}
               priority={i === 0}
               sizes="100vw"
               className="scale-[1.02]"
@@ -137,6 +138,7 @@ export function HeroSlider({ slides }: { slides: HeroSlide[] }) {
                   src={next.image.src}
                   alt=""
                   objectPosition={next.image.objectPosition}
+                  backdrop={next.image.backdrop}
                   sizes="336px"
                   className="transition-transform duration-700 ease-out group-hover:scale-105"
                 />

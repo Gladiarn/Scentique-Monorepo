@@ -22,4 +22,15 @@ describe("ProductImage", () => {
     render(<ProductImage family="oud" alt="Cropped bottle" src="/images/hero/a.webp" width={800} height={450} objectPosition="62% 50%" />);
     expect(screen.getByAltText("Cropped bottle")).toHaveStyle({ objectPosition: "62% 50%" });
   });
+
+  it("layers a backdrop photo under transparent artwork", () => {
+    const { container } = render(
+      <ProductImage family="oud" alt="Traced bottle" src="/images/hero/traced.svg" backdrop="/images/hero/silk-backdrop.webp" width={800} height={450} />,
+    );
+    const images = container.querySelectorAll("img");
+    expect(images).toHaveLength(2);
+    expect(images[0]).toHaveAttribute("alt", "");
+    expect(images[0]?.getAttribute("src")).toContain("silk-backdrop");
+    expect(screen.getByAltText("Traced bottle")).toBeInTheDocument();
+  });
 });

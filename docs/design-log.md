@@ -32,3 +32,10 @@ Decisions are appended as they are approved, newest last. Each entry: date, what
 - **Supplied images:** Ambre Fumé and Bois Fumé Précieux are 1376x768 JPEGs (good). L'Ambre Éternel and L'Ambre Sauvage arrived as SVG auto-traces of photos: posterized, garbled labels, detached stopper. Kept in the slider for comparison only; the original photos are needed.
 - **Resolution:** a photo cannot gain real detail from a format change. Upscaled 2x with a neural super-resolution model (EDSR) for the JPEGs; the real fix is regenerating at 2560 px or wider.
 - **Mobile:** the wide photo fills the top 68% of the screen and the headline sits below in the fade; arrows sit on the photo.
+
+## 2026-09-25: Painterly hero art on a silk backdrop; real photos stay for product pages
+
+- **Hero look (user-approved):** the painterly traced artwork for L'Ambre Éternel and L'Ambre Sauvage, layered over a crumpled-silk backdrop (`public/images/hero/silk-backdrop.webp`, built from the silk in the Ambre Fumé photo with a warm studio glow and film grain). The flat traced background was dull; the silk restores the original scene's depth.
+- **Stopper repair:** the tracer lost each bottle's cap (grey fragments floating above the collar). `frontend/scripts/prepare-hero-art.py` removes the fragments and draws a clean vector cap. It reads the untouched originals in `public/perfumes/`.
+- **Photos vs artwork:** each product image is tagged `role: "hero"` (landing artwork) or `photo` (real photograph). The landing hero prefers hero artwork; shop and product pages prefer real photos (`lib/media.ts`). The original JPEGs stay untouched in `public/perfumes/`.
+- **Still needed:** original photographs of L'Ambre Éternel and L'Ambre Sauvage. Until then their shop tiles reuse the painterly art.

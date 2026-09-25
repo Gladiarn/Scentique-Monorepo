@@ -20,6 +20,7 @@ function variants(id: string, base: number, soldOut = false): Variant[] {
 }
 
 const HERO_POSITION = "64% 50%";
+const SILK = "/images/hero/silk-backdrop.webp";
 
 export const productFixtures: Product[] = [
   {
@@ -48,7 +49,7 @@ export const productFixtures: Product[] = [
     description: "An amber that keeps going: spiced at first, then resinous and quietly woody.",
     notes: { top: ["Star anise", "Cardamom"], heart: ["Cinnamon", "Clove"], base: ["Amber", "Cedar shavings"] },
     variants: variants("l-ambre-eternel", 9600),
-    media: [{ src: "/images/hero/l-ambre-eternel.svg", alt: "L'Ambre Éternel perfume bottle on a stone plinth with star anise and cinnamon", objectPosition: "50% 50%",
+    media: [{ src: "/images/hero/l-ambre-eternel.svg", backdrop: SILK, role: "hero", alt: "L'Ambre Éternel perfume bottle on a stone plinth with star anise and cinnamon", objectPosition: "50% 50%",
       promptBrief: "Faceted golden-amber glass flacon on a rough stone plinth with star anise, cinnamon sticks and cedar shavings, deep black background. Dark warm luxury still life, film grain, 16:9. (Supplied as a traced SVG; replace with the original photo.)" }],
     createdAt: "2026-05-20",
   },
@@ -58,7 +59,7 @@ export const productFixtures: Product[] = [
     description: "Jasmine and coffee over an amber base, a little wild and a little dark.",
     notes: { top: ["Coffee bean"], heart: ["Jasmine sambac", "Green leaves"], base: ["Amber", "Dry cedar"] },
     variants: variants("l-ambre-sauvage", 9000),
-    media: [{ src: "/images/hero/l-ambre-sauvage.svg", alt: "L'Ambre Sauvage perfume bottle with jasmine flowers and coffee beans", objectPosition: "62% 50%",
+    media: [{ src: "/images/hero/l-ambre-sauvage.svg", backdrop: SILK, role: "hero", alt: "L'Ambre Sauvage perfume bottle with jasmine flowers and coffee beans", objectPosition: "62% 50%",
       promptBrief: "Faceted clear-glass flacon with a gold spray collar on a rough stone plinth, jasmine flowers and roasted coffee beans around it, deep black background. Dark warm luxury still life, film grain, 16:9. (Supplied as a traced SVG; replace with the original photo.)" }],
     createdAt: "2026-06-03",
   },
