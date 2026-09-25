@@ -11,7 +11,7 @@ const columns = [
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-line">
+    <footer>
       <Container className="grid gap-14 py-16 lg:grid-cols-[1.2fr_2fr]">
         <div className="space-y-5">
           <LogoLockup />

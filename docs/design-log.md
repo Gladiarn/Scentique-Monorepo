@@ -106,3 +106,10 @@ Decisions are appended as they are approved, newest last. Each entry: date, what
 
 - **Closing section:** the waves are mirrored onto the top edge so the dark testimonials blend into the brown sky (the outermost wave on each edge is the page colour). A gilt hairline was tried and removed at the owner's request: it read as a border. The heading has more top room so it does not sit on the wave edges.
 - **Glass (user):** one consistent, light glass. `--blur-glass: 10px` in `tokens.css`, used as `backdrop-blur-glass` everywhere (hero card, chips, buttons, header, dropdown, About captions, mobile bar). Previously there were three strengths (4, 12 and 24 px). `glass.test.ts` fails if any other backdrop blur strength is added.
+
+## 2026-09-26: Closing section made compact; shared glass pill button
+
+- **Decision (user):** the closing "Not sure where to start?" section is waves plus text only, no glass card. It was too tall: it is now about 430 px on desktop (from about 720), with the current text sizes (heading 39 to 49 px).
+- **Consistency (user):** "Find your scent" is the same button as the hero's "Discover collection". It is now one shared variant, `Button variant="glass"`, and computed styles were verified identical (radius, uppercase, letter-spacing, 10px blur, height, border).
+- **No lines:** the footer's top border was removed and the wave zones bleed 1px past the section edges so no hairline shows where the waves meet the sections above and below.
+- **Cards are glass:** the quiz card in Four families and the process card in About are glass panels. The direction is recorded as binding "Design principles" in the frontend plan and the spec.

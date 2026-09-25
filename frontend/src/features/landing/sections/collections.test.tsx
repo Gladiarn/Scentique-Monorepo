@@ -14,4 +14,9 @@ describe("CollectionsSection (bento)", () => {
     render(await CollectionsSection());
     expect(screen.getByRole("link", { name: /find your scent/i })).toHaveAttribute("href", "/quiz");
   });
+
+  it("renders the quiz card as glass", async () => {
+    render(await CollectionsSection());
+    expect(screen.getByRole("link", { name: /find your scent/i }).closest(".backdrop-blur-glass")).not.toBeNull();
+  });
 });

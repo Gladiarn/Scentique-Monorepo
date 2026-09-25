@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
-type Variant = "primary" | "secondary" | "ghost";
+type Variant = "primary" | "secondary" | "ghost" | "glass";
 type Size = "md" | "lg";
 
 const base =
@@ -12,6 +12,9 @@ const variants: Record<Variant, string> = {
   primary: "bg-accent text-page hover:bg-ink",
   secondary: "border border-line text-ink hover:border-accent hover:text-accent",
   ghost: "text-ink underline-offset-4 hover:text-accent hover:underline",
+  /** Outlined, translucent pill with the shared light glass blur. The primary call to action on photography and waves. */
+  glass:
+    "rounded-pill border border-ink/35 bg-page/30 px-8 text-xs uppercase tracking-[0.16em] backdrop-blur-glass hover:border-accent hover:text-accent",
 };
 
 const sizes: Record<Size, string> = {

@@ -49,12 +49,7 @@ export function Hero({ content }: { content: HeroContent | null }) {
           <p className="mt-6 max-w-md text-lg text-ink/75">
             Four scent families, blended by hand in twelve-litre lots and rested for six weeks before they are bottled.
           </p>
-          <Button
-            href="/shop"
-            variant="secondary"
-            size="lg"
-            className="mt-9 rounded-pill border-ink/35 bg-page/30 px-8 text-xs uppercase tracking-[0.16em] backdrop-blur-glass"
-          >
+          <Button href="/shop" variant="glass" size="lg" className="mt-9">
             Discover collection
             <ArrowRightIcon width={18} height={18} />
           </Button>

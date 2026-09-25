@@ -52,14 +52,14 @@ function WaveSvg({ seconds, reverse, children, height }: { seconds: number; reve
 export function WaveBackdrop({ className = "" }: { className?: string }) {
   return (
     <div aria-hidden="true" className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`} style={{ background: SKY }}>
-      <div data-edge="top" className="absolute inset-x-0 top-0 h-[30%] rotate-180 overflow-hidden">
+      <div data-edge="top" className="absolute inset-x-0 -top-px h-[calc(22%+1px)] rotate-180 overflow-hidden">
         {TOP.map((l, i) => (
           <WaveSvg key={i} seconds={l.seconds} reverse={l.reverse} height="h-full">
             <path d={l.d} fill={l.fill} />
           </WaveSvg>
         ))}
       </div>
-      <div data-edge="bottom" className="absolute inset-x-0 bottom-0 h-[52%] overflow-hidden">
+      <div data-edge="bottom" className="absolute inset-x-0 -bottom-px h-[calc(34%+1px)] overflow-hidden">
         {BOTTOM.map((l, i) => (
           <WaveSvg key={i} seconds={l.seconds} reverse={l.reverse} height="h-full">
             <path d={l.d} fill={l.fill} />

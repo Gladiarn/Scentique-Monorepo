@@ -19,4 +19,10 @@ describe("Button", () => {
     render(<Button href="/shop">Shop all</Button>);
     expect(screen.getByRole("link", { name: "Shop all" })).toHaveAttribute("href", "/shop");
   });
+
+  it("has a glass pill variant: outlined, translucent, light blur, uppercase, fully rounded", () => {
+    render(<Button href="/shop" variant="glass">Discover collection</Button>);
+    const cls = screen.getByRole("link", { name: "Discover collection" }).className;
+    for (const c of ["rounded-pill", "uppercase", "tracking-[0.16em]", "backdrop-blur-glass", "border-ink/35"]) expect(cls).toContain(c);
+  });
 });

@@ -12,6 +12,7 @@
 
 ## Global Constraints
 
+- **Design direction (binding, from the owner): modern, minimalist, luxury. Cards are glass.** See "Design principles" below. Every page and section is checked against it before it is shown.
 - Brand name only in `frontend/src/config/site.ts`.
 - Display font never Inter, Roboto or Arial; also avoid Cormorant, Playfair, Fraunces, Newsreader.
 - Palette tokens from the spec; hex values live only in `styles/tokens.css`, never in components.
@@ -32,6 +33,23 @@
 - Very long product names and 200-item lists do not break layout.
 - Wavy background renders a static frame under reduced motion and never blocks text contrast.
 - Keyboard-only use of filters, variant selector and quiz works end to end.
+
+## Design principles (binding)
+
+Set by the owner on 2026-09-26. They apply to every remaining page (shop, product, quiz, cart, checkout, account, admin) as much as to the landing page.
+
+1. **Modern, minimalist, luxury.** Restraint over decoration. Generous negative space. Nothing is added that does not earn its place. If a section feels big, it is too big: shrink it before adding anything.
+2. **Cards are glass.** Every card surface (info cards, panels, tiles that hold text, forms, dropdowns; not banners, which are waves plus text) is the `GlassPanel` treatment: translucent fill, hairline border, faint top sheen, and the single glass blur `--blur-glass: 10px` (`backdrop-blur-glass`). It should read as clear glass, never as a heavy blur. No other blur strength is allowed (`glass.test.ts` enforces it). Opaque filled cards (`bg-surface`, `bg-raised`) are not used for cards.
+3. **Compact by default.** Decorative sections (banners, waves) stay short: tonal waves with the text sitting directly on them, no card around it. Headlines outside the hero use the section scale (about 39 to 49 px), not the display size. The closing section is about 430 px tall on desktop; keep new banners that small.
+3a. **One button style for the main action on photography and waves:** the glass pill (`Button variant="glass"`): outlined, translucent, uppercase, arrow icon. The hero and the closing section use the same variant so they cannot drift apart.
+4. **Photography leads.** Real product and ingredient photographs, cropped with care; art direction comes from the images, not from effects.
+5. **One accent.** Champagne gold is used sparingly (actions, one highlighted phrase per heading). No gold lines or borders as decoration.
+6. **Tonal, warm palette.** Browns and bone; scent-family tints only as small marks or washes.
+7. **Accessible luxury.** AA contrast, visible focus, 44px targets, reduced motion respected.
+
+Check for every new section before showing it: Is it as small as it can be? Are the cards glass? Is there any decoration that does not carry meaning?
+
+---
 
 ## Working agreement: design one section at a time
 

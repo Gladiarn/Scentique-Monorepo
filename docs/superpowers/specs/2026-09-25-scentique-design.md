@@ -116,6 +116,8 @@ Gold is the action colour only. The four scent-family tints carry product identi
 
 **Motion.** One orchestrated hero moment, `WavyBackground` in three places only (hero, quiz result, footer call to action), and motion that answers user actions. Everything respects `prefers-reduced-motion`.
 
+**Design direction (binding).** Modern, minimalist, luxury. Cards are glass: one shared `GlassPanel` treatment (translucent fill, hairline border, single 10px blur `--blur-glass`), used for every card, panel, form and dropdown. Sections stay compact; decoration (waves, backdrops) is small and tonal; no gold lines or borders. Full rules in the frontend plan, "Design principles".
+
 **Quality floor.** WCAG AA contrast, visible keyboard focus, 44px touch targets, layouts verified at 375, 768, 1024 and 1440 px, `next/image` with explicit dimensions, `loading.tsx` for route loading.
 
 ## 7. Screens

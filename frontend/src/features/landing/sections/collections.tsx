@@ -4,6 +4,7 @@ import { ArrowRightIcon } from "@/components/ui/icons";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { Em } from "@/components/ui/em";
+import { GlassPanel } from "@/components/ui/glass-panel";
 import { collectionRepository } from "@/data";
 import { cn } from "@/lib/cn";
 import type { Collection, ScentFamily } from "@scentique/shared";
@@ -73,21 +74,20 @@ export async function CollectionsSection() {
               <FamilyTile key={c.id} collection={c} large={c.family === "woody"} />
             ))}
             <li className="sm:col-span-2 lg:col-span-4 lg:row-start-3">
-              <Link
-                href="/quiz"
-                className="group flex h-full min-h-[8rem] items-center justify-between gap-6 rounded-xl border border-accent/40 bg-raised px-7 py-6 transition-colors hover:border-accent md:px-10"
-              >
-                <div>
-                  <p className="font-display text-2xl md:text-3xl">Not sure which family is <Em>yours</Em>?</p>
-                  <p className="mt-1 text-muted">Answer four short questions and we will suggest two or three scents.</p>
-                </div>
-                <span className="inline-flex shrink-0 items-center gap-3 text-accent">
-                  <span className="hidden text-sm sm:inline">Find your scent</span>
-                  <span className="grid size-12 place-items-center rounded-pill border border-accent/60 transition-transform group-hover:translate-x-1">
-                    <ArrowRightIcon />
+              <GlassPanel className="h-full transition-colors hover:border-accent/50">
+                <Link href="/quiz" className="group flex min-h-[8rem] items-center justify-between gap-6 px-7 py-6 md:px-10">
+                  <div>
+                    <p className="font-display text-2xl md:text-3xl">Not sure which family is <Em>yours</Em>?</p>
+                    <p className="mt-1 text-muted">Answer four short questions and we will suggest two or three scents.</p>
+                  </div>
+                  <span className="inline-flex shrink-0 items-center gap-3 text-accent">
+                    <span className="hidden text-sm sm:inline">Find your scent</span>
+                    <span className="grid size-12 place-items-center rounded-pill border border-accent/60 transition-transform group-hover:translate-x-1">
+                      <ArrowRightIcon />
+                    </span>
                   </span>
-                </span>
-              </Link>
+                </Link>
+              </GlassPanel>
             </li>
           </ul>
         )}

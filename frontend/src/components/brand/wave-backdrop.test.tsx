@@ -65,4 +65,10 @@ describe("WaveBackdrop", () => {
     }
     expect(container.innerHTML).not.toContain("--color-accent");
   });
+
+  it("bleeds its wave zones 1px past the section edges so no hairline seam shows", () => {
+    const { container } = render(<WaveBackdrop />);
+    expect(container.querySelector('[data-edge="top"]')?.className).toContain("-top-px");
+    expect(container.querySelector('[data-edge="bottom"]')?.className).toContain("-bottom-px");
+  });
 });

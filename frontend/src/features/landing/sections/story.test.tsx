@@ -22,4 +22,9 @@ describe("StorySection (bento)", () => {
     expect(screen.getByText(/rested/i)).toBeInTheDocument();
     expect(screen.getByText(/bottled/i)).toBeInTheDocument();
   });
+
+  it("renders the process card as glass", () => {
+    render(<StorySection />);
+    expect(screen.getByRole("heading", { level: 3, name: /how it is made/i }).closest(".backdrop-blur-glass")).not.toBeNull();
+  });
 });

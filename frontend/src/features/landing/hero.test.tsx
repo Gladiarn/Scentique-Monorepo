@@ -45,4 +45,10 @@ describe("Hero", () => {
     expect(screen.getByRole("link", { name: /discover collection/i })).toBeInTheDocument();
     expect(screen.queryByTestId("hero-scent-name")).not.toBeInTheDocument();
   });
+
+  it("the main call to action is the shared glass pill", () => {
+    render(<Hero content={content} />);
+    const cls = screen.getByRole("link", { name: /discover collection/i }).className;
+    for (const c of ["rounded-pill", "uppercase", "tracking-[0.16em]", "backdrop-blur-glass"]) expect(cls).toContain(c);
+  });
 });

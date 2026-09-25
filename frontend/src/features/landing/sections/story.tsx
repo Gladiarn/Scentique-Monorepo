@@ -2,6 +2,7 @@ import Image from "next/image";
 import { BottleIcon, DropIcon, HourglassIcon } from "@/components/ui/icons";
 import { Container } from "@/components/ui/container";
 import { Em } from "@/components/ui/em";
+import { GlassPanel } from "@/components/ui/glass-panel";
 import { cn } from "@/lib/cn";
 
 const INGREDIENTS = [
@@ -44,12 +45,12 @@ export function StorySection() {
             </figure>
           ))}
 
-          <div className={cn(tile, "flex flex-col justify-center gap-5 p-7 sm:col-span-2 lg:col-span-5")}>
+          <GlassPanel className="flex flex-col justify-center gap-5 p-7 sm:col-span-2 lg:col-span-5">
             <h3 className="font-display text-2xl">How it is made</h3>
             <ul className="space-y-4">
               {STEPS.map(({ Icon, title, detail }) => (
                 <li key={title} className="flex items-center gap-4">
-                  <span className="grid size-11 shrink-0 place-items-center rounded-pill border border-line text-accent">
+                  <span className="grid size-11 shrink-0 place-items-center rounded-pill border border-ink/20 text-accent">
                     <Icon />
                   </span>
                   <div>
@@ -59,7 +60,7 @@ export function StorySection() {
                 </li>
               ))}
             </ul>
-          </div>
+          </GlassPanel>
 
           {INGREDIENTS.slice(2).map((item) => (
             <figure key={item.src} className={cn(tile, "group min-h-[15rem]", item.className)}>
