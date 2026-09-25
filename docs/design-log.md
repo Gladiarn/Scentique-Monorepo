@@ -118,3 +118,7 @@ Decisions are appended as they are approved, newest last. Each entry: date, what
 
 - **Glass (user):** glass is plain: a light blur of whatever is behind it and a hairline border, with no fill colour, no sheen and no shadow, so the background shows through untouched. The shared blur was lowered by 5px: `--blur-glass` is now **5px** (was 10px). Every glass element in the browser reports `blur(5px)`.
 - **Hero card (user):** it shows the featured item, chosen through the data layer (`productRepository.findHeroFeatured()`; the API will return the item an admin flags; the mock returns Bois Fumé Précieux). The card shows a different image from the hero background: the product's second photo (Bois Fumé Précieux, the round bottle), so it does not repeat the painted image behind it. `siteConfig.heroProductSlug` was removed.
+
+## 2026-09-26: Glass blur back up to 10px
+
+- **Decision (user):** the shared glass blur was raised by 5px again: `--blur-glass` is **10px** (5px was too light). Still one token, still plain glass with no fill, sheen or shadow.
