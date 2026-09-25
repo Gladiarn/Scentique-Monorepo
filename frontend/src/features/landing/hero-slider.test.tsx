@@ -80,4 +80,13 @@ describe("HeroSlider", () => {
     await userEvent.click(screen.getByRole("button", { name: "Show Bois Fumé Précieux" }));
     expect(slideName()).toBe("Bois Fumé Précieux");
   });
+
+  it("feathers the edges of art that has its own dark background, and leaves full-bleed art alone", () => {
+    const feathered: HeroSlide[] = [{ ...slides[0]!, image: { ...slides[0]!.image, featherEdges: true } }];
+    const { container, unmount } = render(<HeroSlider slides={feathered} />);
+    expect(container.querySelector("img[style*='mask']")).toBeInTheDocument();
+    unmount();
+    const plain = render(<HeroSlider slides={slides} />);
+    expect(plain.container.querySelector("img[style*='mask']")).not.toBeInTheDocument();
+  });
 });

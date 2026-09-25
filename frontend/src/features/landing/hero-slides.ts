@@ -15,7 +15,7 @@ function toSlide(product: Product, image: NonNullable<ReturnType<typeof photoMed
     tagline: product.tagline,
     family: product.family,
     priceFromCents: Math.min(...product.variants.map((v) => v.priceCents)),
-    image: { src: image.src, alt: image.alt, objectPosition: image.objectPosition, objectPositionDesktop: image.objectPositionDesktop },
+    image: { src: image.src, alt: image.alt, objectPosition: image.objectPosition, objectPositionDesktop: image.objectPositionDesktop, featherEdges: image.featherEdges },
   };
 }
 

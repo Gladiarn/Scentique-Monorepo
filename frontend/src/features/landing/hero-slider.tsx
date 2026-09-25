@@ -21,7 +21,7 @@ export interface HeroSlide {
   tagline: string;
   family: ScentFamily;
   priceFromCents: number;
-  image: { src?: string; alt: string; objectPosition?: string; objectPositionDesktop?: string };
+  image: { src?: string; alt: string; objectPosition?: string; objectPositionDesktop?: string; featherEdges?: boolean };
 }
 
 /** Per-slide crop, so each painted bottle lands between the headline and the glass card at both sizes. */
@@ -92,7 +92,7 @@ export function HeroSlider({ slides, backdrop }: { slides: HeroSlide[]; backdrop
               family={slide.family}
               src={slide.image.src}
               alt={slide.image.alt}
-              style={{ ...cropVars(slide.image), maskImage: ART_MASK, WebkitMaskImage: ART_MASK }}
+              style={slide.image.featherEdges ? { ...cropVars(slide.image), maskImage: ART_MASK, WebkitMaskImage: ART_MASK } : cropVars(slide.image)}
               priority={i === 0}
               sizes="100vw"
               className="scale-[1.02] [object-position:var(--pos-m,50%_50%)] lg:[object-position:var(--pos-d,var(--pos-m,50%_50%))]"

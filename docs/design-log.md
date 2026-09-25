@@ -66,3 +66,9 @@ Decisions are appended as they are approved, newest last. Each entry: date, what
 
 - **What went wrong:** the traced art's background rectangle is the same colour as the stopper body and the ground shadows, so any attempt to remove the background also removed them. Redrawing the stopper (twice) looked wrong.
 - **Decision:** the painterly art is used exactly as supplied, with its own dark background. In the hero its outer edges are feathered into the silk curtain with a CSS radial mask (`ART_MASK` in `hero-slider.tsx`), so the stopper, the shadows and the original look stay intact while the curtain shows around them. `scripts/prepare-hero-art.py` was deleted.
+
+## 2026-09-25: Painterly hero art re-made from the original photos
+
+- **Why:** the supplied Sauvage/Éternel SVGs are traces that flattened the curtain to black and never drew the stopper (it was the black background). Every attempt to cut that background out lost the stopper and the shadows.
+- **Decision:** re-trace the ORIGINAL photos with the same tool (VTracer), tuned to keep the curtain folds, the smoke and the stopper (`frontend/scripts/trace-perfume-art.py`). Done for Ambre Fumé and Bois Fumé Précieux (the originals we have). The Sauvage and Éternel SVGs are used as supplied with feathered edges until their original photos are provided.
+- **Hero order:** Ambre Fumé, Bois Fumé Précieux, L'Ambre Sauvage, L'Ambre Éternel. The real photos remain on shop tiles.
