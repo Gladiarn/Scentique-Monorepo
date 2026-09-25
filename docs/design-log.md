@@ -79,3 +79,8 @@ Decisions are appended as they are approved, newest last. Each entry: date, what
 - **Card:** frosted glass card with the scent name, concentration, its real photo as the thumbnail, tagline, price and Explore. Below 1280 px it becomes a slim glass bar at the bottom.
 - **Config:** the featured scent is `siteConfig.heroProductSlug`. If it is missing, the hero falls back to the first featured scent, so it is never empty.
 - **Removed:** slider, next-thumbnail button, edge feathering, and the Ambre Fumé painted trace. The trace recipe stays in `scripts/trace-perfume-art.py`. The Sauvage and Éternel SVGs remain in the data for shop tiles.
+
+## 2026-09-26: Cards use the untouched original art for L'Ambre Sauvage and L'Ambre Éternel
+
+- **Decision (user):** outside the landing hero, cards (Four families, Best sellers, and later shop and product pages) must use the original supplied images for these two scents, not any processed version.
+- **How:** byte-for-byte copies of the supplied originals live at `frontend/public/images/products/l-ambre-{sauvage,eternel}.svg` under new file names that nothing else touches (a new URL also defeats stale browser caches). A test (`original-art.test.ts`) fails if these differ from `public/perfumes/Original/*.svg` or if a card points anywhere else. The old copies in `public/images/hero/` were removed.
