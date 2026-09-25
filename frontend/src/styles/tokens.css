@@ -49,6 +49,9 @@
   --radius-lg: 10px;
   --radius-pill: 9999px;
 
+  /* Glass: the one blur used behind every frosted surface */
+  --blur-glass: 10px;
+
   /* Motion */
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
 }

@@ -101,3 +101,8 @@ Decisions are appended as they are approved, newest last. Each entry: date, what
 
 - **Decision (user):** waves use different browns instead of oxblood and gold. The front wave matches the page background, and each wave behind it is a lighter brown (more `--color-woody` mixed into the page colour). The sky above is the lightest brown.
 - **Where to adjust:** the `brown(percent)` values in `components/brand/wave-backdrop.tsx`. Tests check that the front wave is the page colour, that lightness increases toward the back, and that no oxblood or gold is used.
+
+## 2026-09-26: Waves on both edges (no line); one glass blur
+
+- **Closing section:** the waves are mirrored onto the top edge so the dark testimonials blend into the brown sky (the outermost wave on each edge is the page colour). A gilt hairline was tried and removed at the owner's request: it read as a border. The heading has more top room so it does not sit on the wave edges.
+- **Glass (user):** one consistent, light glass. `--blur-glass: 10px` in `tokens.css`, used as `backdrop-blur-glass` everywhere (hero card, chips, buttons, header, dropdown, About captions, mobile bar). Previously there were three strengths (4, 12 and 24 px). `glass.test.ts` fails if any other backdrop blur strength is added.

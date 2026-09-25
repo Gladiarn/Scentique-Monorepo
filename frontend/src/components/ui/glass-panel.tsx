@@ -6,7 +6,7 @@ export function GlassPanel({ className, children, ...props }: HTMLAttributes<HTM
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-xl border border-ink/15 bg-page/35 backdrop-blur-xl",
+        "relative overflow-hidden rounded-xl border border-ink/15 bg-page/35 backdrop-blur-glass",
         "shadow-[0_28px_60px_-24px_rgb(0_0_0/0.75)]",
         className,
       )}

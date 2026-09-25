@@ -86,7 +86,7 @@ export function NavDropdown({ label, items, active, className }: NavDropdownProp
       {open && (
         <ul
           id={panelId}
-          className="absolute left-1/2 top-full z-10 mt-3 w-56 -translate-x-1/2 rounded-lg border border-line bg-page/85 p-2 shadow-[0_24px_48px_-16px_rgb(0_0_0/0.7)] backdrop-blur-xl"
+          className="absolute left-1/2 top-full z-10 mt-3 w-56 -translate-x-1/2 rounded-lg border border-line bg-page/85 p-2 shadow-[0_24px_48px_-16px_rgb(0_0_0/0.7)] backdrop-blur-glass"
         >
           {items.map((item) => (
             <li key={item.href}>

@@ -40,7 +40,7 @@ export function StorySection() {
           {INGREDIENTS.slice(0, 2).map((item) => (
             <figure key={item.src} className={cn(tile, "group min-h-[15rem]", item.className)}>
               <Image src={item.src} alt={item.alt} fill sizes="(min-width: 1024px) 40vw, 100vw" quality={90} className="object-cover transition-transform duration-700 ease-[var(--ease-out-quart)] group-hover:scale-[1.04]" />
-              <figcaption className="absolute bottom-3 left-3 rounded-pill bg-page/55 px-3.5 py-1.5 text-sm text-ink backdrop-blur-md">{item.label}</figcaption>
+              <figcaption className="absolute bottom-3 left-3 rounded-pill bg-page/55 px-3.5 py-1.5 text-sm text-ink backdrop-blur-glass">{item.label}</figcaption>
             </figure>
           ))}
 
@@ -64,7 +64,7 @@ export function StorySection() {
           {INGREDIENTS.slice(2).map((item) => (
             <figure key={item.src} className={cn(tile, "group min-h-[15rem]", item.className)}>
               <Image src={item.src} alt={item.alt} fill sizes="(min-width: 1024px) 33vw, 100vw" quality={90} className="object-cover transition-transform duration-700 ease-[var(--ease-out-quart)] group-hover:scale-[1.04]" />
-              <figcaption className="absolute bottom-3 left-3 rounded-pill bg-page/55 px-3.5 py-1.5 text-sm text-ink backdrop-blur-md">{item.label}</figcaption>
+              <figcaption className="absolute bottom-3 left-3 rounded-pill bg-page/55 px-3.5 py-1.5 text-sm text-ink backdrop-blur-glass">{item.label}</figcaption>
             </figure>
           ))}
         </div>

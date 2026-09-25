@@ -13,7 +13,7 @@ import type { HeroContent } from "./hero-content";
 const FAMILIES: ScentFamily[] = ["floral", "woody", "citrus", "oud"];
 
 const chip =
-  "inline-flex h-11 items-center gap-2.5 rounded-pill border border-ink/25 bg-page/30 px-5 text-xs uppercase tracking-[0.16em] text-ink/90 backdrop-blur-sm transition-colors hover:border-accent hover:text-ink";
+  "inline-flex h-11 items-center gap-2.5 rounded-pill border border-ink/25 bg-page/30 px-5 text-xs uppercase tracking-[0.16em] text-ink/90 backdrop-blur-glass transition-colors hover:border-accent hover:text-ink";
 
 /** Crop position of the art: one for narrow screens, one for wide, so the bottle lands between the headline and the card. */
 function cropVars(image: HeroContent["image"]): CSSProperties {
@@ -53,7 +53,7 @@ export function Hero({ content }: { content: HeroContent | null }) {
             href="/shop"
             variant="secondary"
             size="lg"
-            className="mt-9 rounded-pill border-ink/35 bg-page/30 px-8 text-xs uppercase tracking-[0.16em] backdrop-blur-sm"
+            className="mt-9 rounded-pill border-ink/35 bg-page/30 px-8 text-xs uppercase tracking-[0.16em] backdrop-blur-glass"
           >
             Discover collection
             <ArrowRightIcon width={18} height={18} />
@@ -107,7 +107,7 @@ export function Hero({ content }: { content: HeroContent | null }) {
           <Container>
             <Link
               href={`/product/${content.slug}`}
-              className="flex items-center justify-between gap-4 rounded-pill border border-ink/20 bg-page/40 px-6 py-3 text-sm backdrop-blur-md transition-colors hover:border-accent"
+              className="flex items-center justify-between gap-4 rounded-pill border border-ink/20 bg-page/40 px-6 py-3 text-sm backdrop-blur-glass transition-colors hover:border-accent"
             >
               <span className="font-display text-lg">{content.name}</span>
               <span className="inline-flex items-center gap-2 text-ink/80">
