@@ -9,6 +9,9 @@ out/
 .turbo/
 coverage/
 
+# vercel
+.vercel/
+
 # env
 .env
 .env.*

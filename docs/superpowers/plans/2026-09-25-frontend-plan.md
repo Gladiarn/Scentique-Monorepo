@@ -10,9 +10,11 @@
 
 **Spec:** `docs/superpowers/specs/2026-09-25-scentique-design.md`
 
-## Status (updated 2026-09-26, end of session 1)
+## Status (updated 2026-09-30, end of session 2)
 
-**Where we are:** phases 0, 1 and 2 are done. Phase 3 (landing page) has a complete first pass, built and tested (124 tests, typecheck and lint clean, no horizontal overflow from 360 to 1440 px). **The landing page still needs a design revision round before any other page starts.** Once the landing page is approved, it becomes the design reference and every other page follows its pattern (see "Design reference: the landing page").
+**Where we are:** phases 0, 1 and 2 are done. Phase 3 (landing page) is almost ready: structurally and visually complete, tested, deployed, and live. **What's left before it's approved as the design reference is content, not design** — the placeholder copy (brand story, taglines, notes, testimonials) needs to be replaced with the real information now captured in the repo root `README.md` and `PRODUCT.md`, which are the source of truth for who Scentique is. Once that pass is done plus the remaining polish checklist below, the landing page is approved and every other page follows its pattern (see "Design reference: the landing page").
+
+**Infrastructure (new this session):** the repo is pushed to GitHub (`main` is the default branch, `staging` for integration), CI runs on PRs into either. The frontend is deployed on Vercel as project `scentique` under the `gladiarns-projects` scope (Root Directory `frontend`, monorepo-aware), with a reusable 404 page. `README.md` (professional, with the brand story and tech overview) and `LICENSE` (MIT) are in place at the repo root.
 
 **Built so far**
 
@@ -27,6 +29,9 @@
 
 **Landing revision: the next session starts here** (before Phase 4)
 
+- [ ] **Homepage remodel (owner decision, 2026-09-30).** The owner wants to rebuild the homepage again for a more genuinely luxurious, glassy feel — explicitly **not** generic "AI slop" (templated bento grids, safe default spacing, the same card pattern repeated section after section). Use the `frontend-design` / `impeccable` skills properly for this pass, not a rough approximation: go through brainstorming for the direction before touching code, since this is a redesign of an already-shipped surface. Ground it in what actually exists today — glass cards, the drift/wave motif, the champagne-on-espresso palette, Prata/Bodoni Moda/Hanken Grotesk — rather than inventing new material. Note: the previous attempt at reworking the About section this session was rejected ("bring back the old one") for not fitting the vibe — take that as a concrete signal of what to avoid, not just a generic warning.
+- [ ] **Insert real content.** Replace placeholder copy across the landing page (brand story/About, taglines, positioning language, testimonials) with the information now in `README.md` and `PRODUCT.md` — those two files are the source of truth for Scentique's story, positioning and voice from here on.
+- [x] Custom scrollbar themed to the brand palette (tonal thumb, gold on hover) instead of the OS default.
 - [ ] Testimonials section redesigned to the same pattern (bento or glass cards), with real-feeling content.
 - [ ] Footer reviewed against the principles (glass, minimal).
 - [ ] Nav dropdown and mobile menu brought onto plain glass.
@@ -43,7 +48,6 @@
 - Notes, taglines and prices for the new scents are placeholders derived from the photos. Testimonials and brand copy are placeholders.
 - The `public/perfumes/Original/` folder and the two SVG traces (Sauvage, Éternel) are no longer used and can be deleted.
 - A vector original of the logo (the current one is traced from a low-resolution JPEG).
-- Decision on pushing: nothing since the first docs commit is on GitHub. Work is on branch `feat/landing-header`, not yet merged into `staging`.
 
 **How to resume**
 
