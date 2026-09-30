@@ -34,3 +34,9 @@ frontend/.shots/
 
 # Windows download metadata
 *:Zone.Identifier
+
+# Personal documents dropped in public/ for local use only — never publish
+frontend/public/*CV*
+frontend/public/*cv*
+frontend/public/*resume*
+frontend/public/*Resume*

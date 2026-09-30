@@ -4,7 +4,7 @@
 
 **Goal:** Ship Scentique, a perfume storefront plus admin CRM, as a monorepo: frontend on mock data first, then the Express backend and database, then integration.
 
-**Architecture:** pnpm + Turborepo monorepo. `frontend/` (Next.js) talks to data only through repository interfaces. `backend/` (Express + Prisma + Postgres) implements the same contract using types and Zod schemas from `packages/shared`.
+**Architecture:** pnpm + Turborepo monorepo. `frontend/` (Next.js) talks to data only through repository interfaces. `backend/` (Express + Prisma + Postgres) implements the same contract using types and Zod schemas from `packages/shared`. Both apps deploy to Vercel: `frontend/` as a normal Next.js project, `backend/`'s Express app exported as a Vercel Function (either its own Vercel project rooted at `backend/`, or both under one project via Vercel Services) — Prisma must use a pooled Postgres connection (Neon/Supabase pooler or Prisma Accelerate) since Functions are stateless per-invocation and can't hold a persistent connection the way `app.listen` does.
 
 **Tech Stack:** Next.js (App Router), TypeScript, Tailwind, Zustand, React Hook Form, Zod, Vitest, Playwright, Express, Prisma, Postgres, Stripe, JWT.
 
@@ -82,7 +82,7 @@ Detailed in `docs/superpowers/plans/2026-09-25-frontend-plan.md`.
 
 ## M2 — Backend (outline; detailed plan written after M1)
 1. Express scaffold: TypeScript, `src/{modules,middleware,config,lib}`, env validation, logger, error handler, health route.
-2. Database: Prisma schema from the shared domain model, migrations, seed script that mirrors the frontend fixtures.
+2. Database: Prisma schema from the shared domain model, migrations, seed script that mirrors the frontend fixtures. Use a pooled connection string (Neon/Supabase pooler or Prisma Accelerate) — required for Vercel Functions.
 3. Modules, each with router, controller, service, repository, tests:
    - `catalog`: list, filter, sort, get by slug.
    - `auth`: register, login, refresh, roles.
@@ -101,7 +101,7 @@ Skills for the detailed plan: `backend-patterns`, `tdd`, `superpowers:test-drive
 
 ## M4 — Launch prep
 - Real images and logo, image optimisation, metadata and Open Graph, sitemap, analytics.
-- Deployment (frontend on Vercel; backend host to be chosen), environment management, error monitoring.
+- Deployment: both frontend and backend on Vercel (backend as a Function, pooled DB connection), environment management, error monitoring.
 - Final accessibility and performance audit.
 
 ## Execution order and gates
