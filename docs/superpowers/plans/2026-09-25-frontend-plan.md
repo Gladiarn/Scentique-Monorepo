@@ -453,6 +453,8 @@ Each phase gets its own step-level plan when it starts. **Every page here follow
 - Acceptance: empty states for no orders and no addresses; address form validation.
 
 ### Phase 8: Admin
+
+**Status 2026-10-04: built.** `/admin` with a side-nav shell marked "sample data": a dashboard (revenue by scent family in the family colours, with text values; top products; low stock with text labels, not colour alone), an orders table (search, status tabs with counts, one-click advance through the pipeline, 200 seeded sample orders), and a products page (list, plus an add-scent form with repeatable size and price rows, validation, and a duplicate size and concentration check). Admin has no sign-in gate yet; that is the next decision. Tables and tabs use native elements, and status feedback is inline rather than a toast, so the dialog and toast primitives are not built.
 - Routes under `/admin`. Features `admin/{dashboard,orders,products}`. Admin shell layout with side navigation, denser type and spacing from the same tokens.
 - Dashboard: revenue chart (scent-family colours as series, follow the `dataviz` skill), top products, low-stock alerts with icon and label.
 - Orders: table with search, filter, status pipeline view (pending, paid, packed, shipped, delivered), status change action.

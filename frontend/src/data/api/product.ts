@@ -10,4 +10,5 @@ export class ApiProductRepository implements ProductRepository {
   findFeatured = notReady;
   findHeroFeatured = notReady;
   findBestSellers = notReady;
+  create = notReady;
 }

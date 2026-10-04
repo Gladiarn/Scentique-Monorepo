@@ -8,4 +8,6 @@ export class ApiOrderRepository implements OrderRepository {
   create = notReady;
   findById = notReady;
   findByEmail = notReady;
+  findAll = notReady;
+  updateStatus = notReady;
 }

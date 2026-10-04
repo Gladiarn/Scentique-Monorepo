@@ -1,5 +1,5 @@
 import type { Product, ProductFilters } from "@scentique/shared";
-import type { ProductRepository } from "../repositories/product";
+import type { ProductRepository, NewProduct } from "../repositories/product";
 import { bestSellerSlugs } from "./fixtures/best-sellers";
 import { heroFeaturedSlug } from "./fixtures/hero-featured";
 import { productFixtures } from "./fixtures/products";
@@ -32,6 +32,20 @@ export class MockProductRepository implements ProductRepository {
 
   findHeroFeatured(): Promise<Product | null> {
     return simulate(productFixtures.find((p) => p.slug === heroFeaturedSlug) ?? null, this.options);
+  }
+
+  create(input: NewProduct): Promise<Product> {
+    const slug = input.name.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+    const product: Product = {
+      ...input,
+      id: `p-${productFixtures.length + 1}`,
+      slug,
+      media: input.media ?? [],
+      featured: false,
+      createdAt: new Date().toISOString().slice(0, 10),
+    };
+    productFixtures.push(product);
+    return simulate(product, this.options);
   }
 
   findFeatured(): Promise<Product[]> {
