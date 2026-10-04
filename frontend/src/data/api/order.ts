@@ -7,4 +7,5 @@ const notReady = (): never => {
 export class ApiOrderRepository implements OrderRepository {
   create = notReady;
   findById = notReady;
+  findByEmail = notReady;
 }

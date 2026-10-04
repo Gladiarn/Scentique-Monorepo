@@ -19,4 +19,9 @@ export class MockOrderRepository implements OrderRepository {
   findById(id: string): Promise<Order | null> {
     return simulate(this.orders.get(id) ?? null, this.options);
   }
+
+  findByEmail(email: string): Promise<Order[]> {
+    const mine = [...this.orders.values()].filter((o) => o.email === email).sort((a, b) => b.placedAt.localeCompare(a.placedAt));
+    return simulate(mine, this.options);
+  }
 }

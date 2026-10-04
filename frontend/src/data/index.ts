@@ -4,14 +4,17 @@
  */
 import { ApiCollectionRepository } from "./api/collection";
 import { ApiProductRepository } from "./api/product";
+import { ApiCustomerRepository } from "./api/customer";
 import { ApiOrderRepository } from "./api/order";
 import { ApiTestimonialRepository } from "./api/testimonial";
 import { MockCollectionRepository } from "./mock/collection";
 import { MockProductRepository } from "./mock/product";
+import { MockCustomerRepository } from "./mock/customer";
 import { MockOrderRepository } from "./mock/order";
 import { MockTestimonialRepository } from "./mock/testimonial";
 import { failureRateFromEnv } from "./mock/simulate";
 import type { CollectionRepository } from "./repositories/collection";
+import type { CustomerRepository } from "./repositories/customer";
 import type { OrderRepository } from "./repositories/order";
 import type { ProductRepository } from "./repositories/product";
 import type { TestimonialRepository } from "./repositories/testimonial";
@@ -24,3 +27,4 @@ export const productRepository: ProductRepository = useMocks ? new MockProductRe
 export const collectionRepository: CollectionRepository = useMocks ? new MockCollectionRepository(mockOptions) : new ApiCollectionRepository();
 export const testimonialRepository: TestimonialRepository = useMocks ? new MockTestimonialRepository(mockOptions) : new ApiTestimonialRepository();
 export const orderRepository: OrderRepository = useMocks ? new MockOrderRepository(mockOptions) : new ApiOrderRepository();
+export const customerRepository: CustomerRepository = useMocks ? new MockCustomerRepository(mockOptions) : new ApiCustomerRepository();

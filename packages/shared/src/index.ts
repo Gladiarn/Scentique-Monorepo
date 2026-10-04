@@ -93,3 +93,18 @@ export interface Order extends OrderInput {
   status: "pending" | "paid" | "packed" | "shipped" | "delivered";
   placedAt: string;
 }
+
+export interface SavedAddress {
+  id: string;
+  label: string;
+  fullName: string;
+  line1: string;
+  city: string;
+  postcode: string;
+  country: string;
+}
+
+export interface Customer {
+  email: string;
+  fullName: string;
+}

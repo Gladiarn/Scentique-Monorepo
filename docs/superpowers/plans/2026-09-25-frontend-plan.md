@@ -446,6 +446,8 @@ Each phase gets its own step-level plan when it starts. **Every page here follow
 - Acceptance: empty-cart redirect; validation errors are near fields; totals correct in tests; e2e Playwright test from shop to confirmation.
 
 ### Phase 7: Customer account
+
+**Status 2026-10-04: built.** `/account` with a demo sign-in (email only, no password), then Overview, Orders (list and detail with the status pipeline, and an ownership check so one account cannot open another's order) and Addresses (add, edit, delete, validated, with empty states). Customer and address access goes through `CustomerRepository` (mock). Order lookup by email was added to `OrderRepository`.
 - Routes under `/account`. Feature `account`.
 - Order history list and detail; saved addresses with add, edit, delete; mock sign-in gate.
 - Acceptance: empty states for no orders and no addresses; address form validation.
