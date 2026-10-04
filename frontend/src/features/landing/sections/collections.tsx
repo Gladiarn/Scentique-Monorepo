@@ -7,27 +7,16 @@ import { Em } from "@/components/ui/em";
 import { GlassPanel } from "@/components/ui/glass-panel";
 import { collectionRepository } from "@/data";
 import { cn } from "@/lib/cn";
-import type { Collection, ScentFamily } from "@scentique/shared";
+import type { Collection } from "@scentique/shared";
 
-/* Bento placement per family: one large lead tile, one tall, two small. */
-const PLACEMENT: Record<ScentFamily, string> = {
-  woody: "sm:col-span-2 lg:col-span-2 lg:col-start-1 lg:row-span-2 lg:row-start-1",
-  oud: "lg:col-start-3 lg:row-start-1",
-  citrus: "lg:col-start-3 lg:row-start-2",
-  floral: "lg:col-start-4 lg:row-span-2 lg:row-start-1",
-};
-
-/* Small tiles are too short to carry the description over busy photography, so they show the name only. */
-const COMPACT: ScentFamily[] = ["oud", "citrus"];
-
-function FamilyTile({ collection, large }: { collection: Collection; large: boolean }) {
-  const compact = COMPACT.includes(collection.family);
+/** Four families as full-width editorial rows, alternating photograph side. No grid of tiles. */
+function FamilyRow({ collection, reversed }: { collection: Collection; reversed: boolean }) {
   const { media } = collection;
   return (
-    <li className={PLACEMENT[collection.family]}>
+    <li className="grid items-center gap-8 md:grid-cols-12 md:gap-12">
       <Link
         href={`/shop?family=${collection.family}`}
-        className="group relative block h-full min-h-[15rem] overflow-hidden rounded-xl border border-line"
+        className={cn("group relative block aspect-[4/3] overflow-hidden rounded-xl md:col-span-7 md:aspect-[16/10]", reversed && "md:order-2")}
       >
         <ProductImage
           fill
@@ -36,21 +25,21 @@ function FamilyTile({ collection, large }: { collection: Collection; large: bool
           backdrop={media.backdrop}
           objectPosition={media.objectPosition}
           alt={media.alt}
-          sizes="(min-width: 1024px) 25vw, 100vw"
-          className="absolute inset-0 h-full w-full transition-transform duration-700 ease-[var(--ease-out-quart)] group-hover:scale-[1.04]"
+          sizes="(min-width: 768px) 58vw, 100vw"
+          className="transition-transform duration-700 ease-[var(--ease-out-quart)] group-hover:scale-[1.03]"
         />
-        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-page/95 via-page/30 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
-          <div className="flex items-center gap-2.5">
-            <span aria-hidden="true" className="size-2 rounded-pill" style={{ background: `var(--color-${collection.family})` }} />
-            <h3 className={cn("font-display", large ? "text-3xl" : "text-2xl")}>{collection.name}</h3>
-          </div>
-          {!compact && <p className="mt-2 max-w-[32ch] text-sm text-ink/80">{collection.blurb}</p>}
-          <span className="mt-3 inline-flex items-center gap-2 text-sm text-accent">
-            Explore <ArrowRightIcon width={16} height={16} className="transition-transform group-hover:translate-x-1" />
-          </span>
-        </div>
       </Link>
+      <div className={cn("md:col-span-5", reversed && "md:order-1")}>
+        <div className="flex items-center gap-3">
+          <span aria-hidden="true" className="size-2 rounded-pill" style={{ background: `var(--color-${collection.family})` }} />
+          <p className="text-xs uppercase tracking-[0.16em] text-muted">{collection.family}</p>
+        </div>
+        <h3 className="mt-4 font-display text-4xl leading-[1.05] md:text-5xl">{collection.name}</h3>
+        <p className="mt-5 max-w-[36ch] text-ink/75">{collection.blurb}</p>
+        <Link href={`/shop?family=${collection.family}`} className="mt-7 inline-flex items-center gap-2 text-sm text-accent underline-offset-4 hover:underline">
+          Explore {collection.family} <ArrowRightIcon width={16} height={16} />
+        </Link>
+      </div>
     </li>
   );
 }
@@ -69,28 +58,27 @@ export async function CollectionsSection() {
         {collections.length === 0 ? (
           <p className="mt-12 text-muted">Collections are being prepared. Check back soon.</p>
         ) : (
-          <ul className="mt-12 grid gap-4 sm:grid-cols-2 sm:auto-rows-[minmax(15rem,auto)] lg:grid-cols-4 lg:grid-rows-[15rem_15rem_auto]">
-            {collections.map((c) => (
-              <FamilyTile key={c.id} collection={c} large={c.family === "woody"} />
+          <ul className="mt-14 space-y-16 md:space-y-24">
+            {collections.map((c, i) => (
+              <FamilyRow key={c.id} collection={c} reversed={i % 2 === 1} />
             ))}
-            <li className="sm:col-span-2 lg:col-span-4 lg:row-start-3">
-              <GlassPanel className="h-full transition-colors hover:border-accent/50">
-                <Link href="/quiz" className="group flex min-h-[8rem] items-center justify-between gap-6 px-7 py-6 md:px-10">
-                  <div>
-                    <p className="font-display text-2xl md:text-3xl">Not sure which family is <Em>yours</Em>?</p>
-                    <p className="mt-1 text-muted">Answer four short questions and we will suggest two or three scents.</p>
-                  </div>
-                  <span className="inline-flex shrink-0 items-center gap-3 text-accent">
-                    <span className="hidden text-sm sm:inline">Find your scent</span>
-                    <span className="grid size-12 place-items-center rounded-pill border border-accent/60 transition-transform group-hover:translate-x-1">
-                      <ArrowRightIcon />
-                    </span>
-                  </span>
-                </Link>
-              </GlassPanel>
-            </li>
           </ul>
         )}
+
+        <GlassPanel className="mt-20 transition-colors hover:border-accent/50">
+          <Link href="/quiz" className="group flex min-h-[8rem] items-center justify-between gap-6 px-7 py-6 md:px-10">
+            <div>
+              <p className="font-display text-2xl md:text-3xl">Not sure which family is <Em>yours</Em>?</p>
+              <p className="mt-1 text-muted">Answer four short questions and we will suggest two or three scents.</p>
+            </div>
+            <span className="inline-flex shrink-0 items-center gap-3 text-accent">
+              <span className="hidden text-sm sm:inline">Find your scent</span>
+              <span className="grid size-12 place-items-center rounded-pill border border-accent/60 transition-transform group-hover:translate-x-1">
+                <ArrowRightIcon />
+              </span>
+            </span>
+          </Link>
+        </GlassPanel>
       </Container>
     </section>
   );

@@ -87,6 +87,6 @@ The scrollbar is thin and tonal: a `--color-line` thumb on the page colour, turn
 
 ## Known gaps
 
-- Four families and Best sellers on the landing page are still bento grids. They are the next candidates for the editorial treatment that the About section received.
+- Four families and Best sellers were remodelled to editorial rows (2026-10-04) without a visual review. They are awaiting the owner's review.
 - Admin and account data are mock data.
 - The admin access code is a client-side demo gate, not security.

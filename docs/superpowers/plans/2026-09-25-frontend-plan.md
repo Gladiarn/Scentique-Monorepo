@@ -464,7 +464,7 @@ Each phase gets its own step-level plan when it starts. **Every page here follow
 
 ### Phase 9: Polish
 
-**Status 2026-10-04: partly done.** Done: `pnpm build` passes with all 18 routes; typecheck, lint and 177 tests pass; `DESIGN.md` written at the repo root from the built tokens and components; the admin console is behind a demo access code (client-side only, so not security until the backend has real staff sign-in). Not done: the Playwright end-to-end suite (waived for this build); visual mobile and accessibility audits (need a browser, also waived); the landing bento remodels for Four families and Best sellers, which need visual review before they are judged.
+**Status 2026-10-04: partly done.** Done: `pnpm build` passes with all 18 routes; typecheck, lint and 177 tests pass; `DESIGN.md` written at the repo root from the built tokens and components; the admin console is behind a demo access code (client-side only, so not security until the backend has real staff sign-in). Not done: the Playwright end-to-end suite (waived for this build); visual mobile and accessibility audits (need a browser, also waived); the landing remodels for Four families and Best sellers are done (editorial rows, no grids) but await the owner's visual review.
 - Accessibility audit, performance pass (Lighthouse, image sizing, bundle check), Playwright suite for browse-to-checkout, quiz, admin product create.
 - Impeccable finish review across the site; generate `DESIGN.md` from the built system.
 - Replace placeholder logo and imagery when supplied (single-file swaps).
