@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { Em } from "@/components/ui/em";
+import { PageTitle } from "@/components/ui/page-title";
 import { productRepository } from "@/data";
 import { FilterPanel } from "@/features/catalog/filter-panel";
 import { ProductCard } from "@/features/catalog/product-card";
@@ -19,9 +20,9 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
   return (
     <Container className="py-20 md:py-28">
       <div className="flex flex-wrap items-end justify-between gap-6">
-        <h1 className="font-display text-4xl leading-[1.08] md:text-[length:var(--text-4xl)]">
+        <PageTitle>
           The <Em>shelf</Em>
-        </h1>
+        </PageTitle>
         <p className="text-sm text-muted">
           {shown.length} {shown.length === 1 ? "scent" : "scents"}
         </p>
