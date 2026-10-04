@@ -35,9 +35,9 @@ export default async function QuizPage({ searchParams }: { searchParams: Promise
       <section className="relative isolate overflow-hidden py-24 md:py-32">
         <WaveBackdrop />
         <Container className="relative">
-          <p className="font-display text-3xl md:text-[length:var(--text-4xl)]">
+          <h1 className="font-display text-3xl md:text-[length:var(--text-4xl)]">
             Two or three <Em>scents to try</Em>
-          </p>
+          </h1>
           <p className="mt-4 max-w-xl text-ink/80">Picked from your answers. Start with the first, and come back for the others.</p>
           <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {picks.map((product) => (

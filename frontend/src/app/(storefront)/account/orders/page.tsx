@@ -7,9 +7,9 @@ export const metadata: Metadata = { title: "Orders" };
 export default function OrdersPage() {
   return (
     <div>
-      <p className="font-display text-3xl md:text-[length:var(--text-4xl)]">
+      <h1 className="font-display text-3xl md:text-[length:var(--text-4xl)]">
         Your <Em>orders</Em>
-      </p>
+      </h1>
       <div className="mt-10">
         <OrdersView />
       </div>

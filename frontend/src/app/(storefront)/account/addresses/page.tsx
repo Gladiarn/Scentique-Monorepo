@@ -7,9 +7,9 @@ export const metadata: Metadata = { title: "Addresses" };
 export default function AddressesPage() {
   return (
     <div>
-      <p className="font-display text-3xl md:text-[length:var(--text-4xl)]">
+      <h1 className="font-display text-3xl md:text-[length:var(--text-4xl)]">
         Saved <Em>addresses</Em>
-      </p>
+      </h1>
       <div className="mt-10">
         <AddressBook />
       </div>
