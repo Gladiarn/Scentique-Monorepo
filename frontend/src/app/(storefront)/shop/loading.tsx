@@ -3,7 +3,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export default function ShopLoading() {
   return (
-    <Container className="py-20 md:py-28">
+    <Container className="pt-44 pb-20 md:pt-48 md:pb-28">
       <Skeleton className="h-8 w-64" />
       <Skeleton className="mt-10 h-28 w-full" />
       <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

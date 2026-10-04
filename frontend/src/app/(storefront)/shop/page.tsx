@@ -18,7 +18,7 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
   const maxPriceDollars = Math.ceil(highestCents / 100 / 5) * 5;
 
   return (
-    <Container className="py-20 md:py-28">
+    <Container className="pt-44 pb-20 md:pt-48 md:pb-28">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <PageTitle>
           The <Em>shelf</Em>

@@ -32,7 +32,7 @@ export default async function QuizPage({ searchParams }: { searchParams: Promise
     const products = await productRepository.findAll();
     const picks = recommend(answers, products);
     return (
-      <section className="relative isolate overflow-hidden py-24 md:py-32">
+      <section className="relative isolate overflow-hidden pt-44 pb-24 md:pt-48 md:pb-32">
         <WaveBackdrop />
         <Container className="relative">
           <h1 className="font-display text-3xl md:text-[length:var(--text-4xl)]">
@@ -58,7 +58,7 @@ export default async function QuizPage({ searchParams }: { searchParams: Promise
   const previous = step > 0 ? KEYS[step - 1] : undefined;
 
   return (
-    <Container className="py-20 md:py-28">
+    <Container className="pt-44 pb-20 md:pt-48 md:pb-28">
       <div className="max-w-2xl">
         <div className="flex items-center justify-between gap-6">
           <p className="text-xs uppercase tracking-[0.16em] text-muted">

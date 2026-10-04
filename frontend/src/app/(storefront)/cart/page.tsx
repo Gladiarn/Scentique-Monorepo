@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "Your bag" };
 
 export default function CartPage() {
   return (
-    <Container className="py-20 md:py-28">
+    <Container className="pt-44 pb-20 md:pt-48 md:pb-28">
       <PageTitle>
         Your <Em>bag</Em>
       </PageTitle>

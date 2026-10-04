@@ -10,7 +10,7 @@ export default async function ConfirmationPage({ searchParams }: { searchParams:
   const { order } = await searchParams;
   const orderId = Array.isArray(order) ? order[0] ?? null : order ?? null;
   return (
-    <Container className="py-20 md:py-28">
+    <Container className="pt-44 pb-20 md:pt-48 md:pb-28">
       <PageTitle>
         Order <Em>confirmed</Em>
       </PageTitle>

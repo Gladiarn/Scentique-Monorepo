@@ -12,7 +12,7 @@ const NAV = [
 /** Admin shell: denser than the storefront, same tokens and glass. Gated by the demo access code. */
 export default function AdminLayout({ children }: { children: ReactNode }) {
   return (
-    <Container className="py-12 md:py-16">
+    <Container className="pt-44 pb-12 md:pt-48 md:pb-16">
       <div className="grid gap-10 lg:grid-cols-[13rem_1fr] lg:gap-12">
         <aside className="space-y-6">
           <p className="text-xs uppercase tracking-[0.16em] text-muted">Admin · sample data</p>

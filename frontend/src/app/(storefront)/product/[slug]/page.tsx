@@ -29,7 +29,7 @@ export default async function ProductPage({ params }: Params) {
 
   return (
     <>
-      <Container className="grid gap-12 py-16 md:py-24 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
+      <Container className="grid gap-12 pt-44 pb-16 md:pt-48 md:pb-24 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
         <div className="grid gap-4 sm:grid-cols-2">
           {(photos.length ? photos : [hero]).map((media, i) =>
             media ? (
