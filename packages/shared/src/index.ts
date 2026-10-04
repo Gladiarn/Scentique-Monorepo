@@ -69,3 +69,27 @@ export interface Testimonial {
   location: string;
   productSlug: string;
 }
+
+export interface OrderLine {
+  variantId: string;
+  productName: string;
+  sizeMl: number;
+  concentration: Concentration;
+  quantity: number;
+  unitPriceCents: number;
+}
+
+export interface OrderInput {
+  email: string;
+  fullName: string;
+  address: { line1: string; city: string; postcode: string; country: string };
+  delivery: "standard" | "express";
+  lines: OrderLine[];
+  totalCents: number;
+}
+
+export interface Order extends OrderInput {
+  id: string;
+  status: "pending" | "paid" | "packed" | "shipped" | "delivered";
+  placedAt: string;
+}

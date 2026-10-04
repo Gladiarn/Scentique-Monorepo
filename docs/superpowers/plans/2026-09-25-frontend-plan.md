@@ -437,6 +437,8 @@ Each phase gets its own step-level plan when it starts. **Every page here follow
 - Acceptance: any answer combination returns 2 to 3 products; refresh mid-quiz keeps progress.
 
 ### Phase 6: Cart and checkout
+
+**Status 2026-10-04: built.** Zustand cart persisted under a versioned key, wired to Add to cart and the header bag count. `/cart` (quantity limited to stock, totals, free shipping over $150). `/checkout` (React Hook Form and Zod, validation next to each field, test-mode card, empty-cart explanation). `/checkout/confirmation`. Orders go through `OrderRepository` (mock). The Playwright browse-to-confirmation test is not written, since UI testing was waived for this phase.
 - Routes `/cart`, `/checkout`, `/checkout/confirmation`. Features `cart`, `checkout`.
 - Zustand cart store persisted with a version key; quantity controls; line totals via `formatMoney`.
 - Checkout: contact, shipping address, delivery method, payment step (mock), order summary, validation with React Hook Form + Zod, confirmation page.

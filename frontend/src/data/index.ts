@@ -4,12 +4,15 @@
  */
 import { ApiCollectionRepository } from "./api/collection";
 import { ApiProductRepository } from "./api/product";
+import { ApiOrderRepository } from "./api/order";
 import { ApiTestimonialRepository } from "./api/testimonial";
 import { MockCollectionRepository } from "./mock/collection";
 import { MockProductRepository } from "./mock/product";
+import { MockOrderRepository } from "./mock/order";
 import { MockTestimonialRepository } from "./mock/testimonial";
 import { failureRateFromEnv } from "./mock/simulate";
 import type { CollectionRepository } from "./repositories/collection";
+import type { OrderRepository } from "./repositories/order";
 import type { ProductRepository } from "./repositories/product";
 import type { TestimonialRepository } from "./repositories/testimonial";
 
@@ -20,3 +23,4 @@ const mockOptions = { failureRate: failureRateFromEnv(process.env.NEXT_PUBLIC_MO
 export const productRepository: ProductRepository = useMocks ? new MockProductRepository(mockOptions) : new ApiProductRepository();
 export const collectionRepository: CollectionRepository = useMocks ? new MockCollectionRepository(mockOptions) : new ApiCollectionRepository();
 export const testimonialRepository: TestimonialRepository = useMocks ? new MockTestimonialRepository(mockOptions) : new ApiTestimonialRepository();
+export const orderRepository: OrderRepository = useMocks ? new MockOrderRepository(mockOptions) : new ApiOrderRepository();

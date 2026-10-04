@@ -1,3 +1,4 @@
+import { useCart } from "@/features/cart/cart-store";
 import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
@@ -34,9 +35,16 @@ describe("SiteHeader", () => {
     expect(screen.getByRole("link", { name: "Home" })).toHaveAttribute("aria-current", "page");
   });
 
-  it("shows the bag count in its accessible name", () => {
-    render(<SiteHeader cartCount={3} />);
+  it("shows the bag count from the cart in its accessible name", () => {
+    useCart.setState({
+      items: [
+        { variantId: "a", productSlug: "a", productName: "A", sizeMl: 50, concentration: "extrait", unitPriceCents: 1, maxQuantity: 5, quantity: 2 },
+        { variantId: "b", productSlug: "b", productName: "B", sizeMl: 50, concentration: "extrait", unitPriceCents: 1, maxQuantity: 5, quantity: 1 },
+      ],
+    });
+    render(<SiteHeader />);
     expect(screen.getByRole("link", { name: "Bag, 3 items" })).toBeInTheDocument();
+    useCart.setState({ items: [] });
   });
 
   it("opens and closes the mobile menu", async () => {

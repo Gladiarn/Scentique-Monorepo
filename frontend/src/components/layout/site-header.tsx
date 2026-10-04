@@ -9,6 +9,9 @@ import { BagIcon, CloseIcon, MenuIcon, SearchIcon, UserIcon } from "@/components
 import { Container } from "@/components/ui/container";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/cn";
+import { useCart } from "@/features/cart/cart-store";
+import { itemCount } from "@/features/cart/cart-logic";
+import { useHydrated } from "@/features/cart/use-hydrated";
 import { MobileMenu } from "./mobile-menu";
 import { NavDropdown } from "./nav-dropdown";
 
@@ -22,7 +25,9 @@ const actionLink =
  * Fixed header that floats over the page. At the top it is tall and shows the full lockup;
  * once scrolled it shrinks and swaps to the wordmark alone.
  */
-export function SiteHeader({ cartCount = 0 }: { cartCount?: number }) {
+export function SiteHeader() {
+  const hydrated = useHydrated();
+  const cartCount = useCart((s) => (hydrated ? itemCount(s.items) : 0));
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);

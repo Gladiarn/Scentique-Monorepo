@@ -67,7 +67,7 @@ export default async function ProductPage({ params }: Params) {
           <p className="mt-3 text-sm text-muted">Available as {concentrations.join(", ")}.</p>
 
           <div className="mt-10">
-            <VariantSelector variants={product.variants} />
+            <VariantSelector variants={product.variants} product={{ slug: product.slug, name: product.name, family: product.family }} />
           </div>
 
           <GlassPanel className="mt-12 p-6 md:p-7">

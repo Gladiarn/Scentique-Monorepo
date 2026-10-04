@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import type { Concentration, Variant } from "@scentique/shared";
+import Link from "next/link";
+import type { Concentration, ScentFamily, Variant } from "@scentique/shared";
 import { Button } from "@/components/ui/button";
 import { formatConcentration, formatMoney } from "@/lib/format";
 import { cn } from "@/lib/cn";
+import { useCart } from "@/features/cart/cart-store";
 import { availableConcentrations, availableSizes, resolveVariant } from "./variants";
 
 const LOW_STOCK = 3;
@@ -17,7 +19,13 @@ function stockLine(variant: Variant | null): string {
 }
 
 /** Size and concentration picker with live price and stock. Out of stock disables purchase and says why. */
-export function VariantSelector({ variants }: { variants: Variant[] }) {
+export function VariantSelector({
+  variants,
+  product,
+}: {
+  variants: Variant[];
+  product: { slug: string; name: string; family: ScentFamily };
+}) {
   const sizes = availableSizes({ variants });
   const [sizeMl, setSizeMl] = useState(sizes[0]);
   const concentrations = availableConcentrations({ variants }, sizeMl);
@@ -31,6 +39,22 @@ export function VariantSelector({ variants }: { variants: Variant[] }) {
 
   const selected = resolveVariant({ variants }, sizeMl, concentration);
   const purchasable = Boolean(selected && selected.stock > 0);
+  const addItem = useCart((s) => s.add);
+  const [added, setAdded] = useState(false);
+
+  const addToCart = () => {
+    if (!selected || selected.stock === 0) return;
+    addItem({
+      variantId: selected.id,
+      productSlug: product.slug,
+      productName: product.name,
+      sizeMl: selected.sizeMl,
+      concentration: selected.concentration,
+      unitPriceCents: selected.priceCents,
+      maxQuantity: selected.stock,
+    });
+    setAdded(true);
+  };
 
   return (
     <div className="space-y-8">
@@ -83,9 +107,16 @@ export function VariantSelector({ variants }: { variants: Variant[] }) {
           </p>
           <p className="mt-1 text-sm text-muted" aria-live="polite">{stockLine(selected)}</p>
         </div>
-        <Button type="button" size="lg" disabled={!purchasable} className="min-w-[12rem]">
-          Add to cart
-        </Button>
+        <div className="flex flex-col items-start gap-3 sm:items-end">
+          <Button type="button" size="lg" disabled={!purchasable} onClick={addToCart} className="min-w-[12rem]">
+            Add to cart
+          </Button>
+          {added && (
+            <p className="text-sm text-muted" role="status">
+              Added to your bag. <Link href="/cart" className="text-accent underline-offset-4 hover:underline">View bag</Link>
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );
