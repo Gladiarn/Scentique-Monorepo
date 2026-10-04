@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
+import { AdminGate } from "@/features/admin/admin-gate";
 
 const NAV = [
   { href: "/admin", label: "Dashboard" },
@@ -8,7 +9,7 @@ const NAV = [
   { href: "/admin/products", label: "Products" },
 ];
 
-/** Admin shell: denser than the storefront, same tokens and glass. Demo only, with no sign-in gate yet. */
+/** Admin shell: denser than the storefront, same tokens and glass. Gated by the demo access code. */
 export default function AdminLayout({ children }: { children: ReactNode }) {
   return (
     <Container className="py-12 md:py-16">
@@ -27,7 +28,9 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
             </ul>
           </nav>
         </aside>
-        <div className="min-w-0">{children}</div>
+        <div className="min-w-0">
+          <AdminGate>{children}</AdminGate>
+        </div>
       </div>
     </Container>
   );
