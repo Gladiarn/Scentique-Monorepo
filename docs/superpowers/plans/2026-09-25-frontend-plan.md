@@ -429,6 +429,8 @@ Each phase gets its own step-level plan when it starts. **Every page here follow
 - Acceptance: filters and sort work with keyboard; URL restores state; out-of-stock behaviour per Review Focus; tests for filter logic and variant selection.
 
 ### Phase 5: Scent quiz
+
+**Status 2026-10-04: built.** `/quiz` asks four questions (notes, occasion, who it is for, strength). Answers live in the URL, so refresh and back navigation keep progress, and each option is a plain link, so it's keyboard-operable without client JavaScript. The result shows two or three scents on the tonal wave backdrop. Recommendation logic is a pure function with tests, including a check that every answer combination returns two or three scents.
 - Route `/quiz`. Feature `quiz`.
 - 4 questions, progress indicator, back navigation, keyboard operable, result shows 2 to 3 recommendations with the wavy background moment.
 - Recommendation logic is a pure, unit-tested function over answers and products.
