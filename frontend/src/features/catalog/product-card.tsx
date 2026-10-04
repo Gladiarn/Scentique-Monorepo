@@ -12,10 +12,10 @@ export function ProductCard({ product, className }: { product: Product; classNam
   const media = photoMedia(product);
   const soldOut = isSoldOut(product);
   return (
-    <li className={className}>
+    <li className={cn("flex", className)}>
       <Link
         href={`/product/${product.slug}`}
-        className="group relative block overflow-hidden rounded-xl border border-line transition-colors hover:border-accent/60"
+        className="group relative flex w-full flex-col overflow-hidden rounded-xl border border-line transition-colors hover:border-accent/60"
       >
         <div className="relative aspect-[4/5] overflow-hidden">
           <ProductImage
@@ -30,7 +30,7 @@ export function ProductCard({ product, className }: { product: Product; classNam
           />
           <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-page/85 via-transparent to-transparent" />
         </div>
-        <div className="flex items-end justify-between gap-4 p-5">
+        <div className="flex flex-1 items-end justify-between gap-4 p-5">
           <div>
             <div className="flex items-center gap-2">
               <span aria-hidden="true" className="size-2 rounded-pill" style={{ background: `var(--color-${product.family})` }} />

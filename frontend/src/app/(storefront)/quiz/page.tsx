@@ -39,12 +39,12 @@ export default async function QuizPage({ searchParams }: { searchParams: Promise
             Two or three <Em>scents to try</Em>
           </h1>
           <p className="mt-4 max-w-xl text-ink/80">Picked from your answers. Start with the first, and come back for the others.</p>
-          <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-14 grid gap-x-5 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
             {picks.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </ul>
-          <div className="mt-12 flex flex-wrap gap-4">
+          <div className="mt-16 flex flex-wrap gap-4">
             <Button href="/quiz" variant="glass">Retake the quiz</Button>
             <Button href="/shop" variant="ghost">Browse the full shelf</Button>
           </div>

@@ -59,7 +59,7 @@ export async function CollectionsSection() {
   const collections = await collectionRepository.findAll();
 
   return (
-    <section id="collections" className="pb-24 md:pb-32">
+    <section id="collections" className="pb-28 md:pb-40">
       <Container>
         <div className="flex flex-wrap items-end justify-between gap-6">
           <h2 className="font-display text-4xl leading-[1.08] md:text-[length:var(--text-4xl)]">Four families, <Em>one shelf</Em></h2>
@@ -69,7 +69,7 @@ export async function CollectionsSection() {
         {collections.length === 0 ? (
           <p className="mt-12 text-muted">Collections are being prepared. Check back soon.</p>
         ) : (
-          <ul className="mt-12 grid gap-4 sm:grid-cols-2 sm:auto-rows-[minmax(15rem,auto)] lg:grid-cols-4 lg:grid-rows-[15rem_15rem_auto]">
+          <ul className="mt-16 grid gap-x-5 gap-y-6 sm:grid-cols-2 sm:auto-rows-[minmax(15rem,auto)] lg:grid-cols-4 lg:grid-rows-[15rem_15rem_auto]">
             {collections.map((c) => (
               <FamilyTile key={c.id} collection={c} large={c.family === "woody"} />
             ))}

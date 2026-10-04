@@ -25,7 +25,7 @@ export function StorySection() {
   return (
     <section id="craft" className="py-24 md:py-32">
       <Container>
-        <div className="grid gap-4 sm:grid-cols-2 sm:auto-rows-[minmax(15rem,auto)] lg:grid-cols-12 lg:grid-rows-[15rem_15rem_16rem]">
+        <div className="grid gap-x-5 gap-y-6 sm:grid-cols-2 sm:auto-rows-[minmax(15rem,auto)] lg:grid-cols-12 lg:grid-rows-[15rem_15rem_16rem]">
           <div className={cn(tile, "flex min-h-[26rem] items-end sm:col-span-2 lg:col-span-7 lg:row-span-2")}>
             <Image src="/images/hero/silk-backdrop.webp" alt="" fill sizes="(min-width: 1024px) 58vw, 100vw" quality={90} className="object-cover" />
             <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-page/90 via-page/45 to-page/10" />

@@ -28,7 +28,7 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
         </p>
       </div>
 
-      <div className="mt-10">
+      <div className="mt-12">
         <Suspense fallback={null}>
           <FilterPanel maxPriceDollars={maxPriceDollars} />
         </Suspense>
@@ -41,7 +41,7 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
           <Button href="/shop" variant="secondary" className="mt-8">Clear filters</Button>
         </div>
       ) : (
-        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-16 grid gap-x-5 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
           {shown.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
