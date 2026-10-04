@@ -30,7 +30,8 @@
 **Landing revision: the next session starts here** (before Phase 4)
 
 - [ ] **Homepage remodel (owner decision, 2026-09-30).** The owner wants to rebuild the homepage again for a more genuinely luxurious, glassy feel — explicitly **not** generic "AI slop" (templated bento grids, safe default spacing, the same card pattern repeated section after section). Use the `frontend-design` / `impeccable` skills properly for this pass, not a rough approximation: go through brainstorming for the direction before touching code, since this is a redesign of an already-shipped surface. Ground it in what actually exists today — glass cards, the drift/wave motif, the champagne-on-espresso palette, Prata/Bodoni Moda/Hanken Grotesk — rather than inventing new material. Note: the previous attempt at reworking the About section this session was rejected ("bring back the old one") for not fitting the vibe — take that as a concrete signal of what to avoid, not just a generic warning.
-- [ ] **Insert real content.** Replace placeholder copy across the landing page (brand story/About, taglines, positioning language, testimonials) with the information now in `README.md` and `PRODUCT.md` — those two files are the source of truth for Scentique's story, positioning and voice from here on.
+  - Progress 2026-10-04: **About remodeled** to an editorial layout (one large silk-backdrop statement frame, asymmetric ingredient photography beside a glass process panel, no bento grid). Still to remodel: Four families (collections) and Best sellers, which remain bento grids; then Testimonials and Closing reviewed against the same direction.
+- [x] **Insert real content.** Verified 2026-10-04: hero, About, and collections copy already match the brand story in `README.md` and `PRODUCT.md`; testimonials are explicitly labelled as placeholders, as `PRODUCT.md` requires. Future copy changes should come from those two files.
 - [x] Custom scrollbar themed to the brand palette (tonal thumb, gold on hover) instead of the OS default.
 - [ ] Testimonials section redesigned to the same pattern (bento or glass cards), with real-feeling content.
 - [ ] Footer reviewed against the principles (glass, minimal).
@@ -417,6 +418,8 @@ Admin (Phase 8) uses the same tokens, fonts and glass cards with a denser, calme
 Each phase gets its own step-level plan when it starts. **Every page here follows the same section-by-section loop** as the landing page: propose, build, show, iterate, lock.
 
 ### Phase 4: Shop and product detail
+
+**Status 2026-10-04: built, not yet committed.** `/shop` (family, gender, price and sort filters in the URL, empty state, loading skeleton) and `/product/[slug]` (photos, size and concentration selector with live price and stock, notes, related scents). Logic is unit-tested (catalog query and variant resolution). Add to cart is rendered but not wired: it arrives with the cart in Phase 6. Primitives select, checkbox, tabs and dialog are not built yet, as the controls used are native elements.
 
 - Design: reuse the scent card for the product grid, plain glass for the filter panel, the glass pill for primary actions, the shared header and footer, and Best sellers' bento rhythm for featured rows.
 - Routes: `/shop`, `/product/[slug]`. Features: `catalog`, `product`.
