@@ -413,6 +413,8 @@ Admin (Phase 8) uses the same tokens, fonts and glass cards with a denser, calme
 
 ## Phases 4 to 9: scope and acceptance
 
+**Status 2026-10-05: all storefront, account, admin and information pages are built.** Remaining outside the pages: the homepage testimonials and nav-dropdown glass checklist items, real staff and customer sign-in (needs the backend), and the visual review of every page, which has not been done in a browser.
+
 **These start only after the landing page is approved, and every page reuses the landing page's design pattern above.** Each still runs the propose, build, show, iterate, lock loop. Each phase's own step-level plan states which landing patterns it reuses.
 
 Each phase gets its own step-level plan when it starts. **Every page here follows the same section-by-section loop** as the landing page: propose, build, show, iterate, lock.

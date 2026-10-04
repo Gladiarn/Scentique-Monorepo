@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import { Em } from "@/components/ui/em";
+import { PageTitle } from "@/components/ui/page-title";
 
 export const metadata: Metadata = { title: "Account" };
 
 export default function AccountPage() {
   return (
     <div className="max-w-xl">
-      <h1 className="font-display text-3xl md:text-[length:var(--text-4xl)]">
+      <PageTitle>
         Your <Em>account</Em>
-      </h1>
+      </PageTitle>
       <p className="mt-4 text-muted">Track your orders and keep addresses ready for checkout.</p>
       <div className="mt-10 flex flex-wrap gap-4">
         <Button href="/account/orders" variant="secondary">View orders</Button>
