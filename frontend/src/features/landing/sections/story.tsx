@@ -5,10 +5,11 @@ import { Em } from "@/components/ui/em";
 import { GlassPanel } from "@/components/ui/glass-panel";
 import { cn } from "@/lib/cn";
 
-const PHOTOS = [
-  { src: "/images/ingredients/amber-resin.webp", label: "Amber resin", alt: "Chunks of dark amber resin", sizes: "(min-width: 1024px) 40vw, 100vw", tall: true },
-  { src: "/images/ingredients/frankincense.webp", label: "Frankincense", alt: "Pale tears of frankincense resin", sizes: "(min-width: 1024px) 30vw, 100vw", tall: false },
-  { src: "/images/ingredients/cinnamon-star-anise.webp", label: "Cinnamon and star anise", alt: "Cinnamon sticks with star anise pods", sizes: "(min-width: 1024px) 30vw, 100vw", tall: false },
+const INGREDIENTS = [
+  { src: "/images/ingredients/amber-resin.webp", label: "Amber resin", alt: "Chunks of dark amber resin", w: 400, h: 270, className: "lg:col-span-5" },
+  { src: "/images/ingredients/frankincense.webp", label: "Frankincense", alt: "Pale tears of frankincense resin", w: 480, h: 260, className: "lg:col-span-5" },
+  { src: "/images/ingredients/cinnamon-star-anise.webp", label: "Cinnamon and star anise", alt: "Cinnamon sticks with star anise pods", w: 912, h: 356, className: "sm:col-span-2 lg:col-span-4" },
+  { src: "/images/ingredients/cinnamon-bark.webp", label: "Cinnamon bark", alt: "Curls of cinnamon bark", w: 400, h: 480, className: "sm:col-span-2 lg:col-span-3" },
 ] as const;
 
 const STEPS = [
@@ -17,55 +18,36 @@ const STEPS = [
   { Icon: BottleIcon, title: "Bottled in small runs", detail: "Filled and checked by hand" },
 ] as const;
 
-const caption = "absolute bottom-4 left-4 rounded-pill bg-page/55 px-3.5 py-1.5 text-sm text-ink backdrop-blur-glass";
+const tile = "relative overflow-hidden rounded-xl border border-line bg-surface";
 
-/** About: one large statement frame, then ingredient photography beside the process. Static editorial copy. */
+/** About, as a bento: a curtain-backed statement tile, ingredient close-ups, and the process. Static placeholder copy. */
 export function StorySection() {
   return (
     <section id="craft" className="py-24 md:py-32">
       <Container>
-        <div className="relative isolate min-h-[30rem] overflow-hidden rounded-xl md:min-h-[38rem]">
-          <Image src="/images/hero/silk-backdrop.webp" alt="" fill sizes="100vw" quality={90} className="object-cover" />
-          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-page via-page/50 to-page/10" />
-          <div className="relative flex h-full min-h-[30rem] items-end p-7 md:min-h-[38rem] md:p-14">
-            <div className="max-w-2xl">
-              <h2 className="font-display text-3xl leading-[1.1] text-balance md:text-[length:var(--text-4xl)]">
-                A small house with a <Em>long process</Em>
-              </h2>
+        <div className="grid gap-4 sm:grid-cols-2 sm:auto-rows-[minmax(15rem,auto)] lg:grid-cols-12 lg:grid-rows-[15rem_15rem_16rem]">
+          <div className={cn(tile, "flex min-h-[26rem] items-end sm:col-span-2 lg:col-span-7 lg:row-span-2")}>
+            <Image src="/images/hero/silk-backdrop.webp" alt="" fill sizes="(min-width: 1024px) 58vw, 100vw" quality={90} className="object-cover" />
+            <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-page/90 via-page/45 to-page/10" />
+            <div className="relative max-w-xl p-7 md:p-10">
+              <h2 className="font-display text-3xl leading-[1.1] text-balance md:text-[length:var(--text-4xl)]">A small house with a <Em>long process</Em></h2>
               <p className="mt-5 max-w-[52ch] text-lg text-ink/80">
                 We make fewer scents than we could, and we make them slowly. Each one starts with a single raw material we want to show
                 properly, then we build the rest of the blend around it until nothing is left to take away.
               </p>
             </div>
           </div>
-        </div>
 
-        <div className="mt-6 grid gap-6 lg:mt-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start lg:gap-10">
-          <div className="grid gap-6 sm:grid-cols-2">
-            {PHOTOS.map((photo) => (
-              <figure
-                key={photo.src}
-                className={cn(
-                  "group relative overflow-hidden rounded-xl",
-                  photo.tall ? "aspect-[4/5] sm:row-span-2" : "aspect-[4/3] sm:mt-12",
-                )}
-              >
-                <Image
-                  src={photo.src}
-                  alt={photo.alt}
-                  fill
-                  sizes={photo.sizes}
-                  quality={90}
-                  className="object-cover transition-transform duration-700 ease-[var(--ease-out-quart)] group-hover:scale-[1.04]"
-                />
-                <figcaption className={caption}>{photo.label}</figcaption>
-              </figure>
-            ))}
-          </div>
+          {INGREDIENTS.slice(0, 2).map((item) => (
+            <figure key={item.src} className={cn(tile, "group min-h-[15rem]", item.className)}>
+              <Image src={item.src} alt={item.alt} fill sizes="(min-width: 1024px) 40vw, 100vw" quality={90} className="object-cover transition-transform duration-700 ease-[var(--ease-out-quart)] group-hover:scale-[1.04]" />
+              <figcaption className="absolute bottom-3 left-3 rounded-pill bg-page/55 px-3.5 py-1.5 text-sm text-ink backdrop-blur-glass">{item.label}</figcaption>
+            </figure>
+          ))}
 
-          <GlassPanel className="flex flex-col gap-7 p-7 md:p-9">
+          <GlassPanel className="flex flex-col justify-center gap-5 p-7 sm:col-span-2 lg:col-span-5">
             <h3 className="font-display text-2xl">How it is made</h3>
-            <ul className="space-y-6">
+            <ul className="space-y-4">
               {STEPS.map(({ Icon, title, detail }) => (
                 <li key={title} className="flex items-center gap-4">
                   <span className="grid size-11 shrink-0 place-items-center rounded-pill border border-ink/20 text-accent">
@@ -79,6 +61,13 @@ export function StorySection() {
               ))}
             </ul>
           </GlassPanel>
+
+          {INGREDIENTS.slice(2).map((item) => (
+            <figure key={item.src} className={cn(tile, "group min-h-[15rem]", item.className)}>
+              <Image src={item.src} alt={item.alt} fill sizes="(min-width: 1024px) 33vw, 100vw" quality={90} className="object-cover transition-transform duration-700 ease-[var(--ease-out-quart)] group-hover:scale-[1.04]" />
+              <figcaption className="absolute bottom-3 left-3 rounded-pill bg-page/55 px-3.5 py-1.5 text-sm text-ink backdrop-blur-glass">{item.label}</figcaption>
+            </figure>
+          ))}
         </div>
       </Container>
     </section>

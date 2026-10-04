@@ -87,6 +87,6 @@ The scrollbar is thin and tonal: a `--color-line` thumb on the page colour, turn
 
 ## Known gaps
 
-- Four families and Best sellers were remodelled to editorial rows (2026-10-04) without a visual review. They are awaiting the owner's review.
+- Four families and Best sellers on the homepage were reverted to their pre-2026-10-04 layout at the owner's request, and are awaiting a design pass.
 - Admin and account data are mock data.
 - The admin access code is a client-side demo gate, not security.
