@@ -37,6 +37,7 @@ export function FilterPanel({ maxPriceDollars }: { maxPriceDollars: number }) {
     const next = new URLSearchParams(params.toString());
     if (value) next.set(key, value);
     else next.delete(key);
+    next.delete("page");
     const query = next.toString();
     startTransition(() => router.replace(query ? `${pathname}?${query}` : pathname, { scroll: false }));
   }

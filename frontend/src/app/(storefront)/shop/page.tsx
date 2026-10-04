@@ -6,14 +6,28 @@ import { PageTitle } from "@/components/ui/page-title";
 import { productRepository } from "@/data";
 import { FilterPanel } from "@/features/catalog/filter-panel";
 import { ProductCard } from "@/features/catalog/product-card";
-import { parseCatalogQuery, sortProducts, toProductFilters } from "@/features/catalog/catalog-query";
+import { SHOP_PAGE_SIZE, parseCatalogQuery, sortProducts, toProductFilters } from "@/features/catalog/catalog-query";
+import { Pagination } from "@/components/ui/pagination";
+import { pageSlice } from "@/lib/paginate";
 
 export const metadata = { title: "Shop" };
 
 export default async function ShopPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
-  const query = parseCatalogQuery(await searchParams);
+  const raw = await searchParams;
+  const query = parseCatalogQuery(raw);
   const [products, catalogue] = await Promise.all([productRepository.findAll(toProductFilters(query)), productRepository.findAll()]);
-  const shown = sortProducts(products, query.sort);
+  const sorted = sortProducts(products, query.sort);
+  const { items: shown, page, count } = pageSlice(sorted, query.page, SHOP_PAGE_SIZE);
+  const hrefFor = (target: number) => {
+    const params = new URLSearchParams();
+    for (const [key, value] of Object.entries(raw)) {
+      const first = Array.isArray(value) ? value[0] : value;
+      if (first && key !== "page") params.set(key, first);
+    }
+    if (target > 1) params.set("page", String(target));
+    const query = params.toString();
+    return query ? `/shop?${query}` : "/shop";
+  };
   const highestCents = Math.max(...catalogue.flatMap((p) => p.variants.map((v) => v.priceCents)));
   const maxPriceDollars = Math.ceil(highestCents / 100 / 5) * 5;
 
@@ -24,7 +38,7 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
           The <Em>shelf</Em>
         </PageTitle>
         <p className="text-sm text-muted">
-          {shown.length} {shown.length === 1 ? "scent" : "scents"}
+          {sorted.length} {sorted.length === 1 ? "scent" : "scents"}
         </p>
       </div>
 
@@ -41,11 +55,16 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
           <Button href="/shop" variant="secondary" className="mt-8">Clear filters</Button>
         </div>
       ) : (
-        <ul className="mt-16 grid gap-x-5 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
-          {shown.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </ul>
+        <>
+          <ul className="mt-16 grid gap-x-5 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
+            {shown.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </ul>
+          <div className="mt-16">
+            <Pagination page={page} pageCount={count} hrefFor={hrefFor} label="Shop pages" />
+          </div>
+        </>
       )}
     </Container>
   );

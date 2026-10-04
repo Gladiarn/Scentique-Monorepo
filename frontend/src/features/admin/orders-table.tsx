@@ -9,6 +9,10 @@ import { ORDER_STEPS } from "@/features/account/account-logic";
 import { formatMoney } from "@/lib/format";
 import { cn } from "@/lib/cn";
 import { countByStatus, filterOrders, nextStatus } from "./admin-logic";
+import { Pagination } from "@/components/ui/pagination";
+import { clampPage, pageSlice } from "@/lib/paginate";
+
+const ORDERS_PAGE_SIZE = 25;
 
 const input = "h-11 w-full rounded-md border border-line bg-page px-3 text-sm text-ink focus:border-accent focus:outline-none md:w-80";
 
@@ -17,6 +21,7 @@ export function OrdersTable() {
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState<Order["status"] | undefined>(undefined);
   const [busy, setBusy] = useState<string | null>(null);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     let active = true;
@@ -27,7 +32,8 @@ export function OrdersTable() {
   }, []);
 
   const counts = useMemo(() => countByStatus(orders ?? []), [orders]);
-  const rows = useMemo(() => filterOrders(orders ?? [], { query, status }), [orders, query, status]);
+  const matching = useMemo(() => filterOrders(orders ?? [], { query, status }), [orders, query, status]);
+  const { items: rows, count: pages, page: current } = pageSlice(matching, page, ORDERS_PAGE_SIZE);
 
   if (!orders) return <Skeleton className="h-96 w-full" />;
 
@@ -44,8 +50,8 @@ export function OrdersTable() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center gap-4">
         <label htmlFor="order-search" className="sr-only">Search orders</label>
-        <input id="order-search" type="search" placeholder="Search by order, email or name" value={query} onChange={(e) => setQuery(e.target.value)} className={input} />
-        <p className="text-sm text-muted" aria-live="polite">{rows.length} shown</p>
+        <input id="order-search" type="search" placeholder="Search by order, email or name" value={query} onChange={(e) => { setQuery(e.target.value); setPage(1); }} className={input} />
+        <p className="text-sm text-muted" aria-live="polite">{matching.length} shown</p>
       </div>
 
       <div role="tablist" aria-label="Filter by status" className="flex flex-wrap gap-2">
@@ -53,7 +59,7 @@ export function OrdersTable() {
           type="button"
           role="tab"
           aria-selected={!status}
-          onClick={() => setStatus(undefined)}
+          onClick={() => { setStatus(undefined); setPage(1); }}
           className={cn("h-9 rounded-pill border px-4 text-xs uppercase tracking-[0.12em]", !status ? "border-accent text-accent" : "border-ink/20 text-ink/80 hover:border-accent")}
         >
           All · {orders.length}
@@ -64,7 +70,7 @@ export function OrdersTable() {
             type="button"
             role="tab"
             aria-selected={status === step}
-            onClick={() => setStatus(step)}
+            onClick={() => { setStatus(step); setPage(1); }}
             className={cn("h-9 rounded-pill border px-4 text-xs uppercase tracking-[0.12em]", status === step ? "border-accent text-accent" : "border-ink/20 text-ink/80 hover:border-accent")}
           >
             {step} · {counts[step]}
@@ -118,6 +124,8 @@ export function OrdersTable() {
         </table>
         {rows.length === 0 && <p className="px-4 py-8 text-sm text-muted">No orders match these filters.</p>}
       </GlassPanel>
+
+      <Pagination page={current} pageCount={pages} onPage={(target) => setPage(clampPage(target, pages))} label="Order pages" />
     </div>
   );
 }

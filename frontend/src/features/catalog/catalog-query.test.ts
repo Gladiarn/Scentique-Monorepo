@@ -18,8 +18,14 @@ const product = (overrides: Partial<Product> & Pick<Product, "slug">): Product =
 });
 
 describe("parseCatalogQuery", () => {
-  it("defaults to featured sort with no filters", () => {
-    expect(parseCatalogQuery({})).toEqual({ sort: "featured" });
+  it("defaults to featured sort, page one, with no filters", () => {
+    expect(parseCatalogQuery({})).toEqual({ sort: "featured", page: 1 });
+  });
+
+  it("reads the page number and ignores nonsense", () => {
+    expect(parseCatalogQuery({ page: "3" }).page).toBe(3);
+    expect(parseCatalogQuery({ page: "-2" }).page).toBe(1);
+    expect(parseCatalogQuery({ page: "abc" }).page).toBe(1);
   });
 
   it("reads valid family, gender, price and sort values", () => {
@@ -28,21 +34,22 @@ describe("parseCatalogQuery", () => {
       gender: "masculine",
       maxPriceCents: 15000,
       sort: "price-asc",
+      page: 1,
     });
   });
 
   it("ignores unknown values instead of passing them to the repository", () => {
-    expect(parseCatalogQuery({ family: "vanilla", gender: "x", max: "abc", sort: "random" })).toEqual({ sort: "featured" });
+    expect(parseCatalogQuery({ family: "vanilla", gender: "x", max: "abc", sort: "random" })).toEqual({ sort: "featured", page: 1 });
   });
 
   it("takes the first value when a param repeats", () => {
-    expect(parseCatalogQuery({ family: ["floral", "oud"] })).toEqual({ family: "floral", sort: "featured" });
+    expect(parseCatalogQuery({ family: ["floral", "oud"] })).toEqual({ family: "floral", sort: "featured", page: 1 });
   });
 });
 
 describe("toProductFilters", () => {
   it("drops the sort, which is applied after fetching", () => {
-    expect(toProductFilters({ family: "citrus", sort: "newest" })).toEqual({ family: "citrus" });
+    expect(toProductFilters({ family: "citrus", sort: "newest", page: 1 })).toEqual({ family: "citrus" });
   });
 });
 

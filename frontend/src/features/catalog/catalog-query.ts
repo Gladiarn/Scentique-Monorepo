@@ -19,7 +19,10 @@ export interface CatalogQuery {
   /** Upper price bound in cents, from the URL's `max` (dollars). */
   maxPriceCents?: number;
   sort: CatalogSort;
+  page: number;
 }
+
+export const SHOP_PAGE_SIZE = 8;
 
 type RawParams = Record<string, string | string[] | undefined>;
 
@@ -38,7 +41,8 @@ export function parseCatalogQuery(params: RawParams): CatalogQuery {
   const dollars = Number(first(params.max));
   const maxPriceCents = Number.isFinite(dollars) && dollars > 0 ? Math.round(dollars * 100) : undefined;
   const sort = oneOf(first(params.sort), SORTS) ?? "featured";
-  return { family, gender, maxPriceCents, sort };
+  const page = Math.max(1, Math.floor(Number(first(params.page))) || 1);
+  return { family, gender, maxPriceCents, sort, page };
 }
 
 /** What the repository filters on. Sorting happens after the fetch, so it is not part of the filters. */
