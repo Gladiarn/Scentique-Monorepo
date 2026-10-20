@@ -15,6 +15,10 @@ describe("globals.css section surfaces", () => {
     expect(css).not.toMatch(/wave-drift|hero-rise/);
   });
 
+  it("scrolls to anchors smoothly (reduced motion switches this off further down)", () => {
+    expect(css).toMatch(/scroll-behavior:\s*smooth/);
+  });
+
   it("keeps the browser surfaces themed from the palette: scrollbar, selection and visible focus", () => {
     expect(css).toContain("::-webkit-scrollbar-thumb");
     expect(css).toContain("::selection");

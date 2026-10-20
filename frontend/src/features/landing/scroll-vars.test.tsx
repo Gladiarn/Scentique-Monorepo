@@ -29,6 +29,19 @@ describe("ScrollVars", () => {
     expect(Number((container.querySelector("section") as HTMLElement).style.getPropertyValue("--p"))).toBeCloseTo(0.5, 3);
   });
 
+  it("also publishes how far the section has entered (--e) and is leaving (--x), so its edges can dissolve into its neighbours", () => {
+    media(false);
+    vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockReturnValue({ top: 384, bottom: 2984, height: 2600 } as DOMRect);
+    const { container } = render(<section data-scrub-section=""><ScrollVars /></section>);
+    act(() => {
+      window.dispatchEvent(new Event("scroll"));
+    });
+    const el = container.querySelector("section") as HTMLElement;
+    // jsdom viewport is 768 tall: entered half way, not leaving
+    expect(Number(el.style.getPropertyValue("--e"))).toBeCloseTo(0.5, 3);
+    expect(Number(el.style.getPropertyValue("--x"))).toBe(0);
+  });
+
   it("leaves the planes still under reduced motion", () => {
     media(true);
     vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockReturnValue({ top: -916, height: 2600 } as DOMRect);

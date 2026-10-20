@@ -20,3 +20,13 @@ export function noteTierAt(progress: number): NoteTier {
   return p < 1 / 3 ? "top" : p < 2 / 3 ? "heart" : "base";
 }
 
+/**
+ * How far a section has come into view (`enter`: 0 as its top leaves the viewport bottom, 1 once its top reaches the
+ * viewport top) and how far it has left (`exit`: 0 while its bottom is below the viewport, 1 once it is gone).
+ * Sections use these to dissolve into their neighbours instead of meeting them on a hard edge.
+ */
+export function sectionEdges(rect: { top: number; bottom: number }, viewportHeight: number): { enter: number; exit: number } {
+  if (!(viewportHeight > 0)) return { enter: 0, exit: 0 };
+  return { enter: clamp01((viewportHeight - rect.top) / viewportHeight), exit: clamp01((viewportHeight - rect.bottom) / viewportHeight) };
+}
+

@@ -1,6 +1,10 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 import { Close } from "./close";
+
+beforeEach(() => {
+  Object.defineProperty(window, "matchMedia", { configurable: true, writable: true, value: () => ({ matches: false, addEventListener() {}, removeEventListener() {} }) });
+});
 
 describe("Close (the resolved ending)", () => {
   it("pins the ending: a tall section with a sticky screen, so the last feeling holds", () => {
@@ -25,4 +29,14 @@ describe("Close (the resolved ending)", () => {
     const img = container.querySelector("img")!;
     expect(img).toHaveAttribute("alt", "");
   });
+
+  it("arrives out of the page colour: a top fade that clears as the section comes in, so no hard edge meets the reviews", () => {
+    const { container } = render(<Close />);
+    const fade = container.querySelector("[data-plane=enter]")!;
+    expect(fade).toHaveAttribute("aria-hidden", "true");
+    expect(fade.className).toContain("from-page");
+    expect((fade as HTMLElement).style.opacity).toContain("var(--e");
+    expect(container.querySelector("section")).toHaveAttribute("data-scrub-section");
+  });
 });
+

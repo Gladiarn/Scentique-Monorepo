@@ -7,6 +7,10 @@
   }
 
   html {
+    scroll-behavior: smooth;
+  }
+
+  html {
     background: var(--color-page);
   }
 

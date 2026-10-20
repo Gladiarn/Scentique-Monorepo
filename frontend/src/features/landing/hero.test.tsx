@@ -87,5 +87,13 @@ describe("Hero", () => {
     const list = screen.getByRole("list", { name: /browse by scent family/i });
     expect(list.innerHTML).not.toContain("uppercase");
   });
+
+  it("dissolves into the next section: a bottom fade that only appears as the hero leaves, so the video never ends on a hard edge", async () => {
+    const { container } = render(await Hero());
+    const fade = container.querySelector("[data-plane=exit]")!;
+    expect(fade).toHaveAttribute("aria-hidden", "true");
+    expect(fade.className).toContain("to-page");
+    expect((fade as HTMLElement).style.opacity).toContain("var(--x");
+  });
 });
 

@@ -1,10 +1,13 @@
 "use client";
 
 import { useEffect, useRef, type RefObject } from "react";
-import { sectionProgress } from "./scrub";
+import { sectionEdges, sectionProgress } from "./scrub";
 
-/** Calls `onProgress` (0..1) as the nearest `[data-scrub-section]` ancestor of `ref` scrolls, once per frame. */
-export function useSectionProgress(ref: RefObject<HTMLElement | null>, onProgress: (progress: number) => void, enabled = true) {
+/**
+ * Calls `onProgress` (0..1, plus how far the section has entered and is leaving) as the nearest `[data-scrub-section]`
+ * ancestor of `ref` scrolls, once per frame.
+ */
+export function useSectionProgress(ref: RefObject<HTMLElement | null>, onProgress: (progress: number, edges: { enter: number; exit: number }) => void, enabled = true) {
   const latest = useRef(onProgress);
   useEffect(() => {
     latest.current = onProgress;
@@ -16,7 +19,9 @@ export function useSectionProgress(ref: RefObject<HTMLElement | null>, onProgres
     let frame = 0;
     const run = () => {
       frame = 0;
-      latest.current(sectionProgress(section.getBoundingClientRect(), window.innerHeight));
+      const rect = section.getBoundingClientRect();
+      const vh = window.innerHeight;
+      latest.current(sectionProgress(rect, vh), sectionEdges({ top: rect.top, bottom: rect.top + rect.height }, vh));
     };
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(run);

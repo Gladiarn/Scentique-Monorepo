@@ -35,6 +35,13 @@ export async function Hero() {
         />
         {/* A scrim only where the copy sits: the bottom on phones, the left on wide screens. */}
         <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-page/90 via-page/20 to-transparent md:bg-gradient-to-r md:from-page/85 md:via-page/25 md:to-transparent" />
+        {/* Leaving: the bottom of the frame dissolves into the page colour, so the video never ends on a hard edge. */}
+        <div
+          data-plane="exit"
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-b from-transparent via-page/70 to-page"
+          style={{ opacity: "clamp(0, calc(var(--x, 0) * 3), 1)" }}
+        />
         <Embers />
 
         <Container className="relative flex h-full items-end pb-14 md:items-center md:pb-0">
