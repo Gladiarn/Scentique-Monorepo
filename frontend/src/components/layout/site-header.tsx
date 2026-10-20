@@ -4,7 +4,7 @@ import { siteConfig } from "@/config/site";
 
 export function SiteHeader() {
   return (
-    <header>
+    <header className="absolute inset-x-0 top-0 z-50">
       <Container className="flex h-20 items-center justify-between">
         <Link href="/" className="font-display text-xl">
           {siteConfig.name}

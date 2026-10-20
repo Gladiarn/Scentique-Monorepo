@@ -43,3 +43,7 @@ frontend/public/*CV*
 frontend/public/*cv*
 frontend/public/*resume*
 frontend/public/*Resume*
+
+# Raw generated media waiting to be encoded (kept out of git)
+assets-incoming/*
+!assets-incoming/.gitkeep
