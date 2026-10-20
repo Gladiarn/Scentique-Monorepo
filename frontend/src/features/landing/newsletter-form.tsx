@@ -34,7 +34,7 @@ export function NewsletterForm({ subscribe = placeholderSubscribe, className }: 
       <label htmlFor="newsletter-email" className="block text-sm text-ink/80">
         Email
       </label>
-      <div className="mt-2 flex gap-3">
+      <div className="mt-2 flex rounded-md border border-ink/25 bg-surface/45 backdrop-blur-glass transition-colors duration-150 focus-within:border-accent">
         <input
           id="newsletter-email"
           type="email"
@@ -44,12 +44,12 @@ export function NewsletterForm({ subscribe = placeholderSubscribe, className }: 
           onChange={(e) => setEmail(e.target.value)}
           aria-invalid={state === "invalid" ? true : undefined}
           aria-describedby="newsletter-message"
-          className="h-12 min-w-0 flex-1 rounded-pill border border-ink/25 bg-surface/45 px-5 text-ink backdrop-blur-glass placeholder:text-muted focus-visible:border-accent"
+          className="h-12 min-w-0 flex-1 rounded-l-md bg-transparent px-4 text-ink outline-offset-[-2px] placeholder:text-muted"
         />
         <button
           type="submit"
           disabled={state === "sending"}
-          className="h-12 rounded-pill border border-ink/25 bg-surface/45 px-6 text-sm press hover:border-accent hover:text-accent disabled:cursor-not-allowed disabled:opacity-50"
+          className="h-12 rounded-r-md border-l border-ink/25 px-5 text-sm text-accent press hover:bg-accent/10 disabled:cursor-not-allowed disabled:opacity-50"
         >
           Subscribe
         </button>

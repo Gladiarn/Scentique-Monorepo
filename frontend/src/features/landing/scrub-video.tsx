@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { cn } from "@/lib/cn";
-import { sectionProgress, videoTimeAt } from "@/lib/scrub";
+import { easeToward, sectionProgress, videoTimeAt } from "@/lib/scrub";
 
 interface ScrubVideoProps {
   /** Wide clip for large screens and its portrait twin for phones. */
@@ -40,11 +40,14 @@ export function ScrubVideo({ src, srcMobile, poster, posterMobile, label, classN
     const section = root.current?.closest<HTMLElement>("[data-scrub-section]");
     if (!clip || !el || !section) return;
     let frame = 0;
+    let played: number | null = null;
+    // The playhead eases toward where the scroll is, a frame at a time, and waits out a seek that is still landing: a fast flick catches up smoothly instead of the clip skipping.
     const seek = () => {
       frame = 0;
-      const progress = sectionProgress(section.getBoundingClientRect(), window.innerHeight);
-      const time = videoTimeAt(progress, el.duration);
-      if (Math.abs(el.currentTime - time) > 0.01) el.currentTime = time;
+      const target = videoTimeAt(sectionProgress(section.getBoundingClientRect(), window.innerHeight), el.duration);
+      played = easeToward(played ?? el.currentTime, target, 0.2, 0.01);
+      if (!el.seeking && Math.abs(el.currentTime - played) > 0.01) el.currentTime = played;
+      if (played !== target) frame = requestAnimationFrame(seek);
     };
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(seek);

@@ -11,6 +11,13 @@ describe("NewsletterForm", () => {
     expect(screen.queryByText(/placeholder/i)).not.toBeInTheDocument();
   });
 
+  it("is one square-cornered field with its button inside, not a second pill beside the page's main button", () => {
+    const { container } = render(<NewsletterForm />);
+    expect(container.innerHTML).not.toContain("rounded-pill");
+    const field = screen.getByLabelText(/email/i).parentElement!;
+    expect(field).toContainElement(screen.getByRole("button", { name: /subscribe/i }));
+  });
+
   it("names the problem, and how to fix it, for an email that is not one, and does not subscribe", async () => {
     const subscribe = vi.fn().mockResolvedValue(undefined);
     render(<NewsletterForm subscribe={subscribe} />);

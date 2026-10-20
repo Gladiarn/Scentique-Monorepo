@@ -30,3 +30,9 @@ export function sectionEdges(rect: { top: number; bottom: number }, viewportHeig
   return { enter: clamp01((viewportHeight - rect.top) / viewportHeight), exit: clamp01((viewportHeight - rect.bottom) / viewportHeight) };
 }
 
+
+/** One frame of easing: close `rate` of the gap to `target`, snapping onto it once within `epsilon` so a loop can stop. */
+export function easeToward(current: number, target: number, rate: number, epsilon = 0.001): number {
+  const next = current + (target - current) * rate;
+  return Math.abs(target - next) <= epsilon ? target : next;
+}

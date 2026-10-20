@@ -38,8 +38,12 @@ const COLUMNS = [
 /** The last scene: the house line and where to go next, over a warm dark that rises out of the seam above it, ending on the name set large and cropped. */
 export function SiteFooter() {
   return (
-    <footer className="relative overflow-hidden bg-gradient-to-b from-page via-surface to-page">
-      <Container className="relative grid gap-16 pb-16 pt-12 md:pt-20 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1.4fr)] lg:gap-24">
+    <footer className="relative isolate overflow-hidden bg-gradient-to-b from-page via-surface to-page">
+      {/* The name sits inside the footer, behind the links, set very large and cropped by the page edge. */}
+      <p aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 translate-y-[14%] select-none text-center font-display text-[clamp(4.5rem,19vw,19rem)] leading-[0.8] tracking-[-0.03em] text-ink/[0.06]">
+        {siteConfig.name}
+      </p>
+      <Container className="relative grid gap-16 pb-12 pt-12 md:pt-20 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1.4fr)] lg:gap-24">
         <div>
           <p className="max-w-[18ch] font-display text-[length:var(--text-3xl)] leading-[1.1] text-balance md:text-[length:var(--text-4xl)]">{siteConfig.tagline}</p>
           <p className="mt-6 max-w-[44ch] text-ink/75">
@@ -72,10 +76,6 @@ export function SiteFooter() {
         <p>Free shipping over {formatMoney(FREE_SHIPPING_CENTS)}</p>
       </Container>
 
-      {/* The name, set very large and cropped by the page edge, so the page ends on it. */}
-      <p aria-hidden="true" className="pointer-events-none -mb-[0.16em] select-none text-center font-display text-[clamp(4.5rem,19vw,19rem)] leading-[0.9] tracking-[-0.03em] text-ink/[0.07]">
-        {siteConfig.name}
-      </p>
-    </footer>
+</footer>
   );
 }

@@ -6,8 +6,14 @@
     color-scheme: dark;
   }
 
-  html {
-    scroll-behavior: smooth;
+  /* Lenis eases the wheel itself; the browser's own smooth scroll on top of it would fight it. */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis:not(.lenis-autoToggle).lenis-stopped {
+    overflow: clip;
   }
 
   html {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { noteTierAt, sectionEdges, sectionProgress, videoTimeAt } from "./scrub";
+import { easeToward, noteTierAt, sectionEdges, sectionProgress, videoTimeAt } from "./scrub";
 
 describe("sectionProgress", () => {
   it("is 0 while the section's top is at or below the viewport top, 1 when its bottom meets the viewport bottom", () => {
@@ -72,3 +72,18 @@ describe("sectionEdges", () => {
   });
 });
 
+
+describe("easeToward", () => {
+  it("moves a fraction of the way each frame, so a fast scroll is caught up with instead of jumped to", () => {
+    expect(easeToward(0, 10, 0.2)).toBeCloseTo(2);
+    expect(easeToward(2, 10, 0.2)).toBeCloseTo(3.6);
+  });
+
+  it("lands exactly on the target once it is close enough, so the loop can stop", () => {
+    expect(easeToward(9.995, 10, 0.2, 0.01)).toBe(10);
+  });
+
+  it("works downward too", () => {
+    expect(easeToward(10, 0, 0.5)).toBeCloseTo(5);
+  });
+});
