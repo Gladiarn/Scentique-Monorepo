@@ -66,30 +66,13 @@
   }
 }
 
-@keyframes hero-rise {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
+/* Section surfaces: warm browns made from the tokens alone. A section picks one; nothing sits fixed behind the page. */
+@utility surface-umber {
+  background: linear-gradient(180deg, var(--color-page), var(--color-surface) 38%, var(--color-raised) 72%, var(--color-page));
 }
 
-@utility animate-hero-rise {
-  animation: hero-rise 700ms var(--ease-out-quart) both;
-}
-
-@keyframes wave-drift {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-@utility animate-wave-drift {
-  animation: wave-drift 40s linear infinite;
+@utility surface-glow {
+  background:
+    radial-gradient(70% 60% at 50% 0%, color-mix(in srgb, var(--color-accent) 14%, transparent), transparent 70%),
+    var(--color-page);
 }
