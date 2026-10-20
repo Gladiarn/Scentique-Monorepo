@@ -1,21 +1,10 @@
-import type { Metadata } from "next";
-import { Button } from "@/components/ui/button";
-import { Em } from "@/components/ui/em";
+import { Container } from "@/components/ui/container";
 import { PageTitle } from "@/components/ui/page-title";
 
-export const metadata: Metadata = { title: "Account" };
-
-export default function AccountPage() {
+export default function Page() {
   return (
-    <div className="max-w-xl">
-      <PageTitle>
-        Your <Em>account</Em>
-      </PageTitle>
-      <p className="mt-4 text-muted">Track your orders and keep addresses ready for checkout.</p>
-      <div className="mt-10 flex flex-wrap gap-4">
-        <Button href="/account/orders" variant="secondary">View orders</Button>
-        <Button href="/account/addresses" variant="ghost">Saved addresses</Button>
-      </div>
-    </div>
+    <Container>
+      <PageTitle lead="Orders and addresses go here.">Account</PageTitle>
+    </Container>
   );
 }

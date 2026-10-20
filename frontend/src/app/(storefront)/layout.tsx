@@ -5,7 +5,9 @@ export default function StorefrontLayout({ children }: { children: React.ReactNo
   return (
     <>
       <SiteHeader />
-      <main id="main" className="flex-1">{children}</main>
+      <main id="main" className="flex-1">
+        {children}
+      </main>
       <SiteFooter />
     </>
   );

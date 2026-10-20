@@ -1,23 +1,14 @@
-import type { Metadata } from "next";
-import { SiteFooter } from "@/components/layout/site-footer";
-import { SiteHeader } from "@/components/layout/site-header";
-import { NotFoundContent } from "@/features/errors/not-found-content";
+import Link from "next/link";
+import { Container } from "@/components/ui/container";
+import { PageTitle } from "@/components/ui/page-title";
 
-export const metadata: Metadata = { title: "Page not found" };
-
-/*
- * Root-level catch-all for any URL that matches no route at all. The `(storefront)` group's
- * not-found.tsx handles 404s inside the storefront (bad product slug, etc.) and is wrapped in
- * SiteHeader/SiteFooter automatically; this one sits outside that group, so it wraps them itself.
- */
 export default function NotFound() {
   return (
-    <>
-      <SiteHeader />
-      <main id="main" className="flex-1">
-        <NotFoundContent />
-      </main>
-      <SiteFooter />
-    </>
+    <Container>
+      <PageTitle lead="That page does not exist.">Not found</PageTitle>
+      <Link href="/" className="text-accent underline-offset-4 hover:underline">
+        Back to the home page
+      </Link>
+    </Container>
   );
 }

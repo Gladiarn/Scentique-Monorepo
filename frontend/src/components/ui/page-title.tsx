@@ -1,12 +1,11 @@
-import type { HTMLAttributes } from "react";
-import { cn } from "@/lib/cn";
+import type { ReactNode } from "react";
 
-/** Page title at the hero's display scale: large Prata, tight tracking, one italic accent phrase via Em. */
-export function PageTitle({ className, ...props }: HTMLAttributes<HTMLHeadingElement>) {
+/** The one h1 of a page, with an optional line under it. */
+export function PageTitle({ children, lead }: { children: ReactNode; lead?: ReactNode }) {
   return (
-    <h1
-      className={cn("font-display text-[clamp(2.5rem,1.3rem+3.6vw,4.5rem)] leading-[1.04] tracking-[-0.02em] text-balance", className)}
-      {...props}
-    />
+    <header className="py-16">
+      <h1 className="font-display text-4xl md:text-[length:var(--text-4xl)]">{children}</h1>
+      {lead && <p className="mt-4 max-w-[56ch] text-lg text-muted">{lead}</p>}
+    </header>
   );
 }

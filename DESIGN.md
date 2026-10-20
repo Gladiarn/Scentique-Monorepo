@@ -1,5 +1,8 @@
 # Scentique design system
 
+> **Status 2026-10-20: restart.** The storefront was reset to a skeleton on branch `restart`. Only the tokens, fonts and palette below still exist in code; the components and pages this document describes were removed and will be rebuilt. The previous design lives on branch `feat/landing-3d` and on `main`.
+
+
 This document describes the system as built. The tokens in `frontend/src/styles/tokens.css` are the source of truth. Anything not listed here is not part of the system and should not be introduced without a reason recorded in `docs/design-log.md`.
 
 ## Direction
