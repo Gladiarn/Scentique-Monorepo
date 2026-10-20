@@ -59,7 +59,6 @@ export function NewsletterForm({ subscribe = placeholderSubscribe, className }: 
         {state === "failed" && <p role="alert" className="text-danger">Could not subscribe. Check your connection and try again.</p>}
         {state === "done" && <p role="status" className="text-ink">Subscribed. Thank you for joining the seasonal letter.</p>}
       </div>
-      <p className="mt-1 text-xs text-muted">Placeholder: no email is sent yet.</p>
     </form>
   );
 }

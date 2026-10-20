@@ -4,7 +4,7 @@ import { testimonialRepository } from "@/data";
 
 const DEPTHS: Depth[] = ["far", "near", "mid"];
 
-/** Act four, proof: large quotes that drift past each other at different depths. The placeholder note stays. */
+/** Act four, proof: large quotes that drift past each other at different depths. */
 export async function Reviews() {
   const testimonials = await testimonialRepository.findAll();
   if (testimonials.length === 0) return null;
@@ -26,7 +26,6 @@ export async function Reviews() {
             </li>
           ))}
         </ul>
-        <p className="mt-16 text-sm text-muted">Placeholder reviews for design purposes.</p>
       </Container>
     </section>
   );

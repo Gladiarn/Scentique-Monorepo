@@ -20,7 +20,7 @@ export function Close() {
           data-plane="enter"
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-0 top-0 h-[55%] bg-gradient-to-b from-page via-page/70 to-transparent"
-          style={{ opacity: "calc(1 - var(--e, 1))" }}
+          style={{ opacity: "clamp(0, calc((1 - var(--e, 1)) / 0.7), 1)" }}
         />
         <div className="relative px-6 text-center">
           <h2 id="close-heading" className="mx-auto max-w-3xl font-display text-[clamp(2.25rem,1.2rem+3.2vw,4rem)] leading-[1.06] text-balance">

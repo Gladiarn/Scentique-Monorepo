@@ -35,6 +35,19 @@ export function wavePath(width: number, height: number, layer: WaveLayer, { clos
   return closed ? `${points.join(" ")} L${width} ${height} L0 ${height} Z` : points.join(" ");
 }
 
+/** The same layer moved sideways by `offset` (a fraction of the width) and with its swing scaled by `swell`. */
+export function travel(layer: WaveLayer, offset: number, swell = 1): WaveLayer {
+  return {
+    base: layer.base,
+    harmonics: layer.harmonics.map((h) => ({ cycles: h.cycles, amp: h.amp * swell, phase: h.phase + 2 * Math.PI * h.cycles * offset })),
+  };
+}
+
+/** How far a band has crossed the screen: 0 as it enters at the bottom, 1 as it leaves at the top. */
+export function passProgress(top: number, height: number, viewport: number): number {
+  return (viewport - top) / (viewport + height);
+}
+
 /** Five seams, five different lines: a slow swell, a double tide, a leaning ridge, a rippled shore and a deep roll. */
 export const WAVE_SHAPES = {
   swell: {

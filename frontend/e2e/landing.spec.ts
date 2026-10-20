@@ -25,7 +25,7 @@ test("buying path: product, size, add to bag, the bag, the way to checkout", asy
   await expect(page.getByRole("link", { name: "Bois Fumé Précieux" })).toBeVisible();
   await page.getByRole("button", { name: /increase quantity of bois fumé précieux/i }).click();
   await expect(page.getByRole("link", { name: "Bag, 2 items" })).toBeVisible();
-  await page.getByRole("link", { name: /checkout/i }).click();
+  await page.getByRole("main").getByRole("link", { name: /checkout/i }).click();
   await expect(page).toHaveURL(/\/checkout$/);
   await page.getByRole("button", { name: /place order/i }).click();
   await expect(page.getByText(/enter an email address/i)).toBeVisible();

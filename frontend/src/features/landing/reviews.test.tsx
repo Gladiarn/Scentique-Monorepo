@@ -13,12 +13,12 @@ beforeEach(() => {
 });
 
 describe("Reviews (proof, drifting)", () => {
-  it("is the #reviews landmark with each quote, its author and place, and the placeholder note kept", async () => {
+  it("is the #reviews landmark with each quote, its author and place, with no filler line under them", async () => {
     const { container } = render(await Reviews());
     expect(container.querySelector("section")).toHaveAttribute("id", "reviews");
     expect(screen.getAllByRole("blockquote")).toHaveLength(testimonialFixtures.length);
     expect(screen.getByText(`${testimonialFixtures[0]!.author}, ${testimonialFixtures[0]!.location}`)).toBeInTheDocument();
-    expect(screen.getByText("Placeholder reviews for design purposes.")).toBeInTheDocument();
+    expect(screen.queryByText(/placeholder/i)).not.toBeInTheDocument();
   });
 
   it("drifts: the quotes sit at different depths", async () => {

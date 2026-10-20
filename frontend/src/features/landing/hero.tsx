@@ -40,8 +40,10 @@ export async function Hero() {
           data-plane="exit"
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-b from-transparent via-page/70 to-page"
-          style={{ opacity: "clamp(0, calc(var(--x, 0) * 3), 1)" }}
+          style={{ opacity: "clamp(0, calc(var(--x, 0) * 6), 1)" }}
         />
+        {/* Always on: the frame's last sliver is page colour, so the video has no edge at any scroll position. */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-[14%] bg-gradient-to-b from-transparent to-page" />
         <Embers />
 
         <Container className="relative flex h-full items-end pb-14 md:items-center md:pb-0">

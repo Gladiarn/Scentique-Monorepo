@@ -4,11 +4,11 @@ import { describe, expect, it, vi } from "vitest";
 import { NewsletterForm } from "./newsletter-form";
 
 describe("NewsletterForm", () => {
-  it("asks for an email with a visible label, and says plainly that nothing is sent yet", () => {
+  it("asks for an email with a visible label and a subscribe button", () => {
     render(<NewsletterForm />);
     expect(screen.getByLabelText(/email/i)).toHaveAttribute("type", "email");
     expect(screen.getByRole("button", { name: /subscribe/i })).toBeInTheDocument();
-    expect(screen.getByText(/placeholder.*no email is sent/i)).toBeInTheDocument();
+    expect(screen.queryByText(/placeholder/i)).not.toBeInTheDocument();
   });
 
   it("names the problem, and how to fix it, for an email that is not one, and does not subscribe", async () => {

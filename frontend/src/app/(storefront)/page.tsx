@@ -14,13 +14,13 @@ export default async function HomePage() {
       <Hero />
       <Seam shape="swell" />
       <About />
-      <Seam shape="tide" flip />
+      <Seam shape="tide" tone="woody" flip />
       <BestSellers />
-      <Seam shape="ridge" tone="glow" />
+      <Seam shape="ridge" tone="floral" />
       <QuizSection products={products} />
-      <Seam shape="shore" flip />
+      <Seam shape="shore" tone="glow" flip />
       <Reviews />
-      <Seam shape="roll" tone="glow" />
+      <Seam shape="roll" tone="oud" />
       <Close />
     </>
   );
