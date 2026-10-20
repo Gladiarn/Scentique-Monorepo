@@ -12,7 +12,7 @@ const FAMILIES: [ScentFamily, string][] = [
   ["oud", "Oud"],
 ];
 
-const chip = "inline-flex h-11 items-center rounded-pill border px-5 text-sm transition-colors";
+const chip = "inline-flex h-11 items-center rounded-pill border px-5 text-sm press";
 const off = "border-ink/20 text-ink/80 hover:border-accent hover:text-ink";
 const on = "border-accent text-ink";
 

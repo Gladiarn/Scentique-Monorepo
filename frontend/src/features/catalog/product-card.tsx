@@ -19,7 +19,7 @@ export function ProductCard({ product, sizes = "(min-width: 1024px) 22vw, 78vw" 
             sizes={sizes}
             quality={80}
             style={media.objectPosition ? { objectPosition: media.objectPosition } : undefined}
-            className="object-cover transition-transform duration-700 ease-out-quart group-hover:scale-[1.04]"
+            className="object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]"
           />
         )}
       </div>

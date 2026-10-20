@@ -49,7 +49,7 @@ export function NewsletterForm({ subscribe = placeholderSubscribe, className }: 
         <button
           type="submit"
           disabled={state === "sending"}
-          className="h-12 rounded-pill border border-ink/25 bg-surface/45 px-6 text-sm transition-colors hover:border-accent hover:text-accent disabled:cursor-not-allowed disabled:opacity-50"
+          className="h-12 rounded-pill border border-ink/25 bg-surface/45 px-6 text-sm press hover:border-accent hover:text-accent disabled:cursor-not-allowed disabled:opacity-50"
         >
           Subscribe
         </button>

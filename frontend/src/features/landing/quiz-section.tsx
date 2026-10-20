@@ -79,7 +79,7 @@ export function QuizSection({ products }: { products: Product[] }) {
                     key={o.value}
                     type="button"
                     onClick={() => answer(question.key, o.value)}
-                    className="rounded-xl border border-ink/20 bg-surface/45 p-5 text-left backdrop-blur-glass transition-colors hover:border-accent"
+                    className="rounded-xl border border-ink/20 bg-surface/45 p-5 text-left backdrop-blur-glass press hover:border-accent"
                   >
                     <span className="block font-display text-xl">{o.label}</span>
                     <span className="mt-1 block text-sm text-muted">{o.hint}</span>

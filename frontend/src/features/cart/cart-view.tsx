@@ -12,7 +12,7 @@ import { useHydrated } from "./use-hydrated";
 const EMPTY: CartItem[] = [];
 
 const step =
-  "grid size-11 place-items-center rounded-pill border border-ink/25 text-lg text-ink transition-colors hover:border-accent disabled:cursor-not-allowed disabled:opacity-40";
+  "grid size-11 place-items-center rounded-pill border border-ink/25 text-lg text-ink press hover:border-accent disabled:cursor-not-allowed disabled:opacity-40";
 
 /** The bag: lines you can change within stock, then the totals, the free-shipping nudge and the way to checkout. */
 export function CartView() {

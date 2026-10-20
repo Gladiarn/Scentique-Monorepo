@@ -70,6 +70,17 @@
   }
 }
 
+/* Press feedback for anything clickable: a small, quick scale that eases back on release. Not for scroll scenes. */
+@utility press {
+  transition-property: color, background-color, border-color, opacity, transform;
+  transition-duration: 160ms;
+  transition-timing-function: var(--ease-out);
+
+  &:active:not(:disabled, [aria-disabled="true"]) {
+    transform: scale(0.97);
+  }
+}
+
 /* Section surfaces: warm browns made from the tokens alone. A section picks one; nothing sits fixed behind the page. */
 @utility surface-umber {
   background: linear-gradient(180deg, var(--color-page), var(--color-surface) 38%, var(--color-raised) 72%, var(--color-page));

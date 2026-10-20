@@ -10,7 +10,7 @@ import type { Concentration, Product } from "@scentique/shared";
 import { availableConcentrations, availableSizes, resolveVariant } from "./variants";
 
 const pill =
-  "inline-flex h-11 cursor-pointer items-center rounded-pill border border-ink/25 px-5 text-sm text-ink/85 transition-colors peer-checked:border-accent peer-checked:text-ink peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-accent hover:border-ink/60";
+  "inline-flex h-11 cursor-pointer items-center rounded-pill border border-ink/25 px-5 text-sm text-ink/85 press peer-checked:border-accent peer-checked:text-ink peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-accent hover:border-ink/60";
 
 /** Size and concentration pickers, the price of what is chosen, and add to bag. Sold-out choices cannot be added. */
 export function PurchasePanel({ product }: { product: Product }) {

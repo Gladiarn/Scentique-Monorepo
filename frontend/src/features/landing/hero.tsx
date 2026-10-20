@@ -12,7 +12,7 @@ import { ScrubVideo } from "./scrub-video";
 const FAMILIES = ["floral", "woody", "citrus", "oud"] as const;
 
 const chip =
-  "inline-flex h-11 items-center gap-2.5 rounded-pill border border-ink/20 bg-surface/35 px-5 text-sm capitalize text-ink/90 backdrop-blur-glass transition-colors hover:border-accent hover:text-ink";
+  "inline-flex h-11 items-center gap-2.5 rounded-pill border border-ink/20 bg-surface/35 px-5 text-sm capitalize text-ink/90 backdrop-blur-glass press hover:border-accent hover:text-ink";
 
 /**
  * The first act and the peak of the page: a clip you scrub with the wheel, in planes. Behind: the clip (camera depth).
