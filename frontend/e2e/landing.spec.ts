@@ -27,6 +27,14 @@ test("buying path: product, size, add to bag, the bag, the way to checkout", asy
   await expect(page.getByRole("link", { name: "Bag, 2 items" })).toBeVisible();
   await page.getByRole("link", { name: /checkout/i }).click();
   await expect(page).toHaveURL(/\/checkout$/);
+  await page.getByRole("button", { name: /place order/i }).click();
+  await expect(page.getByText(/enter an email address/i)).toBeVisible();
+  for (const [label, value] of [["Email", "ada@example.com"], ["Full name", "Ada Lovelace"], ["Street address", "12 Rue Cler"], ["City", "Paris"], ["Postcode", "75007"], ["Country", "France"], ["Card number", "4242 4242 4242 4242"]] as const) {
+    await page.getByLabel(label).fill(value);
+  }
+  await page.getByRole("button", { name: /place order/i }).click();
+  await expect(page.getByRole("heading", { name: /thank you/i })).toBeVisible();
+  await expect(page.getByRole("link", { name: /^Bag/ })).toHaveAccessibleName("Bag, 0 items");
 });
 
 test("the quiz ends on scents to try, and each one opens its page", async ({ page }) => {
