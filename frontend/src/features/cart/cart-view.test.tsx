@@ -1,6 +1,9 @@
 import { render, screen } from "@testing-library/react";
+import { act } from "react";
+import { hydrateRoot } from "react-dom/client";
+import { renderToString } from "react-dom/server";
 import userEvent from "@testing-library/user-event";
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { CartView } from "./cart-view";
 import { useCart } from "./cart-store";
 import type { CartItem } from "./cart-logic";
@@ -62,5 +65,17 @@ describe("CartView", () => {
     useCart.setState({ items: [item()] });
     render(<CartView />);
     expect(screen.getByRole("link", { name: /checkout/i })).toHaveAttribute("href", "/checkout");
+  });
+
+  it("hydrates server HTML without store warnings: the empty bag shown before the saved one can be read is a stable value", async () => {
+    const errors = vi.spyOn(console, "error").mockImplementation(() => {});
+    const container = document.createElement("div");
+    container.innerHTML = renderToString(<CartView />);
+    expect(container.textContent).toContain("Your bag is empty");
+    await act(async () => {
+      hydrateRoot(container, <CartView />);
+    });
+    expect(errors.mock.calls.map((c) => String(c[0])).filter((m) => /getServerSnapshot|infinite loop/i.test(m))).toEqual([]);
+    errors.mockRestore();
   });
 });

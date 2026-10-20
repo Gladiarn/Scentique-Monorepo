@@ -24,6 +24,14 @@ describe("Close (the resolved ending)", () => {
     expect(links[0]).toHaveAttribute("href", "/shop");
   });
 
+  it("offers the seasonal letter under the main ask, as a form, without adding another heading or link", () => {
+    render(<Close />);
+    expect(screen.getByText("The seasonal letter")).toBeInTheDocument();
+    expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /subscribe/i })).toBeInTheDocument();
+    expect(screen.getAllByRole("heading")).toHaveLength(1);
+  });
+
   it("uses a decorative photograph behind the type, never as the only carrier of meaning", () => {
     const { container } = render(<Close />);
     const img = container.querySelector("img")!;

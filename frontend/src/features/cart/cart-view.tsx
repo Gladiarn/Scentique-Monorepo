@@ -4,9 +4,12 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { formatConcentration, formatMoney } from "@/lib/format";
-import { FREE_SHIPPING_CENTS, lineTotalCents, shippingCents, subtotalCents, totalCents } from "./cart-logic";
+import { FREE_SHIPPING_CENTS, lineTotalCents, shippingCents, subtotalCents, totalCents, type CartItem } from "./cart-logic";
 import { useCart } from "./cart-store";
 import { useHydrated } from "./use-hydrated";
+
+/** One shared empty bag: a selector that returned a new `[]` each call would make React treat the server snapshot as unstable. */
+const EMPTY: CartItem[] = [];
 
 const step =
   "grid size-11 place-items-center rounded-pill border border-ink/25 text-lg text-ink transition-colors hover:border-accent disabled:cursor-not-allowed disabled:opacity-40";
@@ -14,7 +17,7 @@ const step =
 /** The bag: lines you can change within stock, then the totals, the free-shipping nudge and the way to checkout. */
 export function CartView() {
   const hydrated = useHydrated();
-  const items = useCart((s) => (hydrated ? s.items : []));
+  const items = useCart((s) => (hydrated ? s.items : EMPTY));
   const { setQuantity, remove } = useCart.getState();
 
   if (items.length === 0) {

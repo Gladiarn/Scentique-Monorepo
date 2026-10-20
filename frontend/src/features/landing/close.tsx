@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
+import { NewsletterForm } from "./newsletter-form";
 import { ScrollVars } from "./scroll-vars";
 
 /**
@@ -28,6 +29,11 @@ export function Close() {
           <Button href="/shop" className="mt-10">
             Shop all perfumes
           </Button>
+          <div className="mx-auto mt-16 flex flex-col items-center text-left">
+            <p className="font-display text-xl">The seasonal letter</p>
+            <p className="mt-1 text-sm text-muted">New scents and small-batch releases, four times a year.</p>
+            <NewsletterForm className="mt-5" />
+          </div>
         </div>
       </div>
     </section>
