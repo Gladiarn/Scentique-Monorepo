@@ -18,7 +18,7 @@ const renderIn = (ui = <ScrubVideo {...props} />) => render(<section data-scrub-
 beforeEach(() => {
   vi.stubGlobal("requestAnimationFrame", (cb: FrameRequestCallback) => {
     cb(0);
-    return 1;
+    return 0; // synchronous in tests, so the id must stay falsy or the next scroll is ignored
   });
   vi.stubGlobal("cancelAnimationFrame", () => {});
 });

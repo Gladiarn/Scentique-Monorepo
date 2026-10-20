@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { sectionProgress, videoTimeAt } from "./scrub";
+import { noteTierAt, sectionProgress, videoTimeAt } from "./scrub";
 
 describe("sectionProgress", () => {
   it("is 0 while the section's top is at or below the viewport top, 1 when its bottom meets the viewport bottom", () => {
@@ -34,3 +34,21 @@ describe("videoTimeAt", () => {
     expect(videoTimeAt(0.5, Number.NaN)).toBe(0);
   });
 });
+
+describe("noteTierAt", () => {
+  it("walks top, heart, base as the scent develops, in equal thirds", () => {
+    expect(noteTierAt(0)).toBe("top");
+    expect(noteTierAt(0.32)).toBe("top");
+    expect(noteTierAt(0.34)).toBe("heart");
+    expect(noteTierAt(0.66)).toBe("heart");
+    expect(noteTierAt(0.67)).toBe("base");
+    expect(noteTierAt(1)).toBe("base");
+  });
+
+  it("clamps outside 0..1", () => {
+    expect(noteTierAt(-3)).toBe("top");
+    expect(noteTierAt(9)).toBe("base");
+    expect(noteTierAt(Number.NaN)).toBe("top");
+  });
+});
+

@@ -11,3 +11,12 @@ export function videoTimeAt(progress: number, duration: number): number {
   if (!Number.isFinite(duration) || duration <= 0) return 0;
   return Math.min(clamp01(progress) * duration, Math.max(0, duration - 0.04));
 }
+
+export type NoteTier = "top" | "heart" | "base";
+
+/** A perfume unfolds top, then heart, then base. Scroll is time: each tier owns a third of the scroll. */
+export function noteTierAt(progress: number): NoteTier {
+  const p = Number.isFinite(progress) ? clamp01(progress) : 0;
+  return p < 1 / 3 ? "top" : p < 2 / 3 ? "heart" : "base";
+}
+

@@ -1,5 +1,5 @@
 import { Hero } from "@/features/landing/hero";
 
-export default function HomePage() {
+export default async function HomePage() {
   return <Hero />;
 }
