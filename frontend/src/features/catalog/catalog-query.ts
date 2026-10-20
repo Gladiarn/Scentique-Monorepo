@@ -74,3 +74,20 @@ export function sortProducts(products: Product[], sort: CatalogSort): Product[] 
 export function isSoldOut(product: Pick<Product, "variants">): boolean {
   return product.variants.every((v) => v.stock === 0);
 }
+
+/**
+ * The /shop URL for a query with some choices changed. Defaults are left out, and changing a filter or the sort goes
+ * back to the first page (unless a page is given).
+ */
+export function shopHref(query: CatalogQuery, patch: Partial<CatalogQuery> = {}): string {
+  const refilters = (["family", "gender", "maxPriceCents", "sort"] as const).some((key) => key in patch);
+  const next = { ...query, ...patch, page: "page" in patch ? (patch.page ?? 1) : refilters ? 1 : query.page };
+  const params = new URLSearchParams();
+  if (next.family) params.set("family", next.family);
+  if (next.gender) params.set("gender", next.gender);
+  if (next.maxPriceCents) params.set("max", String(next.maxPriceCents / 100));
+  if (next.sort !== "featured") params.set("sort", next.sort);
+  if (next.page > 1) params.set("page", String(next.page));
+  const text = params.toString();
+  return text ? `/shop?${text}` : "/shop";
+}

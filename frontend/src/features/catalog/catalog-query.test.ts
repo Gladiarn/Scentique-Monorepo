@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { Product } from "@scentique/shared";
-import { isSoldOut, parseCatalogQuery, sortProducts, toProductFilters } from "./catalog-query";
+import { isSoldOut, parseCatalogQuery, sortProducts, toProductFilters, shopHref } from "./catalog-query";
 
 const product = (overrides: Partial<Product> & Pick<Product, "slug">): Product => ({
   id: overrides.slug,
@@ -92,3 +92,22 @@ describe("isSoldOut", () => {
     expect(isSoldOut(partly)).toBe(false);
   });
 });
+
+describe("shopHref", () => {
+  const base = { sort: "featured", page: 1 } as const;
+
+  it("is /shop when nothing is chosen: defaults are never written into the URL", () => {
+    expect(shopHref({ ...base })).toBe("/shop");
+  });
+
+  it("keeps the other choices when one changes", () => {
+    expect(shopHref({ ...base, family: "woody" }, { sort: "price-asc" })).toBe("/shop?family=woody&sort=price-asc");
+    expect(shopHref({ ...base, family: "woody", sort: "newest" }, { family: undefined })).toBe("/shop?sort=newest");
+  });
+
+  it("goes back to the first page whenever the filter or sort changes, but keeps the page it was told to go to", () => {
+    expect(shopHref({ ...base, family: "oud", page: 3 }, { sort: "newest" })).toBe("/shop?family=oud&sort=newest");
+    expect(shopHref({ ...base, family: "oud", page: 1 }, { page: 2 })).toBe("/shop?family=oud&page=2");
+  });
+});
+
