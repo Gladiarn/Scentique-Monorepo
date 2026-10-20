@@ -1,10 +1,17 @@
+import type { Metadata } from "next";
 import { Container } from "@/components/ui/container";
 import { PageTitle } from "@/components/ui/page-title";
+import { CartView } from "@/features/cart/cart-view";
 
-export default function Page() {
+export const metadata: Metadata = { title: "Bag" };
+
+export default function CartPage() {
   return (
-    <Container>
-      <PageTitle lead="The bag goes here.">Cart</PageTitle>
-    </Container>
+    <>
+      <Container>
+        <PageTitle>Your bag</PageTitle>
+      </Container>
+      <CartView />
+    </>
   );
 }

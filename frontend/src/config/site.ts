@@ -9,7 +9,6 @@ export const siteConfig = {
   nav: [
     { label: "Home", href: "/" },
     { label: "Shop", href: "/shop" },
-    { label: "Cart", href: "/cart" },
     { label: "Account", href: "/account" },
   ] satisfies NavItem[],
 } as const;

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
+import { BagLink } from "@/features/cart/bag-link";
 import { siteConfig } from "@/config/site";
 
 export function SiteHeader() {
@@ -18,6 +19,9 @@ export function SiteHeader() {
                 </Link>
               </li>
             ))}
+            <li>
+              <BagLink className="text-ink/80 hover:text-ink" />
+            </li>
           </ul>
         </nav>
       </Container>
