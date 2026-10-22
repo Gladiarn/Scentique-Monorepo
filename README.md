@@ -20,6 +20,8 @@ production-grade engineering, not just a UI mockup.
 
 <img src="docs/screenshots/landing-hero.jpg" alt="Scentique landing page hero" width="100%" />
 
+[▶ Watch the landing page scroll, top to footer](docs/media/landing-scroll.mp4)
+
 </div>
 
 <br />
@@ -55,10 +57,12 @@ checking out, plus an admin console for running the business day to day.
 ## Features
 
 **Storefront**
+- A scroll-driven landing page: a layered hero, sections that dissolve into each other, wavy seams that
+  move with scroll, eased wheel scrolling, and a reduced-motion fallback
 - Landing, shop, and product pages with a real repository layer (no data hardcoded into components)
 - Browse by scent family, filter by gender and price, read full notes pyramids (top / heart / base)
 - "Find your scent" quiz — a few short questions, two or three recommendations back
-- Cart, checkout, and order history
+- Cart, validated checkout with a delivery choice, and a test-mode order confirmation, and order history
 - Loading, empty, and error states are real states, not happy-path-only demos
 
 **Admin CRM** *(in progress — see [Roadmap](#roadmap))*
